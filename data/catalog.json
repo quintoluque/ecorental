@@ -1,0 +1,442 @@
+{
+  "_meta": {
+    "descripcion": "Fuente única de datos del sitio ECO > Eurocamping. Toda la información aquí contenida fue relevada del sitio original https://www.eurocampingonline.com.ar/ y de sus perfiles oficiales. Los campos en null son datos que el sitio original publica pero que no pudieron verificarse de forma automática (ver scripts/importar-catalogo.mjs para completarlos).",
+    "fuente": "https://www.eurocampingonline.com.ar/",
+    "ultimaActualizacion": "2026-07-30",
+    "version": 1
+  },
+
+  "empresa": {
+    "nombre": "ECO > Eurocamping",
+    "nombreCorto": "ECO Eurocamping",
+    "tagline": "The Outdoor Store Since 1965",
+    "desde": 1965,
+    "descripcion": "Desde 1965 somos la tienda especializada y de referencia en Argentina en artículos deportivos, indumentaria de montaña, aventura y actividades outdoor, con un amplio stock de las mejores marcas, asesoramiento experto y servicios de alquiler, taller y mantenimiento.",
+    "descripcionCorta": "Productos, marcas, servicio y experiencia outdoor desde hace más de 60 años.",
+    "email": "info@eurocampingonline.com.ar",
+    "telefono": "+54 11 4836-2192",
+    "whatsapp": "+54 9 11 6223-7233",
+    "whatsappLink": "https://wa.me/5491162237233",
+    "sitioOriginal": "https://www.eurocampingonline.com.ar/",
+    "redes": {
+      "instagram": "https://www.instagram.com/ecoutdoor/",
+      "instagramUsuario": "@ecoutdoor",
+      "facebook": "https://www.facebook.com/eurocamping/",
+      "facebookUsuario": "Eurocamping"
+    }
+  },
+
+  "actividades": [
+    "Ski",
+    "Snowboard",
+    "Pesca",
+    "Náutica",
+    "Kayak",
+    "Surf",
+    "Kitesurf",
+    "Escalada",
+    "Camping",
+    "Trekking",
+    "Montañismo"
+  ],
+
+  "areas": [
+    {
+      "slug": "invierno",
+      "codigoOriginal": "i",
+      "nombre": "Invierno",
+      "descripcion": "Ski, snowboard e indumentaria técnica de montaña para la temporada de nieve.",
+      "actividades": ["Ski", "Snowboard"],
+      "destacada": true
+    },
+    {
+      "slug": "camping-trekking",
+      "codigoOriginal": "c",
+      "nombre": "Camping & Trekking",
+      "descripcion": "Carpas, bolsas de dormir, mochilas y equipo para acampar y caminar.",
+      "actividades": ["Camping", "Trekking"],
+      "destacada": true
+    },
+    {
+      "slug": "escalada-montanismo",
+      "codigoOriginal": "e",
+      "nombre": "Escalada & Montañismo",
+      "descripcion": "Equipo técnico de escalada, alta montaña y seguridad vertical.",
+      "actividades": ["Escalada", "Montañismo"],
+      "destacada": true
+    },
+    {
+      "slug": "nautica",
+      "codigoOriginal": "n",
+      "nombre": "Náutica & Kayak",
+      "descripcion": "Yachting, kayak y todo el equipamiento para el agua.",
+      "actividades": ["Náutica", "Kayak"],
+      "destacada": true
+    },
+    {
+      "slug": "pesca",
+      "codigoOriginal": "p",
+      "nombre": "Pesca",
+      "descripcion": "Equipos, indumentaria y accesorios de pesca.",
+      "actividades": ["Pesca"],
+      "destacada": true
+    },
+    {
+      "slug": "surf-kitesurf",
+      "codigoOriginal": "s",
+      "nombre": "Surf & Kitesurf",
+      "descripcion": "Trajes, accesorios y equipamiento para surf y kitesurf.",
+      "actividades": ["Surf", "Kitesurf"],
+      "destacada": true
+    },
+    {
+      "slug": "grass-skiing",
+      "codigoOriginal": "g",
+      "nombre": "Grass Skiing",
+      "descripcion": "Ski sobre pasto: la disciplina de verano de la que ECO es referente en Argentina.",
+      "actividades": ["Ski"],
+      "destacada": false
+    },
+    {
+      "slug": "usados",
+      "codigoOriginal": "usados",
+      "nombre": "Usados",
+      "descripcion": "Equipos usados y de temporadas anteriores, revisados por nuestro taller.",
+      "actividades": [],
+      "destacada": false
+    }
+  ],
+
+  "grupos": [
+    { "slug": "skis", "nombre": "Skis", "area": "invierno" },
+    { "slug": "bolsas-de-dormir", "nombre": "Bolsas de dormir", "area": "camping-trekking" },
+    { "slug": "calzado-nautico", "nombre": "Calzado náutico", "area": "nautica" }
+  ],
+
+  "marcas": [
+    { "slug": "rossignol", "nombre": "Rossignol" },
+    { "slug": "doite", "nombre": "Doite" },
+    { "slug": "outside", "nombre": "Outside" },
+    { "slug": "x-terra", "nombre": "X-Terra" },
+    { "slug": "hydrox", "nombre": "Hydrox" }
+  ],
+
+  "productos": [
+    {
+      "id": 1542,
+      "slug": "rossignol-ski-black-ops",
+      "nombre": "ROSSIGNOL SKI BLACK OPS",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "skis",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1542"
+    },
+    {
+      "id": 87,
+      "slug": "doite-bolsa-de-dormir-valais",
+      "nombre": "DOITE BOLSA DE DORMIR VALAIS",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": "Tela interior Poly Ponge 230T con control de humedad. Tela exterior Nylon Diamo.",
+      "especificaciones": [
+        { "nombre": "Tela interior", "valor": "Poly Ponge 230T con control de humedad" },
+        { "nombre": "Tela exterior", "valor": "Nylon Diamo" }
+      ],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=87"
+    },
+    {
+      "id": 88,
+      "slug": "doite-bolsa-de-dormir-trango",
+      "nombre": "DOITE BOLSA DE DORMIR TRANGO",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": "Tela interior Poly Ponge 230T con control de humedad. Tela exterior Nylon Diamo.",
+      "especificaciones": [
+        { "nombre": "Tela interior", "valor": "Poly Ponge 230T con control de humedad" },
+        { "nombre": "Tela exterior", "valor": "Nylon Diamo" }
+      ],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=88"
+    },
+    {
+      "id": 93,
+      "slug": "doite-bolsa-de-dormir-glaciar-expandible",
+      "nombre": "DOITE BOLSA DE DORMIR GLACIAR EXPANDIBLE",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": "Tela interior Nylon 70D. Tela exterior Nylon Diamond Ripstop.",
+      "especificaciones": [
+        { "nombre": "Tela interior", "valor": "Nylon 70D" },
+        { "nombre": "Tela exterior", "valor": "Nylon Diamond Ripstop" }
+      ],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=93"
+    },
+    {
+      "id": 1450,
+      "slug": "outside-bolsa-de-dormir-aconcagua",
+      "nombre": "OUTSIDE BOLSA DE DORMIR ACONCAGUA",
+      "marca": "outside",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1450"
+    },
+    {
+      "id": 960,
+      "slug": "x-terra-bolsa-de-dormir-polar-200",
+      "nombre": "X-TERRA BOLSA DE DORMIR POLAR 200",
+      "marca": "x-terra",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": "Tela exterior Ripstop 190T. Tela interior Poliéster + Algodón. Relleno de fibra hueca siliconada 200 g/m². Formato momia. Temperatura 2 grados.",
+      "especificaciones": [
+        { "nombre": "Tela exterior", "valor": "Ripstop 190T" },
+        { "nombre": "Tela interior", "valor": "Poliéster + Algodón" },
+        { "nombre": "Relleno", "valor": "Fibra hueca siliconada 200 g/m²" },
+        { "nombre": "Formato", "valor": "Momia" },
+        { "nombre": "Temperatura", "valor": "2 grados" }
+      ],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=960"
+    },
+    {
+      "id": 1122,
+      "slug": "hydrox-bota-nautica-linux-3mm",
+      "nombre": "HYDROX BOTA NÁUTICA LINUX 3MM",
+      "marca": "hydrox",
+      "area": "nautica",
+      "grupo": "calzado-nautico",
+      "descripcion": null,
+      "especificaciones": [{ "nombre": "Espesor", "valor": "3 mm" }],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1122"
+    }
+  ],
+
+  "sucursales": [
+    {
+      "slug": "martinez-la-paz",
+      "nombre": "ECO Martínez",
+      "referencia": "La Paz 830",
+      "direccion": "La Paz 830 (entre Dardo Rocha y Catamarca)",
+      "codigoPostal": "1640",
+      "ciudad": "Martínez",
+      "provincia": "Buenos Aires",
+      "telefono": "+54 11 4836-2192",
+      "whatsapp": "+54 9 11 6223-7233",
+      "email": "info@eurocampingonline.com.ar",
+      "horarios": [
+        { "dias": "Lunes a viernes", "horario": "10:00 a 19:00" },
+        { "dias": "Sábados", "horario": "10:00 a 13:00" }
+      ],
+      "servicios": ["venta", "rental", "taller"],
+      "casaCentral": true,
+      "centroDeSki": null,
+      "urlOriginal": "https://www.eurocampingonline.com.ar/sucursales/lapaz.html"
+    },
+    {
+      "slug": "caba",
+      "nombre": "ECO CABA",
+      "referencia": null,
+      "direccion": null,
+      "codigoPostal": null,
+      "ciudad": "Ciudad Autónoma de Buenos Aires",
+      "provincia": "CABA",
+      "telefono": null,
+      "whatsapp": null,
+      "email": "info@eurocampingonline.com.ar",
+      "horarios": [],
+      "servicios": ["venta"],
+      "casaCentral": false,
+      "centroDeSki": null,
+      "urlOriginal": "https://www.eurocampingonline.com.ar/sucursales/"
+    },
+    {
+      "slug": "cordoba",
+      "nombre": "ECO Córdoba",
+      "referencia": null,
+      "direccion": null,
+      "codigoPostal": null,
+      "ciudad": "Córdoba",
+      "provincia": "Córdoba",
+      "telefono": null,
+      "whatsapp": null,
+      "email": "info@eurocampingonline.com.ar",
+      "horarios": [],
+      "servicios": ["venta"],
+      "casaCentral": false,
+      "centroDeSki": null,
+      "urlOriginal": "https://www.eurocampingonline.com.ar/sucursales/"
+    },
+    {
+      "slug": "las-lenas",
+      "nombre": "ECO Las Leñas",
+      "referencia": null,
+      "direccion": null,
+      "codigoPostal": null,
+      "ciudad": "Las Leñas",
+      "provincia": "Mendoza",
+      "telefono": null,
+      "whatsapp": null,
+      "email": "info@eurocampingonline.com.ar",
+      "horarios": [],
+      "servicios": ["venta", "rental", "taller"],
+      "casaCentral": false,
+      "centroDeSki": "Las Leñas",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/sucursales/"
+    },
+    {
+      "slug": "villa-traful",
+      "nombre": "ECO Villa Traful",
+      "referencia": null,
+      "direccion": null,
+      "codigoPostal": null,
+      "ciudad": "Villa Traful",
+      "provincia": "Neuquén",
+      "telefono": null,
+      "whatsapp": null,
+      "email": "info@eurocampingonline.com.ar",
+      "horarios": [],
+      "servicios": ["venta"],
+      "casaCentral": false,
+      "centroDeSki": null,
+      "urlOriginal": "https://www.eurocampingonline.com.ar/sucursales/"
+    },
+    {
+      "slug": "san-martin-de-los-andes",
+      "nombre": "ECO San Martín de los Andes",
+      "referencia": null,
+      "direccion": null,
+      "codigoPostal": null,
+      "ciudad": "San Martín de los Andes",
+      "provincia": "Neuquén",
+      "telefono": null,
+      "whatsapp": null,
+      "email": "info@eurocampingonline.com.ar",
+      "horarios": [],
+      "servicios": ["venta", "rental", "taller"],
+      "casaCentral": false,
+      "centroDeSki": "Chapelco",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/sucursales/"
+    },
+    {
+      "slug": "bariloche",
+      "nombre": "ECO Bariloche",
+      "referencia": null,
+      "direccion": null,
+      "codigoPostal": null,
+      "ciudad": "San Carlos de Bariloche",
+      "provincia": "Río Negro",
+      "telefono": null,
+      "whatsapp": null,
+      "email": "info@eurocampingonline.com.ar",
+      "horarios": [],
+      "servicios": ["venta", "rental", "taller"],
+      "casaCentral": false,
+      "centroDeSki": "Cerro Catedral",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/sucursales/"
+    }
+  ],
+
+  "servicios": [
+    {
+      "slug": "rental",
+      "nombre": "Rental - Alquiler",
+      "resumen": "Alquiler de equipos de ski y snowboard con personal especializado y renovación permanente de modelos.",
+      "detalle": "Contamos con personal especializado en la elección del equipo, renovación periódica de los modelos y soporte de reparación y mantenimiento en nuestro taller.",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/rental/"
+    },
+    {
+      "slug": "taller",
+      "nombre": "Taller",
+      "resumen": "Taller especializado en instalaciones, reparaciones y mantenimiento de equipos de aventura.",
+      "detalle": "Taller especializado en instalaciones, reparaciones y mantenimiento de equipos de aventura.",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/taller/"
+    },
+    {
+      "slug": "asesoramiento",
+      "nombre": "Asesoramiento experto",
+      "resumen": "Asesoramiento experto en la elección del equipo para cada actividad.",
+      "detalle": "Asesoramiento experto en la elección del equipo para cada actividad.",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/"
+    }
+  ],
+
+  "rental": {
+    "descripcion": "Alquiler de equipos de ski y snowboard con personal especializado en la elección del equipo, renovación periódica de los modelos y soporte de reparación y mantenimiento en nuestro taller.",
+    "sucursales": ["martinez-la-paz", "las-lenas", "san-martin-de-los-andes", "bariloche"],
+    "categorias": [
+      {
+        "slug": "equipo-ski",
+        "nombre": "Equipo completo de Ski",
+        "descripcion": "Skis, botas y bastones.",
+        "incluye": ["Skis", "Botas", "Bastones"],
+        "tarifaPorDia": null,
+        "moneda": "ARS"
+      },
+      {
+        "slug": "equipo-snowboard",
+        "nombre": "Equipo completo de Snowboard",
+        "descripcion": "Tabla, fijaciones y botas.",
+        "incluye": ["Tabla", "Fijaciones", "Botas"],
+        "tarifaPorDia": null,
+        "moneda": "ARS"
+      }
+    ]
+  },
+
+  "clima": {
+    "titulo": "Clima en los centros de invierno",
+    "descripcion": "Estado del tiempo en los centros de invierno donde ECO tiene presencia.",
+    "urlOriginal": "https://www.eurocampingonline.com.ar/clima.php",
+    "centros": [
+      { "nombre": "Las Leñas", "provincia": "Mendoza", "sucursal": "las-lenas" },
+      { "nombre": "Cerro Catedral", "provincia": "Río Negro", "sucursal": "bariloche" },
+      { "nombre": "Chapelco", "provincia": "Neuquén", "sucursal": "san-martin-de-los-andes" }
+    ]
+  },
+
+  "novedades": {
+    "titulo": "Novedades",
+    "urlOriginal": "https://www.eurocampingonline.com.ar/novedades/",
+    "items": []
+  },
+
+  "paginasOriginales": [
+    { "titulo": "Inicio", "url": "https://www.eurocampingonline.com.ar/" },
+    { "titulo": "Productos", "url": "https://www.eurocampingonline.com.ar/productos.php" },
+    { "titulo": "Marcas", "url": "https://www.eurocampingonline.com.ar/marcas.php" },
+    { "titulo": "Rental - Alquiler", "url": "https://www.eurocampingonline.com.ar/rental/" },
+    { "titulo": "Taller", "url": "https://www.eurocampingonline.com.ar/taller/" },
+    { "titulo": "Novedades", "url": "https://www.eurocampingonline.com.ar/novedades/" },
+    { "titulo": "Sucursales", "url": "https://www.eurocampingonline.com.ar/sucursales/" },
+    { "titulo": "Quiénes somos", "url": "https://www.eurocampingonline.com.ar/quienes-somos.php" },
+    { "titulo": "Contacto", "url": "https://www.eurocampingonline.com.ar/contacto.php" },
+    { "titulo": "Clima en los centros de invierno", "url": "https://www.eurocampingonline.com.ar/clima.php" },
+    { "titulo": "Grass Skiing", "url": "https://www.eurocampingonline.com.ar/grass-skiing.php" }
+  ]
+}
