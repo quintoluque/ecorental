@@ -1,32 +1,36 @@
 @import 'tailwindcss';
 
+/*
+ * Identidad ECO > Eurocamping: naranja de marca sobre carbón, con el motivo
+ * de montaña del isotipo. Los tonos salen del logo oficial.
+ */
 @theme {
-  --color-nieve-50: #f8faf9;
-  --color-nieve-100: #eef2f0;
-  --color-nieve-200: #dfe6e3;
+  --color-marca-50: #fff5e9;
+  --color-marca-100: #ffe6c7;
+  --color-marca-200: #ffd39d;
+  --color-marca-300: #ffb861;
+  --color-marca-400: #fca23a;
+  --color-marca-500: #f7931e;
+  --color-marca-600: #de7a08;
+  --color-marca-700: #b35f00;
 
-  --color-tinta-500: #5b6a65;
-  --color-tinta-700: #24322d;
-  --color-tinta-900: #0b1210;
+  --color-carbon-900: #1b1a19;
+  --color-carbon-800: #262523;
+  --color-carbon-700: #34322f;
+  --color-carbon-500: #6b6763;
+  --color-carbon-300: #a8a39d;
 
-  --color-pino-50: #eef8f3;
-  --color-pino-100: #d3ede1;
-  --color-pino-300: #7fc9ac;
-  --color-pino-500: #16a06f;
-  --color-pino-600: #12805c;
-  --color-pino-700: #0e6748;
-  --color-pino-900: #07301f;
+  --color-nieve-50: #faf9f7;
+  --color-nieve-100: #f1efeb;
+  --color-nieve-200: #e2ded7;
 
   --color-hielo-100: #e0f2fe;
   --color-hielo-400: #38bdf8;
-  --color-hielo-600: #0284c7;
-
-  --color-ambar-400: #fbbf24;
-  --color-ambar-500: #f59e0b;
-  --color-ambar-600: #d97706;
+  --color-hielo-700: #0369a1;
 
   --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
     'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', serif;
 
   --radius-xl2: 1.25rem;
 }
@@ -39,13 +43,13 @@
 
   body {
     background-color: var(--color-nieve-50);
-    color: var(--color-tinta-900);
+    color: var(--color-carbon-900);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-pino-600);
+    outline: 2px solid var(--color-marca-600);
     outline-offset: 2px;
   }
 
@@ -88,16 +92,56 @@
   }
 
   .enlace-suave:hover {
-    color: var(--color-pino-600);
+    color: var(--color-marca-700);
+  }
+
+  /* La bajada del logo, en versalitas serif como en el logotipo original. */
+  .versalitas {
+    font-family: var(--font-serif);
+    font-variant-caps: small-caps;
+    letter-spacing: 0.08em;
+  }
+
+  /* Boton principal: naranja de marca con texto carbon, igual que el isotipo.
+     El naranja no da contraste suficiente con blanco, por eso el texto va oscuro. */
+  .boton-marca {
+    background-color: var(--color-marca-500);
+    color: var(--color-carbon-900);
+    transition: background-color 150ms ease, transform 150ms ease;
+  }
+
+  .boton-marca:hover {
+    background-color: var(--color-marca-400);
+    transform: translateY(-1px);
+  }
+
+  .boton-carbon {
+    background-color: var(--color-carbon-900);
+    color: white;
+    transition: background-color 150ms ease, transform 150ms ease;
+  }
+
+  .boton-carbon:hover {
+    background-color: var(--color-carbon-700);
+    transform: translateY(-1px);
   }
 }
 
-/* Silueta de montanas usada como remate de las secciones oscuras. */
+/* Silueta de montanas del logo, usada como remate de las secciones oscuras. */
 .cordillera {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0 120V70l180-40 140 55 130-75 190 90 160-60 180 45 150-35 310 60v40z' fill='%23ffffff' fill-opacity='0.06'/%3E%3Cpath d='M0 120V95l200-35 170 45 150-55 210 70 190-45 210 40 310-30v35z' fill='%23ffffff' fill-opacity='0.09'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0 120V70l180-40 140 55 130-75 190 90 160-60 180 45 150-35 310 60v40z' fill='%23ffffff' fill-opacity='0.05'/%3E%3Cpath d='M0 120V95l200-35 170 45 150-55 210 70 190-45 210 40 310-30v35z' fill='%23f7931e' fill-opacity='0.10'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: 100% 120px;
+}
+
+/* Veladuras suaves sobre carbon, como el fondo del logo oficial. Los bordes
+   van difuminados: con cortes duros se ven como circulos mal renderizados. */
+.textura-carbon {
+  background-color: var(--color-carbon-800);
+  background-image: radial-gradient(38% 46% at 14% 20%, rgba(255, 255, 255, 0.05), transparent 70%),
+    radial-gradient(30% 38% at 84% 10%, rgba(255, 255, 255, 0.04), transparent 70%),
+    radial-gradient(44% 52% at 70% 82%, rgba(247, 147, 30, 0.07), transparent 70%);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -9,6 +9,7 @@ export type Area = {
   descripcion: string | null;
   actividades: string[];
   destacada: boolean;
+  imagen: string | null;
 };
 
 export type Grupo = { slug: string; nombre: string; area: string };
@@ -26,6 +27,8 @@ export type Producto = {
   moneda: string;
   alquilable: boolean;
   urlOriginal: string | null;
+  /** Rutas relativas a apps/web/public, p. ej. 'fotos/productos/x.jpg'. */
+  imagenes: string[];
 };
 
 export type Horario = { dias: string; horario: string };
@@ -46,6 +49,7 @@ export type Sucursal = {
   casaCentral: boolean;
   centroDeSki: string | null;
   urlOriginal: string | null;
+  imagen: string | null;
 };
 
 export type Servicio = {

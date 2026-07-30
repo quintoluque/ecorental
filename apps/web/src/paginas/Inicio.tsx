@@ -8,6 +8,7 @@ import {
   IconoUbicacion,
 } from '@/components/Iconos.tsx';
 import { catalogo } from '@/lib/api.ts';
+import { rutaFoto } from '@/lib/formato.ts';
 
 export function Inicio() {
   const { empresa, areas, productos, marcas, sucursales, actividades, rental } = catalogo;
@@ -19,24 +20,25 @@ export function Inicio() {
   return (
     <>
       {/* Portada */}
-      <section className="relative overflow-hidden bg-pino-900 text-white">
+      <section className="textura-carbon relative overflow-hidden text-white">
         <div
-          className="absolute inset-0 opacity-70"
+          className="absolute inset-0"
           style={{
+            // Halo naranja de marca sobre carbon, como el fondo del logotipo.
             background:
-              'radial-gradient(120% 90% at 15% 0%, #0e6748 0%, transparent 55%), radial-gradient(90% 80% at 90% 20%, #0284c7 0%, transparent 50%)',
+              'radial-gradient(110% 85% at 12% 0%, rgba(247,147,30,0.28) 0%, transparent 58%), radial-gradient(80% 70% at 88% 15%, rgba(247,147,30,0.12) 0%, transparent 55%)',
           }}
           aria-hidden="true"
         />
         <div className="cordillera absolute inset-x-0 bottom-0 h-32" aria-hidden="true" />
 
         <div className="contenedor relative py-20 lg:py-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-pino-300">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-marca-300">
             {empresa.tagline}
           </p>
           <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-6xl">
             Todo el equipo para tu próxima salida.
-            <span className="block text-pino-300">Venta y alquiler, desde 1965.</span>
+            <span className="block text-marca-300">Venta y alquiler, desde 1965.</span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-nieve-100/85 sm:text-lg">
             {empresa.descripcion}
@@ -45,14 +47,14 @@ export function Inicio() {
           <div className="mt-9 flex flex-wrap gap-3">
             <Link
               to="/productos"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-pino-900 transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full bg-marca-500 px-6 py-3.5 text-sm font-semibold text-carbon-900 transition-transform hover:-translate-y-0.5"
             >
               Ver catálogo
               <IconoFlecha className="h-4 w-4" />
             </Link>
             <Link
               to="/rental"
-              className="inline-flex items-center gap-2 rounded-full bg-ambar-500 px-6 py-3.5 text-sm font-semibold text-tinta-900 transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10"
             >
               <IconoCalendario className="h-4 w-4" />
               Alquilar equipo de nieve
@@ -62,7 +64,7 @@ export function Inicio() {
           <ul className="mt-12 flex flex-wrap gap-x-6 gap-y-2 text-sm text-nieve-100/75">
             {actividades.map((actividad) => (
               <li key={actividad} className="flex items-center gap-1.5">
-                <span className="h-1 w-1 rounded-full bg-pino-300" aria-hidden="true" />
+                <span className="h-1 w-1 rounded-full bg-marca-500" aria-hidden="true" />
                 {actividad}
               </li>
             ))}
@@ -96,12 +98,12 @@ export function Inicio() {
             },
           ].map((item) => (
             <div key={item.titulo} className="flex gap-3">
-              <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-pino-50 text-pino-600">
+              <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-marca-50 text-marca-600">
                 {item.icono}
               </span>
               <div>
-                <p className="text-sm font-semibold text-tinta-900">{item.titulo}</p>
-                <p className="mt-0.5 text-xs leading-snug text-tinta-500">{item.texto}</p>
+                <p className="text-sm font-semibold text-carbon-900">{item.titulo}</p>
+                <p className="mt-0.5 text-xs leading-snug text-carbon-500">{item.texto}</p>
               </div>
             </div>
           ))}
@@ -113,13 +115,13 @@ export function Inicio() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <h2 className="text-3xl font-bold lg:text-4xl">Elegí tu actividad</h2>
-            <p className="mt-2 max-w-lg text-tinta-500">
+            <p className="mt-2 max-w-lg text-carbon-500">
               Cada disciplina con su equipo, sus marcas y el asesoramiento de gente que la practica.
             </p>
           </div>
           <Link
             to="/productos"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-pino-700 hover:text-pino-600"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-marca-700 hover:text-marca-600"
           >
             Todo el catálogo <IconoFlecha className="h-4 w-4" />
           </Link>
@@ -132,14 +134,40 @@ export function Inicio() {
               to={`/productos?area=${area.slug}`}
               className="group relative flex min-h-[190px] flex-col justify-end overflow-hidden rounded-xl2 p-6 text-white transition-transform hover:-translate-y-0.5"
               style={{
-                // Gama acotada al verde-azul de montaña: evita que las ultimas
-                // tarjetas se vayan a violetas que no son de la marca.
+                // Carbon de marca con un foco naranja que cambia de posicion en
+                // cada tarjeta. Superpuesto en vez de mezclado: mezclarlo daba
+                // un marron apagado que no es de la marca.
                 background: (() => {
-                  const tono = 158 + (indice / Math.max(1, areasDestacadas.length - 1)) * 46;
-                  return `linear-gradient(150deg, hsl(${tono} 46% 21%), hsl(${tono + 14} 42% 33%))`;
+                  const focos = [
+                    '12% 18%',
+                    '86% 22%',
+                    '50% 92%',
+                    '18% 84%',
+                    '92% 78%',
+                    '62% 12%',
+                  ];
+                  const foco = focos[indice % focos.length];
+                  return `radial-gradient(70% 62% at ${foco}, rgba(247,147,30,0.28), transparent 62%), linear-gradient(158deg, #2b2926 0%, #1b1a19 70%)`;
                 })(),
               }}
             >
+              {/* Cuando hay foto de la actividad, va de fondo con un velo
+                  oscuro para que el texto siga siendo legible. */}
+              {area.imagen && (
+                <>
+                  <img
+                    src={rutaFoto(area.imagen)}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div
+                    className="absolute inset-0 bg-linear-to-t from-carbon-900/90 via-carbon-900/55 to-carbon-900/20"
+                    aria-hidden="true"
+                  />
+                </>
+              )}
               <div className="cordillera absolute inset-x-0 bottom-0 h-24 opacity-80" aria-hidden="true" />
               <div className="relative">
                 <h3 className="text-xl font-semibold">{area.nombre}</h3>
@@ -158,10 +186,10 @@ export function Inicio() {
       </section>
 
       {/* Rental */}
-      <section className="bg-tinta-900 text-white">
+      <section className="bg-carbon-900 text-white">
         <div className="contenedor grid gap-10 py-16 lg:grid-cols-2 lg:items-center lg:py-20">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ambar-400">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-marca-400">
               Rental · Alquiler
             </p>
             <h2 className="mt-4 text-3xl font-bold lg:text-4xl">
@@ -177,7 +205,7 @@ export function Inicio() {
                 'Reparación y mantenimiento en nuestro taller',
               ].map((texto) => (
                 <li key={texto} className="flex items-start gap-2.5 text-sm text-nieve-200/85">
-                  <IconoCheck className="mt-0.5 h-4 w-4 shrink-0 text-ambar-400" />
+                  <IconoCheck className="mt-0.5 h-4 w-4 shrink-0 text-marca-400" />
                   {texto}
                 </li>
               ))}
@@ -185,7 +213,7 @@ export function Inicio() {
 
             <Link
               to="/rental"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-ambar-500 px-6 py-3.5 text-sm font-semibold text-tinta-900 transition-transform hover:-translate-y-0.5"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-marca-500 px-6 py-3.5 text-sm font-semibold text-carbon-900 transition-transform hover:-translate-y-0.5"
             >
               Consultar disponibilidad
               <IconoFlecha className="h-4 w-4" />
@@ -202,7 +230,7 @@ export function Inicio() {
                 <ul className="mt-4 space-y-1.5">
                   {categoria.incluye.map((parte) => (
                     <li key={parte} className="flex items-center gap-2 text-sm text-nieve-200/85">
-                      <IconoCheck className="h-3.5 w-3.5 text-pino-300" />
+                      <IconoCheck className="h-3.5 w-3.5 text-marca-300" />
                       {parte}
                     </li>
                   ))}
@@ -210,7 +238,7 @@ export function Inicio() {
               </div>
             ))}
             <div className="rounded-xl2 border border-white/10 bg-white/5 p-5 sm:col-span-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-pino-300">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-marca-300">
                 Puntos de rental
               </p>
               <p className="mt-2 text-sm text-nieve-200/85">
@@ -227,7 +255,7 @@ export function Inicio() {
           <h2 className="text-3xl font-bold lg:text-4xl">Del catálogo</h2>
           <Link
             to="/productos"
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-pino-700 hover:text-pino-600"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-marca-700 hover:text-marca-600"
           >
             Ver los {productos.length} productos <IconoFlecha className="h-4 w-4" />
           </Link>
@@ -244,7 +272,7 @@ export function Inicio() {
       <section className="contenedor grid gap-10 pb-4 lg:grid-cols-2">
         <div className="tarjeta p-8">
           <h2 className="text-2xl font-bold">Marcas que trabajamos</h2>
-          <p className="mt-2 text-sm text-tinta-500">
+          <p className="mt-2 text-sm text-carbon-500">
             Un stock amplio de las mejores marcas, elegidas por rendimiento en montaña.
           </p>
           <div className="mt-6 flex flex-wrap gap-2">
@@ -252,7 +280,7 @@ export function Inicio() {
               <Link
                 key={marca.slug}
                 to={`/productos?marca=${marca.slug}`}
-                className="rounded-full border border-nieve-200 bg-nieve-50 px-4 py-2 text-sm font-medium text-tinta-700 transition-colors hover:border-pino-300 hover:text-pino-700"
+                className="rounded-full border border-nieve-200 bg-nieve-50 px-4 py-2 text-sm font-medium text-carbon-700 transition-colors hover:border-marca-300 hover:text-marca-700"
               >
                 {marca.nombre}
               </Link>
@@ -262,23 +290,23 @@ export function Inicio() {
 
         <div className="tarjeta p-8">
           <h2 className="text-2xl font-bold">Estamos donde vas</h2>
-          <p className="mt-2 text-sm text-tinta-500">
+          <p className="mt-2 text-sm text-carbon-500">
             Presencia en Buenos Aires, Córdoba y los principales centros de montaña del país.
           </p>
           <ul className="mt-6 grid gap-x-6 gap-y-3 sm:grid-cols-2">
             {sucursales.map((sucursal) => (
               <li key={sucursal.slug} className="flex items-start gap-2.5">
-                <IconoUbicacion className="mt-0.5 h-4 w-4 shrink-0 text-pino-600" />
+                <IconoUbicacion className="mt-0.5 h-4 w-4 shrink-0 text-marca-600" />
                 <span>
-                  <span className="block text-sm font-medium text-tinta-900">{sucursal.ciudad}</span>
-                  <span className="block text-xs text-tinta-500">{sucursal.provincia}</span>
+                  <span className="block text-sm font-medium text-carbon-900">{sucursal.ciudad}</span>
+                  <span className="block text-xs text-carbon-500">{sucursal.provincia}</span>
                 </span>
               </li>
             ))}
           </ul>
           <Link
             to="/sucursales"
-            className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-pino-700 hover:text-pino-600"
+            className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-marca-700 hover:text-marca-600"
           >
             Direcciones y horarios <IconoFlecha className="h-4 w-4" />
           </Link>

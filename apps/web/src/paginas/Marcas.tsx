@@ -9,7 +9,7 @@ export function Marcas() {
     <div className="contenedor py-12 lg:py-16">
       <header className="max-w-2xl">
         <h1 className="text-3xl font-bold lg:text-4xl">Marcas</h1>
-        <p className="mt-3 leading-relaxed text-tinta-500">
+        <p className="mt-3 leading-relaxed text-carbon-500">
           Trabajamos un stock amplio de las mejores marcas del mercado outdoor, elegidas por su
           rendimiento en montaña y respaldadas por nuestro taller.
         </p>
@@ -24,7 +24,7 @@ export function Marcas() {
             <Link
               key={marca.slug}
               to={`/productos?marca=${marca.slug}`}
-              className="tarjeta flex items-center gap-4 p-5 transition-all hover:-translate-y-0.5 hover:border-pino-300 hover:shadow-md"
+              className="tarjeta flex items-center gap-4 p-5 transition-all hover:-translate-y-0.5 hover:border-marca-300 hover:shadow-md"
             >
               <span
                 className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl text-lg font-bold"
@@ -37,8 +37,8 @@ export function Marcas() {
                 {iniciales(marca.nombre)}
               </span>
               <span>
-                <span className="block text-base font-semibold text-tinta-900">{marca.nombre}</span>
-                <span className="mt-0.5 block text-sm text-tinta-500">
+                <span className="block text-base font-semibold text-carbon-900">{marca.nombre}</span>
+                <span className="mt-0.5 block text-sm text-carbon-500">
                   {cantidad} {cantidad === 1 ? 'producto' : 'productos'} publicados
                 </span>
               </span>

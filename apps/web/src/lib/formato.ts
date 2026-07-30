@@ -31,6 +31,16 @@ export function fechaLarga(fechaISO: string): string {
   }).format(new Date(`${fechaISO}T12:00:00Z`));
 }
 
+/**
+ * Resuelve una ruta de foto contra la base del sitio. En GitHub Pages el sitio
+ * cuelga de /<repo>/, asi que las rutas guardadas en el catalogo son relativas
+ * y se les antepone BASE_URL al usarlas.
+ */
+export function rutaFoto(ruta: string): string {
+  if (/^https?:\/\//.test(ruta)) return ruta;
+  return `${import.meta.env.BASE_URL}${ruta.replace(/^\//, '')}`;
+}
+
 /** Iniciales de marca usadas en el marcador visual de cada producto. */
 export function iniciales(texto: string): string {
   return texto

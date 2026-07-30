@@ -7,7 +7,7 @@ export function PiePagina() {
   const { empresa, areas, sucursales, servicios } = catalogo;
 
   return (
-    <footer className="mt-24 bg-pino-900 text-nieve-100">
+    <footer className="mt-24 bg-carbon-900 text-nieve-100">
       <div className="contenedor grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <Logo claro />
@@ -46,7 +46,7 @@ export function PiePagina() {
         </div>
 
         <nav>
-          <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-pino-300">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-marca-300">
             Productos
           </h2>
           <ul className="mt-4 space-y-2.5 text-sm text-nieve-200/85">
@@ -61,7 +61,7 @@ export function PiePagina() {
         </nav>
 
         <nav>
-          <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-pino-300">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-marca-300">
             Servicios
           </h2>
           <ul className="mt-4 space-y-2.5 text-sm text-nieve-200/85">
@@ -100,7 +100,7 @@ export function PiePagina() {
         </nav>
 
         <div>
-          <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-pino-300">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-marca-300">
             Contacto
           </h2>
           <ul className="mt-4 space-y-2.5 text-sm text-nieve-200/85">
@@ -121,7 +121,7 @@ export function PiePagina() {
             </li>
           </ul>
 
-          <h2 className="mt-6 text-xs font-semibold uppercase tracking-[0.14em] text-pino-300">
+          <h2 className="mt-6 text-xs font-semibold uppercase tracking-[0.14em] text-marca-300">
             Sucursales
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-nieve-200/85">
@@ -129,7 +129,7 @@ export function PiePagina() {
           </p>
           <Link
             to="/sucursales"
-            className="mt-3 inline-block text-sm font-medium text-pino-300 hover:text-white"
+            className="mt-3 inline-block text-sm font-medium text-marca-300 hover:text-white"
           >
             Ver todas las sucursales
           </Link>

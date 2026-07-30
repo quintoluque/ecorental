@@ -45,10 +45,10 @@ export function FichaProducto() {
     return (
       <div className="contenedor py-24 text-center">
         <h1 className="text-3xl font-bold">No encontramos ese producto</h1>
-        <p className="mt-3 text-tinta-500">Puede que ya no esté publicado.</p>
+        <p className="mt-3 text-carbon-500">Puede que ya no esté publicado.</p>
         <Link
           to="/productos"
-          className="mt-8 inline-flex rounded-full bg-pino-900 px-6 py-3 text-sm font-medium text-white hover:bg-pino-700"
+          className="mt-8 inline-flex rounded-full bg-carbon-900 px-6 py-3 text-sm font-medium text-white hover:bg-carbon-700"
         >
           Volver al catálogo
         </Link>
@@ -71,7 +71,7 @@ export function FichaProducto() {
 
   return (
     <div className="contenedor py-8 lg:py-12">
-      <nav className="flex flex-wrap items-center gap-1.5 text-sm text-tinta-500">
+      <nav className="flex flex-wrap items-center gap-1.5 text-sm text-carbon-500">
         <Link to="/productos" className="enlace-suave">
           Catálogo
         </Link>
@@ -97,6 +97,7 @@ export function FichaProducto() {
         <ProductoImagen
           nombre={producto.nombre}
           marca={marca?.nombre}
+          imagenes={producto.imagenes}
           grande
           className="aspect-square w-full rounded-xl2 border border-nieve-200"
         />
@@ -105,7 +106,7 @@ export function FichaProducto() {
           {marca && (
             <Link
               to={`/productos?marca=${marca.slug}`}
-              className="text-xs font-semibold uppercase tracking-[0.16em] text-pino-600 hover:text-pino-700"
+              className="text-xs font-semibold uppercase tracking-[0.16em] text-marca-600 hover:text-marca-700"
             >
               {marca.nombre}
             </Link>
@@ -115,27 +116,27 @@ export function FichaProducto() {
           <p
             className={`mt-5 ${
               producto.precio == null
-                ? 'text-lg font-medium text-tinta-500'
-                : 'text-3xl font-bold text-tinta-900'
+                ? 'text-lg font-medium text-carbon-500'
+                : 'text-3xl font-bold text-carbon-900'
             }`}
           >
             {formatearPrecio(producto.precio)}
           </p>
           {producto.precio == null && (
-            <p className="mt-1.5 text-sm text-tinta-500">
+            <p className="mt-1.5 text-sm text-carbon-500">
               Escribinos y te pasamos precio y disponibilidad al momento.
             </p>
           )}
 
           {producto.descripcion && (
-            <p className="mt-6 leading-relaxed text-tinta-700">{producto.descripcion}</p>
+            <p className="mt-6 leading-relaxed text-carbon-700">{producto.descripcion}</p>
           )}
 
           <div className="mt-8 flex flex-wrap gap-3">
             <button
               type="button"
               onClick={alAgregar}
-              className="inline-flex items-center gap-2 rounded-full bg-pino-900 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-pino-700"
+              className="inline-flex items-center gap-2 rounded-full bg-carbon-900 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-carbon-700"
             >
               {agregado ? (
                 <>
@@ -151,7 +152,7 @@ export function FichaProducto() {
             {producto.alquilable && (
               <Link
                 to="/rental"
-                className="inline-flex items-center gap-2 rounded-full border border-ambar-500 px-6 py-3.5 text-sm font-semibold text-ambar-600 transition-colors hover:bg-ambar-500 hover:text-tinta-900"
+                className="inline-flex items-center gap-2 rounded-full border border-marca-500 px-6 py-3.5 text-sm font-semibold text-marca-700 transition-colors hover:bg-marca-500 hover:text-carbon-900"
               >
                 <IconoCalendario className="h-4 w-4" />
                 Alquilar por día
@@ -162,7 +163,7 @@ export function FichaProducto() {
           {agregado && (
             <Link
               to="/carrito"
-              className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-pino-700 hover:text-pino-600"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-marca-700 hover:text-marca-600"
             >
               Ir al carrito <IconoFlecha className="h-4 w-4" />
             </Link>
@@ -170,29 +171,29 @@ export function FichaProducto() {
 
           {producto.especificaciones.length > 0 && (
             <div className="mt-10">
-              <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-tinta-500">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-carbon-500">
                 Especificaciones
               </h2>
               <dl className="mt-4 divide-y divide-nieve-200 border-y border-nieve-200">
                 {producto.especificaciones.map((especificacion) => (
                   <div key={especificacion.nombre} className="flex gap-4 py-3 text-sm">
-                    <dt className="w-40 shrink-0 text-tinta-500">{especificacion.nombre}</dt>
-                    <dd className="font-medium text-tinta-900">{especificacion.valor}</dd>
+                    <dt className="w-40 shrink-0 text-carbon-500">{especificacion.nombre}</dt>
+                    <dd className="font-medium text-carbon-900">{especificacion.valor}</dd>
                   </div>
                 ))}
               </dl>
             </div>
           )}
 
-          <div className="mt-8 rounded-xl2 bg-nieve-100 p-5 text-sm text-tinta-700">
-            <p className="font-medium text-tinta-900">Retiro en sucursal o envío a todo el país</p>
-            <p className="mt-1.5 leading-relaxed text-tinta-500">
+          <div className="mt-8 rounded-xl2 bg-nieve-100 p-5 text-sm text-carbon-700">
+            <p className="font-medium text-carbon-900">Retiro en sucursal o envío a todo el país</p>
+            <p className="mt-1.5 leading-relaxed text-carbon-500">
               Consultá disponibilidad por sucursal antes de acercarte. Nuestro equipo te asesora en
               la elección del producto.
             </p>
             <Link
               to="/sucursales"
-              className="mt-3 inline-flex items-center gap-1.5 font-medium text-pino-700 hover:text-pino-600"
+              className="mt-3 inline-flex items-center gap-1.5 font-medium text-marca-700 hover:text-marca-600"
             >
               Ver sucursales <IconoFlecha className="h-4 w-4" />
             </Link>

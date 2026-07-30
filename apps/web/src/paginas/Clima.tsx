@@ -9,7 +9,7 @@ export function Clima() {
     <div className="contenedor py-12 lg:py-16">
       <header className="max-w-2xl">
         <h1 className="text-3xl font-bold lg:text-4xl">{clima.titulo}</h1>
-        <p className="mt-3 leading-relaxed text-tinta-500">{clima.descripcion}</p>
+        <p className="mt-3 leading-relaxed text-carbon-500">{clima.descripcion}</p>
       </header>
 
       <div className="mt-10 grid gap-5 md:grid-cols-3">
@@ -19,7 +19,7 @@ export function Clima() {
           return (
             <article
               key={centro.nombre}
-              className="relative overflow-hidden rounded-xl2 bg-linear-to-br from-hielo-600 to-pino-900 p-6 text-white"
+              className="relative overflow-hidden rounded-xl2 bg-linear-to-br from-hielo-700 to-carbon-900 p-6 text-white"
             >
               <div className="cordillera absolute inset-x-0 bottom-0 h-20" aria-hidden="true" />
               <div className="relative">
@@ -43,14 +43,14 @@ export function Clima() {
 
       <div className="mt-10 tarjeta p-6 lg:p-8">
         <h2 className="text-lg font-semibold">Parte de nieve en vivo</h2>
-        <p className="mt-2 max-w-2xl leading-relaxed text-tinta-700">
+        <p className="mt-2 max-w-2xl leading-relaxed text-carbon-700">
           El pronóstico y el parte de nieve de cada centro se conectan desde el panel de
           administración a un proveedor meteorológico. Mientras tanto, escribinos y te contamos cómo
           está la montaña: en cada uno de estos centros tenemos gente nuestra.
         </p>
         <Link
           to="/rental"
-          className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-pino-700 hover:text-pino-600"
+          className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-marca-700 hover:text-marca-600"
         >
           Reservar equipo para tu salida <IconoFlecha className="h-4 w-4" />
         </Link>

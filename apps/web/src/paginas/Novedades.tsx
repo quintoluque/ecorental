@@ -9,7 +9,7 @@ export function Novedades() {
     <div className="contenedor py-12 lg:py-16">
       <header className="max-w-2xl">
         <h1 className="text-3xl font-bold lg:text-4xl">{novedades.titulo}</h1>
-        <p className="mt-3 leading-relaxed text-tinta-500">
+        <p className="mt-3 leading-relaxed text-carbon-500">
           Llegadas de temporada, novedades de marcas y noticias de la tienda.
         </p>
       </header>
@@ -17,7 +17,7 @@ export function Novedades() {
       {novedades.items.length === 0 ? (
         <div className="mt-10 tarjeta p-8 lg:p-10">
           <h2 className="text-lg font-semibold">Todavía no hay novedades publicadas acá</h2>
-          <p className="mt-2 max-w-2xl leading-relaxed text-tinta-700">
+          <p className="mt-2 max-w-2xl leading-relaxed text-carbon-700">
             Esta sección se carga desde el panel de administración. Mientras tanto, publicamos las
             novedades en nuestras redes.
           </p>
@@ -26,7 +26,7 @@ export function Novedades() {
               href={empresa.redes.instagram}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-pino-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-pino-700"
+              className="inline-flex items-center gap-2 rounded-full bg-carbon-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-carbon-700"
             >
               Instagram {empresa.redes.instagramUsuario}
             </a>
@@ -34,14 +34,14 @@ export function Novedades() {
               href={empresa.redes.facebook}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-nieve-200 px-5 py-2.5 text-sm font-medium text-tinta-700 hover:border-pino-300 hover:text-pino-700"
+              className="inline-flex items-center gap-2 rounded-full border border-nieve-200 px-5 py-2.5 text-sm font-medium text-carbon-700 hover:border-marca-300 hover:text-marca-700"
             >
               Facebook {empresa.redes.facebookUsuario}
             </a>
           </div>
           <Link
             to="/productos"
-            className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-pino-700 hover:text-pino-600"
+            className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-marca-700 hover:text-marca-600"
           >
             Ver el catálogo <IconoFlecha className="h-4 w-4" />
           </Link>

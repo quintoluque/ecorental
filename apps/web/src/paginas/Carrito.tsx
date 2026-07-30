@@ -46,24 +46,24 @@ export function Carrito() {
   };
 
   const claseCampo =
-    'w-full rounded-lg border border-nieve-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-pino-300';
+    'w-full rounded-lg border border-nieve-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-marca-300';
   const claseEtiqueta =
-    'mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-500';
+    'mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-carbon-500';
 
   if (resultado) {
     return (
       <div className="contenedor py-20">
         <div className="tarjeta mx-auto max-w-xl p-8 text-center lg:p-10">
-          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-pino-100 text-pino-700">
+          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-marca-100 text-marca-700">
             <IconoCheck className="h-7 w-7" />
           </span>
           <h1 className="mt-5 text-2xl font-bold">Pedido registrado</h1>
-          <p className="mt-2 text-tinta-700">
+          <p className="mt-2 text-carbon-700">
             Tu código es <strong>{resultado.codigo}</strong>. Te escribimos a{' '}
             <strong>{cliente.email}</strong> para coordinar el pago y la entrega.
           </p>
           {!resultado.enviadoAlServidor && (
-            <p className="mt-5 rounded-lg border border-ambar-400/50 bg-ambar-400/10 px-4 py-3 text-left text-sm text-tinta-700">
+            <p className="mt-5 rounded-lg border border-marca-400/50 bg-marca-400/10 px-4 py-3 text-left text-sm text-carbon-700">
               Esta demostración está publicada sin servidor conectado, así que el pedido no quedó
               guardado. Con el backend en línea, el pedido entra al panel y descuenta stock de la
               sucursal elegida.
@@ -74,13 +74,13 @@ export function Carrito() {
               href={empresa.whatsappLink}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full bg-pino-900 px-6 py-3 text-sm font-semibold text-white hover:bg-pino-700"
+              className="rounded-full bg-carbon-900 px-6 py-3 text-sm font-semibold text-white hover:bg-carbon-700"
             >
               Coordinar por WhatsApp
             </a>
             <Link
               to="/productos"
-              className="rounded-full border border-nieve-200 px-6 py-3 text-sm font-medium text-tinta-700 hover:border-pino-300 hover:text-pino-700"
+              className="rounded-full border border-nieve-200 px-6 py-3 text-sm font-medium text-carbon-700 hover:border-marca-300 hover:text-marca-700"
             >
               Seguir comprando
             </Link>
@@ -93,21 +93,21 @@ export function Carrito() {
   if (items.length === 0) {
     return (
       <div className="contenedor py-24 text-center">
-        <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-nieve-100 text-tinta-500">
+        <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-nieve-100 text-carbon-500">
           <IconoCarrito className="h-7 w-7" />
         </span>
         <h1 className="mt-5 text-2xl font-bold">Tu carrito está vacío</h1>
-        <p className="mt-2 text-tinta-500">Empezá por el catálogo o reservá tu equipo de nieve.</p>
+        <p className="mt-2 text-carbon-500">Empezá por el catálogo o reservá tu equipo de nieve.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <Link
             to="/productos"
-            className="rounded-full bg-pino-900 px-6 py-3 text-sm font-semibold text-white hover:bg-pino-700"
+            className="rounded-full bg-carbon-900 px-6 py-3 text-sm font-semibold text-white hover:bg-carbon-700"
           >
             Ver catálogo
           </Link>
           <Link
             to="/rental"
-            className="rounded-full border border-nieve-200 px-6 py-3 text-sm font-medium text-tinta-700 hover:border-pino-300 hover:text-pino-700"
+            className="rounded-full border border-nieve-200 px-6 py-3 text-sm font-medium text-carbon-700 hover:border-marca-300 hover:text-marca-700"
           >
             Alquilar equipo
           </Link>
@@ -119,7 +119,7 @@ export function Carrito() {
   return (
     <div className="contenedor py-12 lg:py-16">
       <h1 className="text-3xl font-bold lg:text-4xl">Tu pedido</h1>
-      <p className="mt-2 text-tinta-500">
+      <p className="mt-2 text-carbon-500">
         {cantidadTotal} {cantidadTotal === 1 ? 'artículo' : 'artículos'}
       </p>
 
@@ -131,6 +131,7 @@ export function Carrito() {
                 <ProductoImagen
                   nombre={item.nombre}
                   marca={catalogo.marcas.find((m) => m.slug === item.marca)?.nombre}
+                  imagenes={catalogo.productos.find((p) => p.id === item.productoId)?.imagenes}
                   className="h-24 w-24 rounded-lg"
                 />
               </Link>
@@ -142,10 +143,10 @@ export function Carrito() {
                 >
                   {item.nombre}
                 </Link>
-                <p className="mt-1 text-sm text-tinta-500">{formatearPrecio(item.precio)}</p>
+                <p className="mt-1 text-sm text-carbon-500">{formatearPrecio(item.precio)}</p>
 
                 <div className="mt-auto flex items-center gap-3 pt-3">
-                  <label className="flex items-center gap-2 text-sm text-tinta-500">
+                  <label className="flex items-center gap-2 text-sm text-carbon-500">
                     <span className="sr-only">Cantidad de {item.nombre}</span>
                     <input
                       type="number"
@@ -155,13 +156,13 @@ export function Carrito() {
                       onChange={(e) =>
                         cambiarCantidad(item.productoId, item.talle, Number(e.target.value) || 1)
                       }
-                      className="w-16 rounded-lg border border-nieve-200 px-2.5 py-1.5 text-sm text-tinta-900 outline-none focus:border-pino-300"
+                      className="w-16 rounded-lg border border-nieve-200 px-2.5 py-1.5 text-sm text-carbon-900 outline-none focus:border-marca-300"
                     />
                   </label>
                   <button
                     type="button"
                     onClick={() => quitar(item.productoId, item.talle)}
-                    className="text-sm text-tinta-500 hover:text-red-600"
+                    className="text-sm text-carbon-500 hover:text-red-600"
                   >
                     Quitar
                   </button>
@@ -178,14 +179,14 @@ export function Carrito() {
         <aside className="lg:sticky lg:top-32 lg:self-start">
           <form onSubmit={confirmar} className="tarjeta space-y-5 p-6">
             <div className="flex items-baseline justify-between border-b border-nieve-200 pb-4">
-              <span className="text-sm text-tinta-500">Total</span>
+              <span className="text-sm text-carbon-500">Total</span>
               <span className="text-2xl font-bold">
                 {total == null ? 'A confirmar' : formatearPrecio(total)}
               </span>
             </div>
 
             {total == null && (
-              <p className="rounded-lg bg-nieve-100 px-4 py-3 text-sm leading-relaxed text-tinta-700">
+              <p className="rounded-lg bg-nieve-100 px-4 py-3 text-sm leading-relaxed text-carbon-700">
                 Algunos productos no tienen precio publicado. Registramos tu pedido como consulta y
                 la sucursal te pasa el total antes de cobrarte.
               </p>
@@ -207,8 +208,8 @@ export function Carrito() {
                     aria-pressed={entrega === opcion.valor}
                     className={`rounded-lg border px-3 py-2.5 text-sm font-medium transition-colors ${
                       entrega === opcion.valor
-                        ? 'border-pino-600 bg-pino-50 text-pino-700'
-                        : 'border-nieve-200 text-tinta-700 hover:border-pino-300'
+                        ? 'border-marca-500 bg-marca-50 text-marca-700'
+                        : 'border-nieve-200 text-carbon-700 hover:border-marca-300'
                     }`}
                   >
                     {opcion.texto}
@@ -281,14 +282,14 @@ export function Carrito() {
             <button
               type="submit"
               disabled={enviando}
-              className="w-full rounded-full bg-pino-900 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-pino-700 disabled:opacity-50"
+              className="w-full rounded-full bg-carbon-900 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-carbon-700 disabled:opacity-50"
             >
               {enviando ? 'Enviando…' : total == null ? 'Enviar consulta' : 'Confirmar pedido'}
             </button>
 
             <Link
               to="/productos"
-              className="flex items-center justify-center gap-1.5 text-sm font-medium text-tinta-500 hover:text-pino-700"
+              className="flex items-center justify-center gap-1.5 text-sm font-medium text-carbon-500 hover:text-marca-700"
             >
               Seguir comprando <IconoFlecha className="h-4 w-4" />
             </Link>
