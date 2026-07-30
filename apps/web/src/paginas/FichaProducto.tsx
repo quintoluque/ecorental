@@ -4,6 +4,7 @@ import { ProductoImagen } from '@/components/ProductoImagen.tsx';
 import { TarjetaProducto } from '@/components/TarjetaProducto.tsx';
 import { IconoCalendario, IconoCheck, IconoFlecha } from '@/components/Iconos.tsx';
 import { catalogo, obtenerProducto } from '@/lib/api.ts';
+import { fotosDeProducto } from '@/lib/fotos.ts';
 import { useCarrito } from '@/lib/carrito.tsx';
 import { precio as formatearPrecio } from '@/lib/formato.ts';
 import type { Producto } from '@/lib/tipos.ts';
@@ -97,7 +98,7 @@ export function FichaProducto() {
         <ProductoImagen
           nombre={producto.nombre}
           marca={marca?.nombre}
-          imagenes={producto.imagenes}
+          imagenes={fotosDeProducto(producto.slug, producto.imagenes)}
           grande
           className="aspect-square w-full rounded-xl2 border border-nieve-200"
         />

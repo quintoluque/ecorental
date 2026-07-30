@@ -1,13 +1,7 @@
 # Fotos del sitio
 
-Copiá acá las imágenes y después corré, desde la carpeta del proyecto:
-
-```bash
-node scripts/vincular-fotos.mjs
-```
-
-El script las conecta solo, mirando el **nombre del archivo**. No hay que editar
-nada a mano.
+**Copiá acá las imágenes y listo.** La web las detecta sola: no hay que correr
+ningún comando ni editar ningún archivo. Sólo importa el **nombre del archivo**.
 
 ## Dónde va cada cosa
 

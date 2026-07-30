@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ProductoImagen } from './ProductoImagen.tsx';
 import { catalogo } from '@/lib/api.ts';
+import { fotosDeProducto } from '@/lib/fotos.ts';
 import { precio as formatearPrecio } from '@/lib/formato.ts';
 import type { Producto } from '@/lib/tipos.ts';
 
@@ -22,7 +23,7 @@ export function TarjetaProducto({ producto }: { producto: Producto }) {
         <ProductoImagen
           nombre={producto.nombre}
           marca={marca}
-          imagenes={producto.imagenes}
+          imagenes={fotosDeProducto(producto.slug, producto.imagenes)}
           className="aspect-[4/3] w-full"
         />
         {producto.alquilable && (

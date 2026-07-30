@@ -37,8 +37,10 @@ export function fechaLarga(fechaISO: string): string {
  * y se les antepone BASE_URL al usarlas.
  */
 export function rutaFoto(ruta: string): string {
-  if (/^https?:\/\//.test(ruta)) return ruta;
-  return `${import.meta.env.BASE_URL}${ruta.replace(/^\//, '')}`;
+  // Las URLs que resuelve Vite ya vienen finales (/assets/… o data:…): anteponerles
+  // la base las romperia. Solo se completan las rutas relativas del catalogo.
+  if (/^(https?:|data:|blob:|\/)/.test(ruta)) return ruta;
+  return `${import.meta.env.BASE_URL}${ruta}`;
 }
 
 /** Iniciales de marca usadas en el marcador visual de cada producto. */

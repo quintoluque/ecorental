@@ -1,21 +1,25 @@
 #!/usr/bin/env node
 /**
- * Vincula las fotos que hayas copiado en apps/web/public/fotos/ con el catalogo.
+ * Registra en data/catalog.json las fotos que haya en apps/web/src/fotos/.
  *
  *   node scripts/vincular-fotos.mjs
  *
- * No hace falta editar ningun archivo a mano: el script mira los nombres.
+ * OJO: la web NO necesita este script. Detecta las fotos sola al compilar
+ * (ver apps/web/src/lib/fotos.ts), asi que alcanza con copiar los archivos.
  *
- *   apps/web/public/fotos/productos/     -> el archivo debe llamarse como el
+ * Este script sirve para que el BACKEND y la API tambien conozcan las fotos,
+ * dejandolas anotadas en el catalogo. Corrrelo solo si usas el backend.
+ *
+ *   apps/web/src/fotos/productos/     -> el archivo debe llamarse como el
  *                                           "slug" del producto.
  *                                           Ej: rossignol-ski-black-ops.jpg
  *                                           Varias fotos del mismo producto:
  *                                           rossignol-ski-black-ops-2.jpg, -3.jpg…
  *
- *   apps/web/public/fotos/actividades/   -> nombre = slug del area.
+ *   apps/web/src/fotos/actividades/   -> nombre = slug del area.
  *                                           Ej: invierno.jpg, pesca.jpg
  *
- *   apps/web/public/fotos/sucursales/    -> nombre = slug de la sucursal.
+ *   apps/web/src/fotos/sucursales/    -> nombre = slug de la sucursal.
  *                                           Ej: bariloche.jpg
  *
  * Corre el script las veces que quieras: siempre reescribe la lista completa
@@ -30,7 +34,7 @@ import { dirname, join, resolve } from 'node:path';
 const aqui = dirname(fileURLToPath(import.meta.url));
 const raiz = resolve(aqui, '..');
 const RUTA_CATALOGO = join(raiz, 'data', 'catalog.json');
-const RAIZ_FOTOS = join(raiz, 'apps', 'web', 'public', 'fotos');
+const RAIZ_FOTOS = join(raiz, 'apps', 'web', 'src', 'fotos');
 
 const EXTENSIONES = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
 

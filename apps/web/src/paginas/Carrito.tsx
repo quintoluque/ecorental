@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ProductoImagen } from '@/components/ProductoImagen.tsx';
 import { IconoCarrito, IconoCheck, IconoFlecha } from '@/components/Iconos.tsx';
 import { catalogo, crearPedido } from '@/lib/api.ts';
+import { fotosDeProducto } from '@/lib/fotos.ts';
 import { useCarrito } from '@/lib/carrito.tsx';
 import { precio as formatearPrecio } from '@/lib/formato.ts';
 
@@ -131,7 +132,7 @@ export function Carrito() {
                 <ProductoImagen
                   nombre={item.nombre}
                   marca={catalogo.marcas.find((m) => m.slug === item.marca)?.nombre}
-                  imagenes={catalogo.productos.find((p) => p.id === item.productoId)?.imagenes}
+                  imagenes={fotosDeProducto(item.slug)}
                   className="h-24 w-24 rounded-lg"
                 />
               </Link>

@@ -8,7 +8,7 @@ import {
   IconoUbicacion,
 } from '@/components/Iconos.tsx';
 import { catalogo } from '@/lib/api.ts';
-import { rutaFoto } from '@/lib/formato.ts';
+import { fotoDeActividad } from '@/lib/fotos.ts';
 
 export function Inicio() {
   const { empresa, areas, productos, marcas, sucursales, actividades, rental } = catalogo;
@@ -153,10 +153,10 @@ export function Inicio() {
             >
               {/* Cuando hay foto de la actividad, va de fondo con un velo
                   oscuro para que el texto siga siendo legible. */}
-              {area.imagen && (
+              {fotoDeActividad(area.slug, area.imagen) && (
                 <>
                   <img
-                    src={rutaFoto(area.imagen)}
+                    src={fotoDeActividad(area.slug, area.imagen)!}
                     alt=""
                     loading="lazy"
                     decoding="async"

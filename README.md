@@ -179,27 +179,24 @@ Da de alta solo las marcas y categorías nuevas, actualiza los productos que ya 
 
 ### Cómo cargar las fotos
 
-Copiá las imágenes en estas carpetas, nombrando cada archivo con el *slug* del producto,
-área o sucursal:
+**Alcanza con copiar los archivos en la carpeta correcta**, nombrando cada uno con el
+*slug* del producto, área o sucursal. No hay que correr ningún comando: la web las detecta
+sola al compilar.
 
 ```
-apps/web/public/fotos/productos/     rossignol-ski-black-ops.jpg
-apps/web/public/fotos/actividades/   invierno.jpg
-apps/web/public/fotos/sucursales/    bariloche.jpg
+apps/web/src/fotos/productos/     rossignol-ski-black-ops.jpg
+apps/web/src/fotos/actividades/   invierno.jpg
+apps/web/src/fotos/sucursales/    bariloche.jpg
 ```
 
-Y corré:
+Se pueden subir desde la web de GitHub (**Add file → Upload files**) sin instalar nada: al
+confirmar, el sitio se recompila y publica con las fotos nuevas.
 
-```bash
-node scripts/vincular-fotos.mjs
-```
+Para varias fotos de un mismo producto, agregá `-2`, `-3` al final; la que no tiene número
+es la portada.
 
-El script las conecta solo mirando los nombres; no hay que editar nada a mano. Para varias
-fotos de un mismo producto, agregá `-2`, `-3` al final (la que no tiene número es la
-portada). Si un archivo no coincide con ningún slug, el script te lista los disponibles.
-
-Instrucciones completas, tamaños recomendados y formatos aceptados en
-[`apps/web/public/fotos/LEEME.md`](apps/web/public/fotos/LEEME.md).
+Instrucciones completas, tamaños y formatos en
+[`apps/web/src/fotos/LEEME.md`](apps/web/src/fotos/LEEME.md).
 
 **Mientras no haya fotos no pasa nada:** la web dibuja un marcador con el isotipo de ECO,
 así que se pueden ir cargando de a poco sin que el sitio quede roto en el medio.
@@ -214,7 +211,7 @@ así que se pueden ir cargando de a poco sin que el sitio quede roto en el medio
 ```
 data/catalog.json         ← TODOS los datos del sitio (fuente única)
 apps/web/                 ← La página (React + Vite + Tailwind)
-apps/web/public/fotos/    ← Acá van las imágenes
+apps/web/src/fotos/       ← Acá van las imágenes
 apps/api/                 ← El backend (Express + SQLite)
 scripts/                  ← Importador de catálogo y vinculador de fotos
 .github/workflows/        ← Publicación automática en GitHub Pages
@@ -232,7 +229,7 @@ Para cambiar un teléfono, un horario o el texto de una sección, se edita
 | `npm run build` | Compila todo para producción |
 | `npm run check` | Verifica que no haya errores de tipos |
 | `npm run seed` | Carga `data/catalog.json` en la base |
-| `node scripts/vincular-fotos.mjs` | Conecta las fotos de `public/fotos/` con el catálogo |
+| `node scripts/vincular-fotos.mjs` | Anota las fotos en el catálogo (sólo si usás el backend) |
 
 ---
 
