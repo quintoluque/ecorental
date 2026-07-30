@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-nieve-50: #f8faf9;
+  --color-nieve-100: #eef2f0;
+  --color-nieve-200: #dfe6e3;
+
+  --color-tinta-500: #5b6a65;
+  --color-tinta-700: #24322d;
+  --color-tinta-900: #0b1210;
+
+  --color-pino-50: #eef8f3;
+  --color-pino-100: #d3ede1;
+  --color-pino-300: #7fc9ac;
+  --color-pino-500: #16a06f;
+  --color-pino-600: #12805c;
+  --color-pino-700: #0e6748;
+  --color-pino-900: #07301f;
+
+  --color-hielo-100: #e0f2fe;
+  --color-hielo-400: #38bdf8;
+  --color-hielo-600: #0284c7;
+
+  --color-ambar-400: #fbbf24;
+  --color-ambar-500: #f59e0b;
+  --color-ambar-600: #d97706;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+
+  --radius-xl2: 1.25rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-nieve-50);
+    color: var(--color-tinta-900);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-pino-600);
+    outline-offset: 2px;
+  }
+
+  /* Titulares compactos: la tipografia de sistema se ve mas editorial con
+     tracking negativo en tamanos grandes. */
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .contenedor {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .contenedor {
+      padding-inline: 2rem;
+    }
+  }
+
+  .tarjeta {
+    background: white;
+    border: 1px solid var(--color-nieve-200);
+    border-radius: var(--radius-xl2);
+  }
+
+  .enlace-suave {
+    transition: color 150ms ease;
+  }
+
+  .enlace-suave:hover {
+    color: var(--color-pino-600);
+  }
+}
+
+/* Silueta de montanas usada como remate de las secciones oscuras. */
+.cordillera {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath d='M0 120V70l180-40 140 55 130-75 190 90 160-60 180 45 150-35 310 60v40z' fill='%23ffffff' fill-opacity='0.06'/%3E%3Cpath d='M0 120V95l200-35 170 45 150-55 210 70 190-45 210 40 310-30v35z' fill='%23ffffff' fill-opacity='0.09'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 120px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
