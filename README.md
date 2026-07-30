@@ -177,6 +177,33 @@ Da de alta solo las marcas y categorías nuevas, actualiza los productos que ya 
 `id` y no borra nada. Las direcciones y horarios que falten se editan a mano en
 `data/catalog.json`.
 
+### Cómo cargar las fotos
+
+**Alcanza con copiar los archivos en la carpeta correcta**, nombrando cada uno con el
+*slug* del producto, área o sucursal. No hay que correr ningún comando: la web las detecta
+sola al compilar.
+
+```
+apps/web/src/fotos/productos/     rossignol-ski-black-ops.jpg
+apps/web/src/fotos/actividades/   invierno.jpg
+apps/web/src/fotos/sucursales/    bariloche.jpg
+```
+
+Se pueden subir desde la web de GitHub (**Add file → Upload files**) sin instalar nada: al
+confirmar, el sitio se recompila y publica con las fotos nuevas.
+
+Para varias fotos de un mismo producto, agregá `-2`, `-3` al final; la que no tiene número
+es la portada.
+
+Instrucciones completas, tamaños y formatos en
+[`apps/web/src/fotos/LEEME.md`](apps/web/src/fotos/LEEME.md).
+
+**Mientras no haya fotos no pasa nada:** la web dibuja un marcador con el isotipo de ECO,
+así que se pueden ir cargando de a poco sin que el sitio quede roto en el medio.
+
+> Usá fotos propias de ECO o de los catálogos oficiales de las marcas que distribuye. Las
+> imágenes de otras tiendas tienen derechos de autor y no se pueden republicar.
+
 ---
 
 ## 4. Estructura del proyecto
@@ -184,8 +211,9 @@ Da de alta solo las marcas y categorías nuevas, actualiza los productos que ya 
 ```
 data/catalog.json         ← TODOS los datos del sitio (fuente única)
 apps/web/                 ← La página (React + Vite + Tailwind)
+apps/web/src/fotos/       ← Acá van las imágenes
 apps/api/                 ← El backend (Express + SQLite)
-scripts/                  ← Importador de catálogo
+scripts/                  ← Importador de catálogo y vinculador de fotos
 .github/workflows/        ← Publicación automática en GitHub Pages
 ```
 
@@ -201,10 +229,38 @@ Para cambiar un teléfono, un horario o el texto de una sección, se edita
 | `npm run build` | Compila todo para producción |
 | `npm run check` | Verifica que no haya errores de tipos |
 | `npm run seed` | Carga `data/catalog.json` en la base |
+| `node scripts/vincular-fotos.mjs` | Anota las fotos en el catálogo (sólo si usás el backend) |
 
 ---
 
-## 5. Decisiones técnicas
+## 5. Identidad visual
+
+La paleta y el logotipo salen del logo oficial de ECO:
+
+| Rol | Color | Uso |
+|---|---|---|
+| Naranja de marca | `#F7931E` | Botones principales, acentos, isotipo |
+| Naranja oscuro | `#B35F00` | Enlaces sobre fondo claro (contraste AA) |
+| Carbón | `#1B1A19` / `#262523` | Fondos oscuros, titulares |
+| Nieve | `#FAF9F7` | Fondo general |
+
+Detalles que replican el logotipo:
+
+- **Isotipo** (`components/Logo.tsx`): la contraforma de la "O" con el pico de montaña y
+  el sol, dibujada en SVG. Escala sin perder nitidez y también es el favicon.
+- **"ECO" en itálica pesada** con `eurocamping.com.ar` al lado, igual que el original.
+- **Bajada en versalitas serif** — *The Outdoor Store Since 1965* — con la clase
+  `.versalitas`.
+- **Silueta de cordillera** (`.cordillera`) rematando las secciones oscuras, y veladuras
+  naranjas suaves sobre carbón (`.textura-carbon`) como el fondo del logo.
+
+Sobre el naranja el texto va **oscuro, no blanco**: `#F7931E` con blanco da 2,5:1 y no
+pasa accesibilidad; con carbón da 9:1. Por eso los botones naranjas llevan texto carbón,
+igual que el isotipo.
+
+---
+
+## 6. Decisiones técnicas
 
 **El mismo código funciona con y sin backend.** Si la variable `VITE_API_URL` está definida,
 la web consulta la API; si no, resuelve todo contra `data/catalog.json`. Por eso la versión
@@ -227,9 +283,9 @@ advertencias peores.
 
 ---
 
-## 6. Próximos pasos sugeridos
+## 7. Próximos pasos sugeridos
 
-1. **Cargar el catálogo completo** con el importador y subir las fotos de producto.
+1. **Cargar el catálogo completo** con el importador y **subir las fotos** (ver arriba).
 2. **Panel de administración** para que cada sucursal cargue su stock y su parque de alquiler
    sin tocar archivos.
 3. **Pagos online** (Mercado Pago) y facturación.

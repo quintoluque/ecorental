@@ -1,23 +1,53 @@
-export function Logo({ claro = false }: { claro?: boolean }) {
+type Props = {
+  /** Sobre fondo oscuro. */
+  claro?: boolean;
+  /** Muestra la bajada en versalitas (pie de pagina, portadas). */
+  conBajada?: boolean;
+};
+
+/**
+ * Isotipo de ECO: la contraforma de la "O" con el pico de montana y el sol,
+ * tal como aparece en el logotipo oficial.
+ */
+export function Isotipo({ className = 'h-9 w-9' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
+      <rect width="40" height="40" rx="11" fill="var(--color-marca-500)" />
+      <path
+        d="M6.5 29.5 20 12.2l13.5 17.3-8.1 0L20 22.3l-5.4 7.2z"
+        fill="var(--color-carbon-900)"
+      />
+      <ellipse cx="14.6" cy="24.6" rx="3.1" ry="2.5" fill="var(--color-carbon-900)" />
+    </svg>
+  );
+}
+
+export function Logo({ claro = false, conBajada = false }: Props) {
   return (
     <span className="flex items-center gap-2.5">
-      <svg viewBox="0 0 32 32" className="h-8 w-8 shrink-0" aria-hidden="true">
-        <rect width="32" height="32" rx="7" fill={claro ? '#F7F9F8' : '#07301F'} />
-        <path d="M6 24l7-12 4 6.5 2.5-4L26 24z" fill={claro ? '#07301F' : '#F7F9F8'} />
-      </svg>
+      <Isotipo className="h-9 w-9 shrink-0" />
+
       <span className="leading-none">
         <span
-          className={`block text-[17px] font-bold tracking-tight ${claro ? 'text-white' : 'text-tinta-900'}`}
-        >
-          ECO <span className="text-pino-500">&gt;</span> Eurocamping
-        </span>
-        <span
-          className={`mt-0.5 block whitespace-nowrap text-[9px] font-medium uppercase tracking-[0.1em] sm:text-[10px] sm:tracking-[0.16em] ${
-            claro ? 'text-nieve-200' : 'text-tinta-500'
+          className={`block text-[19px] font-extrabold italic tracking-tight ${
+            claro ? 'text-white' : 'text-carbon-900'
           }`}
         >
-          The Outdoor Store Since 1965
+          ECO
+          <span className="ml-1.5 text-[13px] font-bold not-italic tracking-normal text-marca-500">
+            eurocamping.com.ar
+          </span>
         </span>
+
+        {conBajada && (
+          <span
+            className={`versalitas mt-1 block whitespace-nowrap text-[10px] ${
+              claro ? 'text-marca-300' : 'text-marca-700'
+            }`}
+          >
+            The Outdoor Store Since 1965
+          </span>
+        )}
       </span>
     </span>
   );

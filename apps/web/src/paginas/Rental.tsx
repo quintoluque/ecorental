@@ -84,13 +84,13 @@ export function Rental() {
   const sucursalActual = sucursales.find((s) => s.slug === sucursal);
 
   const claseCampo =
-    'w-full rounded-lg border border-nieve-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-pino-300';
+    'w-full rounded-lg border border-nieve-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-marca-300';
 
   return (
     <>
-      <section className="bg-tinta-900 text-white">
+      <section className="bg-carbon-900 text-white">
         <div className="contenedor py-14 lg:py-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ambar-400">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-marca-400">
             Rental · Alquiler
           </p>
           <h1 className="mt-4 max-w-2xl text-4xl font-bold leading-tight lg:text-5xl">
@@ -106,13 +106,13 @@ export function Rental() {
           <div className="tarjeta overflow-hidden">
             <div className="border-b border-nieve-200 bg-white p-6 lg:p-8">
               <h2 className="flex items-center gap-2 text-lg font-semibold">
-                <IconoCalendario className="h-5 w-5 text-pino-600" />
+                <IconoCalendario className="h-5 w-5 text-marca-600" />
                 Elegí equipo, sucursal y fechas
               </h2>
 
               <div className="mt-6 grid gap-5 sm:grid-cols-2">
                 <label className="block">
-                  <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-500">
+                  <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-carbon-500">
                     Equipo
                   </span>
                   <select
@@ -129,7 +129,7 @@ export function Rental() {
                 </label>
 
                 <label className="block">
-                  <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-500">
+                  <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-carbon-500">
                     Sucursal de retiro
                   </span>
                   <select
@@ -146,7 +146,7 @@ export function Rental() {
                 </label>
 
                 <label className="block">
-                  <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-500">
+                  <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-carbon-500">
                     Retiro
                   </span>
                   <input
@@ -162,7 +162,7 @@ export function Rental() {
                 </label>
 
                 <label className="block">
-                  <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-500">
+                  <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-carbon-500">
                     Devolución
                   </span>
                   <input
@@ -175,7 +175,7 @@ export function Rental() {
                 </label>
 
                 <label className="block">
-                  <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-500">
+                  <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-carbon-500">
                     Cantidad de equipos
                   </span>
                   <input
@@ -199,7 +199,7 @@ export function Rental() {
                 type="button"
                 onClick={consultar}
                 disabled={consultando || rangoInvalido}
-                className="mt-6 w-full rounded-full bg-pino-900 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-pino-700 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                className="mt-6 w-full rounded-full bg-carbon-900 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-carbon-700 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
               >
                 {consultando ? 'Consultando…' : 'Consultar disponibilidad'}
               </button>
@@ -210,18 +210,18 @@ export function Rental() {
               <div className="bg-nieve-50 p-6 lg:p-8">
                 {paso === 'listo' && resultado ? (
                   <div>
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-pino-100 text-pino-700">
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-marca-100 text-marca-700">
                       <IconoCheck className="h-6 w-6" />
                     </span>
                     <h3 className="mt-4 text-xl font-semibold">
                       Solicitud registrada · {resultado.codigo}
                     </h3>
-                    <p className="mt-2 max-w-lg leading-relaxed text-tinta-700">
+                    <p className="mt-2 max-w-lg leading-relaxed text-carbon-700">
                       Guardá el código <strong>{resultado.codigo}</strong>. Te vamos a contactar a{' '}
                       <strong>{cliente.email}</strong> para confirmar el equipo y la talla.
                     </p>
                     {!resultado.enviadoAlServidor && (
-                      <p className="mt-4 rounded-lg border border-ambar-400/50 bg-ambar-400/10 px-4 py-3 text-sm text-tinta-700">
+                      <p className="mt-4 rounded-lg border border-marca-400/50 bg-marca-400/10 px-4 py-3 text-sm text-carbon-700">
                         Esta demostración está publicada sin servidor conectado, así que la reserva
                         no quedó guardada. Con el backend en línea, la solicitud se registra y
                         descuenta stock automáticamente.
@@ -231,7 +231,7 @@ export function Rental() {
                       href={empresa.whatsappLink}
                       target="_blank"
                       rel="noreferrer"
-                      className="mt-6 inline-flex rounded-full bg-pino-900 px-6 py-3 text-sm font-semibold text-white hover:bg-pino-700"
+                      className="mt-6 inline-flex rounded-full bg-carbon-900 px-6 py-3 text-sm font-semibold text-white hover:bg-carbon-700"
                     >
                       Continuar por WhatsApp
                     </a>
@@ -241,14 +241,14 @@ export function Rental() {
                     <div className="flex flex-wrap items-baseline justify-between gap-3">
                       <h3 className="text-lg font-semibold">
                         {fechaLarga(desde)} → {fechaLarga(hasta)}
-                        <span className="ml-2 text-sm font-normal text-tinta-500">
+                        <span className="ml-2 text-sm font-normal text-carbon-500">
                           {disponibilidad.dias} {disponibilidad.dias === 1 ? 'día' : 'días'}
                         </span>
                       </h3>
                       {disponibilidad.totalEstimado != null && (
                         <p className="text-lg font-semibold">
                           {formatearPrecio(disponibilidad.totalEstimado * unidades)}
-                          <span className="ml-1 text-sm font-normal text-tinta-500">estimado</span>
+                          <span className="ml-1 text-sm font-normal text-carbon-500">estimado</span>
                         </p>
                       )}
                     </div>
@@ -257,7 +257,7 @@ export function Rental() {
                       <p
                         className={`mt-3 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-medium ${
                           disponibilidad.unidadesDisponibles >= unidades
-                            ? 'bg-pino-100 text-pino-700'
+                            ? 'bg-marca-100 text-marca-700'
                             : 'bg-amber-100 text-amber-800'
                         }`}
                       >
@@ -272,7 +272,7 @@ export function Rental() {
                             : `Solo ${disponibilidad.unidadesDisponibles} equipos para esas fechas`}
                       </p>
                     ) : (
-                      <p className="mt-3 text-sm leading-relaxed text-tinta-500">
+                      <p className="mt-3 text-sm leading-relaxed text-carbon-500">
                         Dejanos tus datos y la sucursal de {sucursalActual?.ciudad} te confirma el
                         equipo disponible para esas fechas.
                       </p>
@@ -280,7 +280,7 @@ export function Rental() {
 
                     <form onSubmit={reservar} className="mt-6 grid gap-4 sm:grid-cols-2">
                       <label className="block">
-                        <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-500">
+                        <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-carbon-500">
                           Nombre y apellido
                         </span>
                         <input
@@ -291,7 +291,7 @@ export function Rental() {
                         />
                       </label>
                       <label className="block">
-                        <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-500">
+                        <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-carbon-500">
                           Email
                         </span>
                         <input
@@ -303,7 +303,7 @@ export function Rental() {
                         />
                       </label>
                       <label className="block">
-                        <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-500">
+                        <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-carbon-500">
                           Teléfono
                         </span>
                         <input
@@ -314,7 +314,7 @@ export function Rental() {
                         />
                       </label>
                       <label className="block sm:col-span-2">
-                        <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-500">
+                        <span className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-carbon-500">
                           Altura, peso y nivel (opcional)
                         </span>
                         <textarea
@@ -335,7 +335,7 @@ export function Rental() {
                       <button
                         type="submit"
                         disabled={enviando}
-                        className="rounded-full bg-ambar-500 px-7 py-3.5 text-sm font-semibold text-tinta-900 transition-colors hover:bg-ambar-600 disabled:opacity-50 sm:col-span-2 sm:justify-self-start"
+                        className="rounded-full bg-marca-500 px-7 py-3.5 text-sm font-semibold text-carbon-900 transition-colors hover:bg-marca-400 disabled:opacity-50 sm:col-span-2 sm:justify-self-start"
                       >
                         {enviando ? 'Enviando…' : 'Solicitar reserva'}
                       </button>
@@ -358,18 +358,18 @@ export function Rental() {
               <div className="tarjeta p-6">
                 <h2 className="text-base font-semibold">{categoriaActual.nombre}</h2>
                 {categoriaActual.descripcion && (
-                  <p className="mt-1.5 text-sm text-tinta-500">{categoriaActual.descripcion}</p>
+                  <p className="mt-1.5 text-sm text-carbon-500">{categoriaActual.descripcion}</p>
                 )}
                 <ul className="mt-4 space-y-2">
                   {categoriaActual.incluye.map((parte) => (
-                    <li key={parte} className="flex items-center gap-2 text-sm text-tinta-700">
-                      <IconoCheck className="h-4 w-4 text-pino-600" />
+                    <li key={parte} className="flex items-center gap-2 text-sm text-carbon-700">
+                      <IconoCheck className="h-4 w-4 text-marca-600" />
                       {parte}
                     </li>
                   ))}
                 </ul>
                 <p className="mt-4 border-t border-nieve-200 pt-4 text-sm">
-                  <span className="text-tinta-500">Tarifa por día: </span>
+                  <span className="text-carbon-500">Tarifa por día: </span>
                   <span className="font-semibold">{formatearPrecio(categoriaActual.tarifaPorDia)}</span>
                 </p>
               </div>
@@ -378,32 +378,32 @@ export function Rental() {
             {sucursalActual && (
               <div className="tarjeta p-6">
                 <h2 className="flex items-center gap-2 text-base font-semibold">
-                  <IconoUbicacion className="h-4 w-4 text-pino-600" />
+                  <IconoUbicacion className="h-4 w-4 text-marca-600" />
                   {sucursalActual.nombre}
                 </h2>
-                <p className="mt-2 text-sm text-tinta-500">
+                <p className="mt-2 text-sm text-carbon-500">
                   {sucursalActual.direccion ?? 'Consultá la dirección por WhatsApp'}
                   {sucursalActual.direccion ? `, ${sucursalActual.ciudad}` : ''}
                 </p>
                 {sucursalActual.horarios.map((h) => (
-                  <p key={h.dias} className="mt-1 text-sm text-tinta-500">
+                  <p key={h.dias} className="mt-1 text-sm text-carbon-500">
                     {h.dias}: {h.horario}
                   </p>
                 ))}
                 {sucursalActual.centroDeSki && (
-                  <p className="mt-3 inline-flex rounded-full bg-hielo-100 px-3 py-1 text-xs font-medium text-hielo-600">
+                  <p className="mt-3 inline-flex rounded-full bg-hielo-100 px-3 py-1 text-xs font-medium text-hielo-700">
                     Centro de ski: {sucursalActual.centroDeSki}
                   </p>
                 )}
               </div>
             )}
 
-            <div className="tarjeta bg-pino-50 p-6">
+            <div className="tarjeta bg-marca-50 p-6">
               <h2 className="flex items-center gap-2 text-base font-semibold">
-                <IconoHerramienta className="h-4 w-4 text-pino-600" />
+                <IconoHerramienta className="h-4 w-4 text-marca-600" />
                 Taller incluido
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-tinta-700">
+              <p className="mt-2 text-sm leading-relaxed text-carbon-700">
                 Todos los equipos de alquiler pasan por nuestro taller: instalación, reparación y
                 mantenimiento antes de cada salida.
               </p>

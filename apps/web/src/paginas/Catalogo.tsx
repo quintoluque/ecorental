@@ -79,7 +79,7 @@ export function Catalogo() {
     seleccionado: string | undefined;
   }) => (
     <fieldset>
-      <legend className="text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta-500">
+      <legend className="text-[11px] font-semibold uppercase tracking-[0.14em] text-carbon-500">
         {titulo}
       </legend>
       <div className="mt-3 space-y-1">
@@ -93,8 +93,8 @@ export function Catalogo() {
               aria-pressed={activo}
               className={`block w-full rounded-lg px-3 py-2 text-left text-sm transition-colors ${
                 activo
-                  ? 'bg-pino-600 font-medium text-white'
-                  : 'text-tinta-700 hover:bg-nieve-100'
+                  ? 'bg-carbon-900 font-medium text-white'
+                  : 'text-carbon-700 hover:bg-nieve-100'
               }`}
             >
               {opcion.nombre}
@@ -111,7 +111,7 @@ export function Catalogo() {
         <h1 className="text-3xl font-bold lg:text-4xl">
           {areaActual ? areaActual.nombre : 'Catálogo'}
         </h1>
-        <p className="mt-2 text-tinta-500">
+        <p className="mt-2 text-carbon-500">
           {areaActual?.descripcion ??
             'Equipamiento e indumentaria outdoor para todas las estaciones.'}
         </p>
@@ -127,12 +127,12 @@ export function Catalogo() {
           >
             <label className="relative block">
               <span className="sr-only">Buscar en el catálogo</span>
-              <IconoBuscar className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-tinta-500" />
+              <IconoBuscar className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-carbon-500" />
               <input
                 value={textoBusqueda}
                 onChange={(e) => setTextoBusqueda(e.target.value)}
                 placeholder="Buscar"
-                className="w-full rounded-lg border border-nieve-200 bg-white py-2.5 pl-9 pr-3 text-sm outline-none focus:border-pino-300"
+                className="w-full rounded-lg border border-nieve-200 bg-white py-2.5 pl-9 pr-3 text-sm outline-none focus:border-marca-300"
               />
             </label>
           </form>
@@ -160,12 +160,12 @@ export function Catalogo() {
             seleccionado={filtros.marca}
           />
 
-          <label className="flex cursor-pointer items-center gap-2.5 text-sm text-tinta-700">
+          <label className="flex cursor-pointer items-center gap-2.5 text-sm text-carbon-700">
             <input
               type="checkbox"
               checked={Boolean(filtros.alquilable)}
               onChange={(e) => actualizar('alquilable', e.target.checked ? 'true' : undefined)}
-              className="h-4 w-4 rounded border-nieve-200 accent-pino-600"
+              className="h-4 w-4 rounded border-nieve-200 accent-marca-600"
             />
             Solo productos en alquiler
           </label>
@@ -174,7 +174,7 @@ export function Catalogo() {
             <button
               type="button"
               onClick={() => setParametros(new URLSearchParams(), { replace: true })}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-tinta-500 hover:text-pino-700"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-carbon-500 hover:text-marca-700"
             >
               <IconoCerrar className="h-4 w-4" />
               Limpiar filtros
@@ -184,17 +184,17 @@ export function Catalogo() {
 
         <section>
           <div className="mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-nieve-200 pb-4">
-            <p className="text-sm text-tinta-500" aria-live="polite">
+            <p className="text-sm text-carbon-500" aria-live="polite">
               {cargando
                 ? 'Buscando…'
                 : `${productos.length} ${productos.length === 1 ? 'producto' : 'productos'}`}
             </p>
-            <label className="flex items-center gap-2 text-sm text-tinta-500">
+            <label className="flex items-center gap-2 text-sm text-carbon-500">
               Ordenar por
               <select
                 value={filtros.orden}
                 onChange={(e) => actualizar('orden', e.target.value)}
-                className="rounded-lg border border-nieve-200 bg-white px-3 py-2 text-sm text-tinta-900 outline-none focus:border-pino-300"
+                className="rounded-lg border border-nieve-200 bg-white px-3 py-2 text-sm text-carbon-900 outline-none focus:border-marca-300"
               >
                 {ORDENES.map((orden) => (
                   <option key={orden.valor} value={orden.valor}>
@@ -214,13 +214,13 @@ export function Catalogo() {
           ) : productos.length === 0 ? (
             <div className="tarjeta px-6 py-16 text-center">
               <p className="text-lg font-medium">No encontramos productos con esos filtros.</p>
-              <p className="mt-2 text-sm text-tinta-500">
+              <p className="mt-2 text-sm text-carbon-500">
                 Probá quitando alguno o escribinos y lo buscamos por vos.
               </p>
               <button
                 type="button"
                 onClick={() => setParametros(new URLSearchParams(), { replace: true })}
-                className="mt-6 rounded-full bg-pino-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-pino-700"
+                className="mt-6 rounded-full bg-carbon-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-carbon-700"
               >
                 Ver todo el catálogo
               </button>
