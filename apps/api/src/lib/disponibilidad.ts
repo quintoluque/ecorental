@@ -36,16 +36,19 @@ export function calcularDisponibilidad(
 
   const unidadesTotales = inventario?.unidades ?? 0;
 
+  // Se cuenta contra los items: una reserva puede llevar equipos de varias
+  // categorias y solo ocupa parque de las que efectivamente pidio.
   const marcadores = ESTADOS_QUE_OCUPAN.map(() => '?').join(', ');
   const reservas = db
     .prepare(
-      `SELECT desde, hasta, unidades
-         FROM rental_reservas
-        WHERE categoria_slug = ?
-          AND sucursal_slug = ?
-          AND estado IN (${marcadores})
-          AND desde <= ?
-          AND hasta >= ?`,
+      `SELECT r.desde, r.hasta, i.unidades
+         FROM rental_reserva_items i
+         JOIN rental_reservas r ON r.id = i.reserva_id
+        WHERE i.categoria_slug = ?
+          AND r.sucursal_slug = ?
+          AND r.estado IN (${marcadores})
+          AND r.desde <= ?
+          AND r.hasta >= ?`,
     )
     .all(categoria, sucursal, ...ESTADOS_QUE_OCUPAN, hasta, desde) as unknown as FilaReserva[];
 

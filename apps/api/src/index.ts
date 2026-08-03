@@ -27,7 +27,7 @@ app.get('/api/empresa', (_req, res) => {
   const catalogo = JSON.parse(readFileSync(config.rutaCatalogo, 'utf8'));
   res.json({
     empresa: catalogo.empresa,
-    actividades: catalogo.actividades,
+    taxonomia: catalogo.taxonomia,
     servicios: catalogo.servicios,
     rental: { descripcion: catalogo.rental.descripcion },
     clima: catalogo.clima,

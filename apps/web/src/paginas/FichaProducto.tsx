@@ -65,6 +65,32 @@ export function FichaProducto() {
     .filter((p) => p.slug !== producto.slug && (p.grupo === producto.grupo || p.marca === producto.marca))
     .slice(0, 4);
 
+  // Los rubros del articulo, como enlaces al catalogo ya filtrado.
+  const { taxonomia } = catalogo;
+  const buscarNombre = (opciones: { slug: string; nombre: string }[], slug: string | null) =>
+    slug ? (opciones.find((o) => o.slug === slug)?.nombre ?? null) : null;
+
+  const clasificacion = [
+    ...producto.deportes.map((deporte) => ({
+      clave: 'deporte',
+      valor: deporte,
+      nombre: buscarNombre(taxonomia.deportes, deporte),
+    })),
+    { clave: 'tipo', valor: producto.tipo, nombre: buscarNombre(taxonomia.tipos, producto.tipo) },
+    {
+      clave: 'publico',
+      valor: producto.publico,
+      nombre: buscarNombre(taxonomia.publicos, producto.publico),
+    },
+    {
+      clave: 'temporada',
+      valor: producto.temporada,
+      nombre: buscarNombre(taxonomia.temporadas, producto.temporada),
+    },
+  ].filter((e): e is { clave: string; valor: string; nombre: string } =>
+    Boolean(e.valor && e.nombre),
+  );
+
   const alAgregar = () => {
     agregar(producto);
     setAgregado(true);
@@ -131,6 +157,24 @@ export function FichaProducto() {
 
           {producto.descripcion && (
             <p className="mt-6 leading-relaxed text-carbon-700">{producto.descripcion}</p>
+          )}
+
+          {clasificacion.length > 0 && (
+            <div className="mt-6">
+              <h2 className="sr-only">Clasificación</h2>
+              <div className="flex flex-wrap gap-2">
+                {clasificacion.map((etiqueta) => (
+                  <Link
+                    key={`${etiqueta.clave}-${etiqueta.valor}`}
+                    to={`/productos?${etiqueta.clave}=${etiqueta.valor}`}
+                    title={`Ver todo en ${etiqueta.nombre}`}
+                    className="rounded-full border border-nieve-200 bg-nieve-50 px-3 py-1.5 text-xs font-medium text-carbon-700 transition-colors hover:border-marca-300 hover:text-marca-700"
+                  >
+                    {etiqueta.nombre}
+                  </Link>
+                ))}
+              </div>
+            </div>
           )}
 
           <div className="mt-8 flex flex-wrap gap-3">

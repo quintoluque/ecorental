@@ -13,6 +13,10 @@ function nombreDeMarca(slug: string | null): string | null {
 export function TarjetaProducto({ producto }: { producto: Producto }) {
   const marca = nombreDeMarca(producto.marca);
   const grupo = catalogo.grupos.find((g) => g.slug === producto.grupo)?.nombre;
+  const tipo = catalogo.taxonomia.tipos.find((t) => t.slug === producto.tipo)?.nombre;
+
+  // Familia y rubro en la misma linea: ubican el articulo sin ocupar espacio.
+  const clasificacion = [grupo, tipo].filter(Boolean).join(' · ');
 
   return (
     <Link
@@ -42,7 +46,7 @@ export function TarjetaProducto({ producto }: { producto: Producto }) {
         <h3 className="text-[15px] font-medium leading-snug text-carbon-900 group-hover:text-marca-700">
           {producto.nombre}
         </h3>
-        {grupo && <p className="text-xs text-carbon-500">{grupo}</p>}
+        {clasificacion && <p className="text-xs text-carbon-500">{clasificacion}</p>}
 
         <div className="mt-auto pt-3">
           <span

@@ -3,7 +3,8 @@ import { IconoFlecha } from '@/components/Iconos.tsx';
 import { catalogo } from '@/lib/api.ts';
 
 export function Nosotros() {
-  const { empresa, actividades, servicios, sucursales, marcas } = catalogo;
+  const { empresa, taxonomia, servicios, sucursales, marcas } = catalogo;
+  const deportes = taxonomia.deportes;
   const anios = new Date().getFullYear() - empresa.desde;
 
   return (
@@ -28,7 +29,7 @@ export function Nosotros() {
           {[
             { valor: String(empresa.desde), etiqueta: 'Año de fundación' },
             { valor: String(sucursales.length), etiqueta: 'Sucursales en el país' },
-            { valor: String(actividades.length), etiqueta: 'Actividades cubiertas' },
+            { valor: String(deportes.length), etiqueta: 'Deportes cubiertos' },
             { valor: String(marcas.length), etiqueta: 'Marcas publicadas' },
           ].map((dato) => (
             <div key={dato.etiqueta}>
@@ -50,13 +51,14 @@ export function Nosotros() {
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              {actividades.map((actividad) => (
-                <span
-                  key={actividad}
-                  className="rounded-full border border-nieve-200 bg-white px-4 py-2 text-sm font-medium text-carbon-700"
+              {deportes.map((deporte) => (
+                <Link
+                  key={deporte.slug}
+                  to={`/productos?deporte=${deporte.slug}`}
+                  className="rounded-full border border-nieve-200 bg-white px-4 py-2 text-sm font-medium text-carbon-700 transition-colors hover:border-marca-300 hover:text-marca-700"
                 >
-                  {actividad}
-                </span>
+                  {deporte.nombre}
+                </Link>
               ))}
             </div>
 

@@ -23,6 +23,12 @@ export function sumarDias(fechaISO: string, dias: number): string {
     .slice(0, 10);
 }
 
+/** Dias de alquiler: se cobra por dia de uso, asi que el ultimo cuenta. */
+export function diasEntre(desde: string, hasta: string): number {
+  const milisegundos = Date.parse(`${hasta}T00:00:00Z`) - Date.parse(`${desde}T00:00:00Z`);
+  return Math.max(1, Math.round(milisegundos / 86_400_000) + 1);
+}
+
 export function fechaLarga(fechaISO: string): string {
   return new Intl.DateTimeFormat('es-AR', {
     weekday: 'short',

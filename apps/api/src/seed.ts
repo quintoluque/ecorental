@@ -24,6 +24,10 @@ type Catalogo = {
     precio: number | null;
     moneda: string;
     alquilable: boolean;
+    deportes: string[];
+    tipo: string | null;
+    publico: string | null;
+    temporada: string | null;
     urlOriginal: string | null;
   }[];
   sucursales: {
@@ -49,7 +53,17 @@ type Catalogo = {
       slug: string;
       nombre: string;
       descripcion: string | null;
+      disciplina: string;
+      publico: string;
+      nivel: string;
       incluye: string[];
+      tarifaPorDia: number | null;
+      moneda: string;
+    }[];
+    adicionales: {
+      slug: string;
+      nombre: string;
+      descripcion: string | null;
       tarifaPorDia: number | null;
       moneda: string;
     }[];
@@ -133,15 +147,23 @@ export function sembrar(): void {
     const insertarProducto = db.prepare(
       `INSERT INTO productos
          (id, slug, nombre, marca_slug, area_slug, grupo_slug, descripcion,
-          especificaciones, precio, moneda, alquilable, url_original, activo)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
+          especificaciones, precio, moneda, alquilable, tipo, publico, temporada,
+          url_original, activo)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1)
        ON CONFLICT(id) DO UPDATE SET
          slug = excluded.slug, nombre = excluded.nombre, marca_slug = excluded.marca_slug,
          area_slug = excluded.area_slug, grupo_slug = excluded.grupo_slug,
          descripcion = excluded.descripcion, especificaciones = excluded.especificaciones,
          precio = excluded.precio, moneda = excluded.moneda,
-         alquilable = excluded.alquilable, url_original = excluded.url_original`,
+         alquilable = excluded.alquilable, tipo = excluded.tipo,
+         publico = excluded.publico, temporada = excluded.temporada,
+         url_original = excluded.url_original`,
     );
+    const borrarDeportes = db.prepare('DELETE FROM producto_deportes WHERE producto_id = ?');
+    const insertarDeporte = db.prepare(
+      'INSERT INTO producto_deportes (producto_id, deporte) VALUES (?, ?) ON CONFLICT DO NOTHING',
+    );
+
     for (const p of catalogo.productos) {
       insertarProducto.run(
         p.id,
@@ -155,28 +177,53 @@ export function sembrar(): void {
         p.precio,
         p.moneda ?? 'ARS',
         p.alquilable ? 1 : 0,
+        p.tipo,
+        p.publico,
+        p.temporada,
         p.urlOriginal,
       );
+
+      // Se reescriben: el catalogo del repositorio manda sobre lo que haya.
+      borrarDeportes.run(p.id);
+      for (const deporte of p.deportes ?? []) insertarDeporte.run(p.id, deporte);
     }
 
     const insertarRental = db.prepare(
-      `INSERT INTO rental_categorias (slug, nombre, descripcion, incluye, tarifa_por_dia, moneda)
-       VALUES (?, ?, ?, ?, ?, ?)
+      `INSERT INTO rental_categorias
+         (slug, nombre, descripcion, disciplina, publico, nivel, incluye, tarifa_por_dia, moneda, orden)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
        ON CONFLICT(slug) DO UPDATE SET
          nombre = excluded.nombre, descripcion = excluded.descripcion,
+         disciplina = excluded.disciplina, publico = excluded.publico, nivel = excluded.nivel,
          incluye = excluded.incluye, tarifa_por_dia = excluded.tarifa_por_dia,
-         moneda = excluded.moneda`,
+         moneda = excluded.moneda, orden = excluded.orden`,
     );
-    for (const c of catalogo.rental.categorias) {
+    catalogo.rental.categorias.forEach((c, i) => {
       insertarRental.run(
         c.slug,
         c.nombre,
         c.descripcion,
+        c.disciplina ?? 'ski',
+        c.publico ?? 'adulto',
+        c.nivel ?? 'principiante',
         JSON.stringify(c.incluye ?? []),
         c.tarifaPorDia,
         c.moneda ?? 'ARS',
+        i,
       );
-    }
+    });
+
+    const insertarAdicional = db.prepare(
+      `INSERT INTO rental_adicionales (slug, nombre, descripcion, tarifa_por_dia, moneda, orden)
+       VALUES (?, ?, ?, ?, ?, ?)
+       ON CONFLICT(slug) DO UPDATE SET
+         nombre = excluded.nombre, descripcion = excluded.descripcion,
+         tarifa_por_dia = excluded.tarifa_por_dia, moneda = excluded.moneda,
+         orden = excluded.orden`,
+    );
+    (catalogo.rental.adicionales ?? []).forEach((a, i) => {
+      insertarAdicional.run(a.slug, a.nombre, a.descripcion, a.tarifaPorDia, a.moneda ?? 'ARS', i);
+    });
 
     // El parque de equipos se declara vacio: las unidades reales las carga ECO
     // por sucursal desde el panel. Insertamos la fila para que la sucursal

@@ -11,7 +11,7 @@ import { catalogo } from '@/lib/api.ts';
 import { fotoDeActividad } from '@/lib/fotos.ts';
 
 export function Inicio() {
-  const { empresa, areas, productos, marcas, sucursales, actividades, rental } = catalogo;
+  const { empresa, areas, productos, marcas, sucursales, taxonomia, rental } = catalogo;
 
   const destacados = productos.slice(0, 4);
   const areasDestacadas = areas.filter((a) => a.destacada);
@@ -62,10 +62,15 @@ export function Inicio() {
           </div>
 
           <ul className="mt-12 flex flex-wrap gap-x-6 gap-y-2 text-sm text-nieve-100/75">
-            {actividades.map((actividad) => (
-              <li key={actividad} className="flex items-center gap-1.5">
-                <span className="h-1 w-1 rounded-full bg-marca-500" aria-hidden="true" />
-                {actividad}
+            {taxonomia.deportes.map((deporte) => (
+              <li key={deporte.slug}>
+                <Link
+                  to={`/productos?deporte=${deporte.slug}`}
+                  className="flex items-center gap-1.5 transition-colors hover:text-marca-300"
+                >
+                  <span className="h-1 w-1 rounded-full bg-marca-500" aria-hidden="true" />
+                  {deporte.nombre}
+                </Link>
               </li>
             ))}
           </ul>
@@ -221,14 +226,14 @@ export function Inicio() {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
-            {rental.categorias.map((categoria) => (
-              <div key={categoria.slug} className="rounded-xl2 border border-white/10 bg-white/5 p-5">
-                <h3 className="text-base font-semibold">{categoria.nombre}</h3>
-                {categoria.descripcion && (
-                  <p className="mt-1 text-sm text-nieve-200/70">{categoria.descripcion}</p>
+            {rental.disciplinas.map((disciplina) => (
+              <div key={disciplina.slug} className="rounded-xl2 border border-white/10 bg-white/5 p-5">
+                <h3 className="text-base font-semibold">{disciplina.nombre}</h3>
+                {disciplina.descripcion && (
+                  <p className="mt-1 text-sm text-nieve-200/70">{disciplina.descripcion}</p>
                 )}
                 <ul className="mt-4 space-y-1.5">
-                  {categoria.incluye.map((parte) => (
+                  {disciplina.incluye.map((parte) => (
                     <li key={parte} className="flex items-center gap-2 text-sm text-nieve-200/85">
                       <IconoCheck className="h-3.5 w-3.5 text-marca-300" />
                       {parte}
