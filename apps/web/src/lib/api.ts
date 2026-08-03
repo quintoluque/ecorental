@@ -4,6 +4,7 @@ import type {
   CategoriaRental,
   Disponibilidad,
   FiltrosProducto,
+  Participante,
   Producto,
 } from './tipos.ts';
 
@@ -40,13 +41,40 @@ function normalizar(texto: string): string {
     .replace(/[\u0300-\u036f]/g, '');
 }
 
+/** Un rubro sin valores elegidos no filtra; con varios, alcanza con uno. */
+function coincide(valor: string | null, elegidos: string[] | undefined): boolean {
+  if (!elegidos?.length) return true;
+  return valor != null && elegidos.includes(valor);
+}
+
+function coincideAlguno(valores: string[] | undefined, elegidos: string[] | undefined): boolean {
+  if (!elegidos?.length) return true;
+  return (valores ?? []).some((v) => elegidos.includes(v));
+}
+
 function filtrarLocal(filtros: FiltrosProducto): Producto[] {
   let productos = catalogo.productos.slice();
 
   if (filtros.area) productos = productos.filter((p) => p.area === filtros.area);
-  if (filtros.grupo) productos = productos.filter((p) => p.grupo === filtros.grupo);
-  if (filtros.marca) productos = productos.filter((p) => p.marca === filtros.marca);
+  productos = productos.filter(
+    (p) =>
+      coincide(p.grupo, filtros.grupo) &&
+      coincide(p.marca, filtros.marca) &&
+      coincide(p.tipo, filtros.tipo) &&
+      coincide(p.publico, filtros.publico) &&
+      coincide(p.temporada, filtros.temporada) &&
+      coincideAlguno(p.deportes, filtros.deporte),
+  );
   if (filtros.alquilable) productos = productos.filter((p) => p.alquilable);
+
+  // Un producto sin precio publicado ("Consultar") no puede entrar en un rango:
+  // queda fuera solo cuando el filtro de precio esta activo.
+  if (filtros.precioMin != null) {
+    productos = productos.filter((p) => p.precio != null && p.precio >= filtros.precioMin!);
+  }
+  if (filtros.precioMax != null) {
+    productos = productos.filter((p) => p.precio != null && p.precio <= filtros.precioMax!);
+  }
 
   if (filtros.q) {
     const termino = normalizar(filtros.q);
@@ -69,6 +97,15 @@ function filtrarLocal(filtros: FiltrosProducto): Producto[] {
   return productos;
 }
 
+/**
+ * Filtrado contra el catalogo empaquetado. La web lo usa ademas de para
+ * listar, para contar cuantos productos daria cada opcion de la barra de
+ * filtros antes de tildarla.
+ */
+export function filtrarEnCatalogo(filtros: FiltrosProducto = {}): Producto[] {
+  return filtrarLocal(filtros);
+}
+
 export async function listarProductos(filtros: FiltrosProducto = {}): Promise<{
   total: number;
   productos: Producto[];
@@ -80,7 +117,9 @@ export async function listarProductos(filtros: FiltrosProducto = {}): Promise<{
 
   const parametros = new URLSearchParams();
   for (const [clave, valor] of Object.entries(filtros)) {
-    if (valor !== undefined && valor !== '' && valor !== false) parametros.set(clave, String(valor));
+    if (valor === undefined || valor === '' || valor === false) continue;
+    // Los rubros multiples viajan como lista separada por coma.
+    parametros.set(clave, Array.isArray(valor) ? valor.join(',') : String(valor));
   }
 
   const respuesta = await pedir<{ total: number; productos: (Producto & { marca: unknown })[] }>(
@@ -166,14 +205,24 @@ function codigoSimulado(prefijo: string): string {
   return `${prefijo}-${cuerpo}`;
 }
 
-export async function crearReserva(datos: {
-  categoria: string;
+/**
+ * Una reserva de rental es de todo el viaje, no de un equipo suelto: puede
+ * llevar varias personas con distinto equipo y sus adicionales. El backend
+ * verifica la disponibilidad de cada categoria dentro de una transaccion.
+ */
+export type NuevaReserva = {
   sucursal: string;
   desde: string;
   hasta: string;
-  unidades: number;
+  equipos: { categoria: string; unidades: number }[];
+  participantes: Participante[];
+  adicionales: { slug: string; unidades: number }[];
   cliente: DatosCliente;
-}): Promise<{ codigo: string; enviadoAlServidor: boolean }> {
+};
+
+export async function crearReserva(
+  datos: NuevaReserva,
+): Promise<{ codigo: string; enviadoAlServidor: boolean }> {
   if (!hayBackend) return { codigo: codigoSimulado('R'), enviadoAlServidor: false };
   const r = await pedir<{ codigo: string }>('/api/rental/reservas', {
     method: 'POST',

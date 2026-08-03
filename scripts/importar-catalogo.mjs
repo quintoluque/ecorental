@@ -13,12 +13,25 @@
  *  - precio      vacio = "Consultar" en la web (no se inventa un valor)
  *  - alquilable  si / no
  *
+ * Y, opcionalmente, los rubros de clasificacion:
+ *
+ *   deportes,tipo,publico,temporada
+ *
+ *  - deportes    varios separados por ";" (ski;snowboard)
+ *  - tipo        equipamiento | indumentaria | calzado | accesorios
+ *  - publico     unisex | hombre | mujer | ninos
+ *  - temporada   invierno | verano | todo-el-ano
+ *
+ * Lo que no venga en el CSV lo deduce el clasificador a partir del nombre, el
+ * area y el grupo, asi que el catalogo queda filtrable sin cargar nada a mano.
+ *
  * Los productos con un id ya presente se actualizan; el resto se agrega.
  * Nada se borra: para dar de baja un producto, quitalo a mano del JSON.
  */
 
 import { readFileSync, writeFileSync } from 'node:fs';
 import { argv, exit } from 'node:process';
+import { clasificar } from './clasificador.mjs';
 
 const RUTA_CATALOGO = new URL('../data/catalog.json', import.meta.url);
 
@@ -77,6 +90,16 @@ function leerCSV(texto) {
   );
 }
 
+/** 'ski;snowboard' -> ['ski', 'snowboard'] · vacio -> null (lo deduce el clasificador). */
+function aLista(valor) {
+  if (!valor) return null;
+  const partes = String(valor)
+    .split(/[;|]/)
+    .map((p) => crearSlug(p))
+    .filter(Boolean);
+  return partes.length ? partes : null;
+}
+
 function aNumeroONulo(valor) {
   if (!valor) return null;
   const numero = Number(String(valor).replace(/[^\d.,-]/g, '').replace(/\./g, '').replace(',', '.'));
@@ -129,12 +152,20 @@ for (const [indice, fila] of filas.entries()) {
   const area = asegurarReferencia(catalogo.areas, fila.area, {
     codigoOriginal: null,
     descripcion: null,
-    actividades: [],
+    deportes: [],
     destacada: true,
   });
   const grupo = fila.grupo
     ? asegurarReferencia(catalogo.grupos, fila.grupo, { area })
     : null;
+
+  const grupoNombre = catalogo.grupos.find((g) => g.slug === grupo)?.nombre ?? '';
+  const deducida = clasificar({
+    nombre: fila.nombre,
+    area,
+    grupoNombre,
+    descripcion: fila.descripcion ?? '',
+  });
 
   const producto = {
     id,
@@ -148,13 +179,22 @@ for (const [indice, fila] of filas.entries()) {
     precio: aNumeroONulo(fila.precio),
     moneda: 'ARS',
     alquilable: /^(si|sí|true|1|x)$/i.test(fila.alquilable ?? ''),
+    // Lo que trae el CSV manda; el resto lo completa el clasificador.
+    deportes: aLista(fila.deportes) ?? deducida.deportes,
+    tipo: fila.tipo || deducida.tipo,
+    publico: fila.publico || deducida.publico,
+    temporada: fila.temporada || deducida.temporada,
     urlOriginal: fila.url || `https://www.eurocampingonline.com.ar/detalle.php?id=${id}`,
+    imagenes: [],
   };
 
   const posicion = catalogo.productos.findIndex((p) => p.id === id);
   if (posicion >= 0) {
-    // Conservamos las especificaciones ya cargadas a mano.
-    producto.especificaciones = catalogo.productos[posicion].especificaciones ?? [];
+    // Lo que se cargo a mano en el JSON no se pisa con celdas vacias del CSV.
+    const anterior = catalogo.productos[posicion];
+    producto.especificaciones = anterior.especificaciones ?? [];
+    producto.descripcion = producto.descripcion ?? anterior.descripcion ?? null;
+    producto.imagenes = anterior.imagenes ?? [];
     catalogo.productos[posicion] = producto;
     actualizados++;
   } else {

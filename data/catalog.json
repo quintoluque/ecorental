@@ -2,7 +2,7 @@
   "_meta": {
     "descripcion": "Fuente única de datos del sitio ECO > Eurocamping. Toda la información aquí contenida fue relevada del sitio original https://www.eurocampingonline.com.ar/ y de sus perfiles oficiales. Los campos en null son datos que el sitio original publica pero que no pudieron verificarse de forma automática (ver scripts/importar-catalogo.mjs para completarlos).",
     "fuente": "https://www.eurocampingonline.com.ar/",
-    "ultimaActualizacion": "2026-07-30",
+    "ultimaActualizacion": "2026-08-03",
     "version": 1,
     "fotos": "Las rutas de imagen son relativas a apps/web/public/ (por ejemplo \"fotos/productos/rossignol-ski-black-ops.jpg\"). Se cargan con scripts/vincular-fotos.mjs."
   },
@@ -25,112 +25,212 @@
       "facebookUsuario": "Eurocamping"
     }
   },
-  "actividades": [
-    "Ski",
-    "Snowboard",
-    "Pesca",
-    "Náutica",
-    "Kayak",
-    "Surf",
-    "Kitesurf",
-    "Escalada",
-    "Camping",
-    "Trekking",
-    "Montañismo"
-  ],
   "areas": [
     {
       "slug": "invierno",
       "codigoOriginal": "i",
       "nombre": "Invierno",
       "descripcion": "Ski, snowboard e indumentaria técnica de montaña para la temporada de nieve.",
-      "actividades": [
-        "Ski",
-        "Snowboard"
-      ],
       "destacada": true,
-      "imagen": null
+      "imagen": null,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ]
     },
     {
       "slug": "camping-trekking",
       "codigoOriginal": "c",
       "nombre": "Camping & Trekking",
       "descripcion": "Carpas, bolsas de dormir, mochilas y equipo para acampar y caminar.",
-      "actividades": [
-        "Camping",
-        "Trekking"
-      ],
       "destacada": true,
-      "imagen": null
+      "imagen": null,
+      "deportes": [
+        "camping",
+        "trekking"
+      ]
     },
     {
       "slug": "escalada-montanismo",
       "codigoOriginal": "e",
       "nombre": "Escalada & Montañismo",
       "descripcion": "Equipo técnico de escalada, alta montaña y seguridad vertical.",
-      "actividades": [
-        "Escalada",
-        "Montañismo"
-      ],
       "destacada": true,
-      "imagen": null
+      "imagen": null,
+      "deportes": [
+        "escalada",
+        "montanismo"
+      ]
     },
     {
       "slug": "nautica",
       "codigoOriginal": "n",
       "nombre": "Náutica & Kayak",
       "descripcion": "Yachting, kayak y todo el equipamiento para el agua.",
-      "actividades": [
-        "Náutica",
-        "Kayak"
-      ],
       "destacada": true,
-      "imagen": null
+      "imagen": null,
+      "deportes": [
+        "nautica",
+        "kayak"
+      ]
     },
     {
       "slug": "pesca",
       "codigoOriginal": "p",
       "nombre": "Pesca",
       "descripcion": "Equipos, indumentaria y accesorios de pesca.",
-      "actividades": [
-        "Pesca"
-      ],
       "destacada": true,
-      "imagen": null
+      "imagen": null,
+      "deportes": [
+        "pesca"
+      ]
     },
     {
       "slug": "surf-kitesurf",
       "codigoOriginal": "s",
       "nombre": "Surf & Kitesurf",
       "descripcion": "Trajes, accesorios y equipamiento para surf y kitesurf.",
-      "actividades": [
-        "Surf",
-        "Kitesurf"
-      ],
       "destacada": true,
-      "imagen": null
+      "imagen": null,
+      "deportes": [
+        "surf",
+        "kitesurf"
+      ]
     },
     {
       "slug": "grass-skiing",
       "codigoOriginal": "g",
       "nombre": "Grass Skiing",
       "descripcion": "Ski sobre pasto: la disciplina de verano de la que ECO es referente en Argentina.",
-      "actividades": [
-        "Ski"
-      ],
       "destacada": false,
-      "imagen": null
+      "imagen": null,
+      "deportes": [
+        "ski"
+      ]
     },
     {
       "slug": "usados",
       "codigoOriginal": "usados",
       "nombre": "Usados",
       "descripcion": "Equipos usados y de temporadas anteriores, revisados por nuestro taller.",
-      "actividades": [],
       "destacada": false,
-      "imagen": null
+      "imagen": null,
+      "deportes": []
     }
   ],
+  "taxonomia": {
+    "deportes": [
+      {
+        "slug": "ski",
+        "nombre": "Ski",
+        "area": "invierno"
+      },
+      {
+        "slug": "snowboard",
+        "nombre": "Snowboard",
+        "area": "invierno"
+      },
+      {
+        "slug": "camping",
+        "nombre": "Camping",
+        "area": "camping-trekking"
+      },
+      {
+        "slug": "trekking",
+        "nombre": "Trekking",
+        "area": "camping-trekking"
+      },
+      {
+        "slug": "montanismo",
+        "nombre": "Montañismo",
+        "area": "escalada-montanismo"
+      },
+      {
+        "slug": "escalada",
+        "nombre": "Escalada",
+        "area": "escalada-montanismo"
+      },
+      {
+        "slug": "pesca",
+        "nombre": "Pesca",
+        "area": "pesca"
+      },
+      {
+        "slug": "nautica",
+        "nombre": "Náutica",
+        "area": "nautica"
+      },
+      {
+        "slug": "kayak",
+        "nombre": "Kayak",
+        "area": "nautica"
+      },
+      {
+        "slug": "surf",
+        "nombre": "Surf",
+        "area": "surf-kitesurf"
+      },
+      {
+        "slug": "kitesurf",
+        "nombre": "Kitesurf",
+        "area": "surf-kitesurf"
+      }
+    ],
+    "tipos": [
+      {
+        "slug": "equipamiento",
+        "nombre": "Equipamiento",
+        "descripcion": "El equipo que define la actividad: skis, kayaks, carpas, cañas."
+      },
+      {
+        "slug": "indumentaria",
+        "nombre": "Indumentaria",
+        "descripcion": "Prendas técnicas: camperas, pantalones, primera piel, neoprene."
+      },
+      {
+        "slug": "calzado",
+        "nombre": "Calzado",
+        "descripcion": "Botas de ski, de trekking, náuticas y zapatillas."
+      },
+      {
+        "slug": "accesorios",
+        "nombre": "Accesorios",
+        "descripcion": "Antiparras, gorros, bolsos, linternas y todo lo que complementa."
+      }
+    ],
+    "publicos": [
+      {
+        "slug": "unisex",
+        "nombre": "Unisex"
+      },
+      {
+        "slug": "hombre",
+        "nombre": "Hombre"
+      },
+      {
+        "slug": "mujer",
+        "nombre": "Mujer"
+      },
+      {
+        "slug": "ninos",
+        "nombre": "Niños"
+      }
+    ],
+    "temporadas": [
+      {
+        "slug": "invierno",
+        "nombre": "Invierno"
+      },
+      {
+        "slug": "verano",
+        "nombre": "Verano"
+      },
+      {
+        "slug": "todo-el-ano",
+        "nombre": "Todo el año"
+      }
+    ]
+  },
   "grupos": [
     {
       "slug": "skis",
@@ -146,6 +246,196 @@
       "slug": "calzado-nautico",
       "nombre": "Calzado náutico",
       "area": "nautica"
+    },
+    {
+      "slug": "botas-ski",
+      "nombre": "Botas Ski",
+      "area": "invierno"
+    },
+    {
+      "slug": "fijaciones-ski",
+      "nombre": "Fijaciones Ski",
+      "area": "invierno"
+    },
+    {
+      "slug": "snowboards",
+      "nombre": "Snowboards",
+      "area": "invierno"
+    },
+    {
+      "slug": "fijaciones-snowboard",
+      "nombre": "Fijaciones Snowboard",
+      "area": "invierno"
+    },
+    {
+      "slug": "bastones",
+      "nombre": "Bastones",
+      "area": "invierno"
+    },
+    {
+      "slug": "cascos",
+      "nombre": "Cascos",
+      "area": "invierno"
+    },
+    {
+      "slug": "antiparras",
+      "nombre": "Antiparras",
+      "area": "invierno"
+    },
+    {
+      "slug": "anteojos",
+      "nombre": "Anteojos",
+      "area": "invierno"
+    },
+    {
+      "slug": "camperas",
+      "nombre": "Camperas",
+      "area": "invierno"
+    },
+    {
+      "slug": "pantalones-invierno",
+      "nombre": "Pantalones Invierno",
+      "area": "invierno"
+    },
+    {
+      "slug": "primera-piel",
+      "nombre": "Primera Piel",
+      "area": "invierno"
+    },
+    {
+      "slug": "gorros",
+      "nombre": "Gorros",
+      "area": "invierno"
+    },
+    {
+      "slug": "bolsos-y-fundas",
+      "nombre": "Bolsos y Fundas",
+      "area": "invierno"
+    },
+    {
+      "slug": "accesorios-de-nieve",
+      "nombre": "Accesorios de Nieve",
+      "area": "invierno"
+    },
+    {
+      "slug": "apreski",
+      "nombre": "Apreski",
+      "area": "invierno"
+    },
+    {
+      "slug": "carpas",
+      "nombre": "Carpas",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "mochilas",
+      "nombre": "Mochilas",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "colchones",
+      "nombre": "Colchones",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "calentadores",
+      "nombre": "Calentadores",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "cartuchos",
+      "nombre": "Cartuchos",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "vajilla",
+      "nombre": "Vajilla",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "muebles-de-camping",
+      "nombre": "Muebles de Camping",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "conservadoras",
+      "nombre": "Conservadoras",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "linternas",
+      "nombre": "Linternas",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "termos-y-cantimploras",
+      "nombre": "Termos y Cantimploras",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "botas-hiking",
+      "nombre": "Botas Hiking",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "zapatillas",
+      "nombre": "Zapatillas",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "pantalones-verano",
+      "nombre": "Pantalones Verano",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "cuidado-del-equipo",
+      "nombre": "Cuidado del Equipo",
+      "area": "camping-trekking"
+    },
+    {
+      "slug": "mosquetones",
+      "nombre": "Mosquetones",
+      "area": "escalada-montanismo"
+    },
+    {
+      "slug": "kayaks",
+      "nombre": "Kayaks",
+      "area": "nautica"
+    },
+    {
+      "slug": "botes",
+      "nombre": "Botes",
+      "area": "nautica"
+    },
+    {
+      "slug": "salvavidas",
+      "nombre": "Salvavidas",
+      "area": "nautica"
+    },
+    {
+      "slug": "motores-e-infladores",
+      "nombre": "Motores e Infladores",
+      "area": "nautica"
+    },
+    {
+      "slug": "bolsos-estancos",
+      "nombre": "Bolsos Estancos",
+      "area": "nautica"
+    },
+    {
+      "slug": "trajes-de-neoprene",
+      "nombre": "Trajes de Neoprene",
+      "area": "surf-kitesurf"
+    },
+    {
+      "slug": "canas",
+      "nombre": "Cañas",
+      "area": "pesca"
+    },
+    {
+      "slug": "waders",
+      "nombre": "Waders",
+      "area": "pesca"
     }
   ],
   "marcas": [
@@ -168,14 +458,317 @@
     {
       "slug": "hydrox",
       "nombre": "Hydrox"
+    },
+    {
+      "slug": "salomon",
+      "nombre": "Salomon"
+    },
+    {
+      "slug": "atomic",
+      "nombre": "Atomic"
+    },
+    {
+      "slug": "marker",
+      "nombre": "Marker"
+    },
+    {
+      "slug": "carrera",
+      "nombre": "Carrera"
+    },
+    {
+      "slug": "rusty",
+      "nombre": "Rusty"
+    },
+    {
+      "slug": "trespass",
+      "nombre": "Trespass"
+    },
+    {
+      "slug": "raffike",
+      "nombre": "Raffike"
+    },
+    {
+      "slug": "nature-net",
+      "nombre": "Nature Net"
+    },
+    {
+      "slug": "cross",
+      "nombre": "Cross"
+    },
+    {
+      "slug": "lippi",
+      "nombre": "Lippi"
+    },
+    {
+      "slug": "mammut",
+      "nombre": "Mammut"
+    },
+    {
+      "slug": "the-north-face",
+      "nombre": "The North Face"
+    },
+    {
+      "slug": "duke",
+      "nombre": "Duke"
+    },
+    {
+      "slug": "eco",
+      "nombre": "ECO"
+    },
+    {
+      "slug": "thule",
+      "nombre": "Thule"
+    },
+    {
+      "slug": "coleman",
+      "nombre": "Coleman"
+    },
+    {
+      "slug": "waterdog",
+      "nombre": "Waterdog"
+    },
+    {
+      "slug": "national-geographic",
+      "nombre": "National Geographic"
+    },
+    {
+      "slug": "softair",
+      "nombre": "Softair"
+    },
+    {
+      "slug": "ekococina",
+      "nombre": "Ekococina"
+    },
+    {
+      "slug": "foco",
+      "nombre": "Foco"
+    },
+    {
+      "slug": "brogas",
+      "nombre": "Brogas"
+    },
+    {
+      "slug": "broksol",
+      "nombre": "Broksol"
+    },
+    {
+      "slug": "goal-zero",
+      "nombre": "Goal Zero"
+    },
+    {
+      "slug": "chilly",
+      "nombre": "Chilly"
+    },
+    {
+      "slug": "niva",
+      "nombre": "Niva"
+    },
+    {
+      "slug": "timberland",
+      "nombre": "Timberland"
+    },
+    {
+      "slug": "hush-puppies",
+      "nombre": "Hush Puppies"
+    },
+    {
+      "slug": "arola",
+      "nombre": "Arola"
+    },
+    {
+      "slug": "nite-ize",
+      "nombre": "Nite Ize"
+    },
+    {
+      "slug": "atlantikayak",
+      "nombre": "Atlantikayak"
+    },
+    {
+      "slug": "sevylor",
+      "nombre": "Sevylor"
+    },
+    {
+      "slug": "aquafloat",
+      "nombre": "Aquafloat"
+    },
+    {
+      "slug": "zulu-k",
+      "nombre": "Zulu-K"
+    },
+    {
+      "slug": "thermoskin",
+      "nombre": "Thermoskin"
+    },
+    {
+      "slug": "rip-curl",
+      "nombre": "Rip Curl"
+    },
+    {
+      "slug": "mitchell",
+      "nombre": "Mitchell"
+    },
+    {
+      "slug": "mm",
+      "nombre": "MM"
     }
   ],
   "productos": [
     {
-      "id": 1542,
-      "slug": "rossignol-ski-black-ops",
-      "nombre": "ROSSIGNOL SKI BLACK OPS",
-      "marca": "rossignol",
+      "id": 949,
+      "slug": "aquafloat-salvavidas-aquafit-3-tiras",
+      "nombre": "AQUAFLOAT SALVAVIDAS AQUAFIT 3 TIRAS",
+      "marca": "aquafloat",
+      "area": "nautica",
+      "grupo": "salvavidas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "nautica"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=949",
+      "imagenes": []
+    },
+    {
+      "id": 1017,
+      "slug": "aquafloat-salvavidas-torpedo-baywatch",
+      "nombre": "AQUAFLOAT SALVAVIDAS TORPEDO BAYWATCH",
+      "marca": "aquafloat",
+      "area": "nautica",
+      "grupo": "salvavidas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "nautica"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1017",
+      "imagenes": []
+    },
+    {
+      "id": 1018,
+      "slug": "aquafloat-salvavidas-torpedo-eco-liviano",
+      "nombre": "AQUAFLOAT SALVAVIDAS TORPEDO ECO LIVIANO",
+      "marca": "aquafloat",
+      "area": "nautica",
+      "grupo": "salvavidas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "nautica"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1018",
+      "imagenes": []
+    },
+    {
+      "id": 1514,
+      "slug": "arola-impermeabilizante",
+      "nombre": "AROLA IMPERMEABILIZANTE",
+      "marca": "arola",
+      "area": "camping-trekking",
+      "grupo": "cuidado-del-equipo",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1514",
+      "imagenes": []
+    },
+    {
+      "id": 386,
+      "slug": "atlantikayak-kayak-fishing-mdq",
+      "nombre": "ATLANTIKAYAK KAYAK FISHING MDQ",
+      "marca": "atlantikayak",
+      "area": "nautica",
+      "grupo": "kayaks",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "kayak",
+        "nautica",
+        "pesca"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=386",
+      "imagenes": []
+    },
+    {
+      "id": 472,
+      "slug": "atlantikayak-kayak-k1",
+      "nombre": "ATLANTIKAYAK KAYAK K1",
+      "marca": "atlantikayak",
+      "area": "nautica",
+      "grupo": "kayaks",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "kayak",
+        "nautica"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=472",
+      "imagenes": []
+    },
+    {
+      "id": 1588,
+      "slug": "atomic-bota-ski-hawx-prime-xtd-130",
+      "nombre": "ATOMIC BOTA SKI HAWX PRIME XTD 130",
+      "marca": "atomic",
+      "area": "invierno",
+      "grupo": "botas-ski",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1588",
+      "imagenes": []
+    },
+    {
+      "id": 1586,
+      "slug": "atomic-ski-backland-100",
+      "nombre": "ATOMIC SKI BACKLAND 100",
+      "marca": "atomic",
       "area": "invierno",
       "grupo": "skis",
       "descripcion": null,
@@ -183,55 +776,454 @@
       "precio": null,
       "moneda": "ARS",
       "alquilable": true,
-      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1542",
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1586",
       "imagenes": []
     },
     {
-      "id": 87,
-      "slug": "doite-bolsa-de-dormir-valais",
-      "nombre": "DOITE BOLSA DE DORMIR VALAIS",
-      "marca": "doite",
+      "id": 928,
+      "slug": "brogas-cartuchos-190g",
+      "nombre": "BROGAS CARTUCHOS 190G",
+      "marca": "brogas",
       "area": "camping-trekking",
-      "grupo": "bolsas-de-dormir",
-      "descripcion": "Tela interior Poly Ponge 230T con control de humedad. Tela exterior Nylon Diamo.",
-      "especificaciones": [
-        {
-          "nombre": "Tela interior",
-          "valor": "Poly Ponge 230T con control de humedad"
-        },
-        {
-          "nombre": "Tela exterior",
-          "valor": "Nylon Diamo"
-        }
-      ],
+      "grupo": "cartuchos",
+      "descripcion": null,
+      "especificaciones": [],
       "precio": null,
       "moneda": "ARS",
       "alquilable": false,
-      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=87",
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=928",
       "imagenes": []
     },
     {
-      "id": 88,
-      "slug": "doite-bolsa-de-dormir-trango",
-      "nombre": "DOITE BOLSA DE DORMIR TRANGO",
-      "marca": "doite",
+      "id": 1615,
+      "slug": "broksol-farol-led-solar-inflable",
+      "nombre": "BROKSOL FAROL LED SOLAR INFLABLE",
+      "marca": "broksol",
       "area": "camping-trekking",
-      "grupo": "bolsas-de-dormir",
-      "descripcion": "Tela interior Poly Ponge 230T con control de humedad. Tela exterior Nylon Diamo.",
-      "especificaciones": [
-        {
-          "nombre": "Tela interior",
-          "valor": "Poly Ponge 230T con control de humedad"
-        },
-        {
-          "nombre": "Tela exterior",
-          "valor": "Nylon Diamo"
-        }
-      ],
+      "grupo": "linternas",
+      "descripcion": null,
+      "especificaciones": [],
       "precio": null,
       "moneda": "ARS",
       "alquilable": false,
-      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=88",
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1615",
+      "imagenes": []
+    },
+    {
+      "id": 1088,
+      "slug": "carrera-anteojos-chronos",
+      "nombre": "CARRERA ANTEOJOS CHRONOS",
+      "marca": "carrera",
+      "area": "invierno",
+      "grupo": "anteojos",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1088",
+      "imagenes": []
+    },
+    {
+      "id": 141,
+      "slug": "carrera-antiparra-kimerik-otg",
+      "nombre": "CARRERA ANTIPARRA KIMERIK OTG",
+      "marca": "carrera",
+      "area": "invierno",
+      "grupo": "antiparras",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=141",
+      "imagenes": []
+    },
+    {
+      "id": 142,
+      "slug": "carrera-antiparra-kimerik-sf",
+      "nombre": "CARRERA ANTIPARRA KIMERIK SF",
+      "marca": "carrera",
+      "area": "invierno",
+      "grupo": "antiparras",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=142",
+      "imagenes": []
+    },
+    {
+      "id": 140,
+      "slug": "carrera-antiparra-raptor",
+      "nombre": "CARRERA ANTIPARRA RAPTOR",
+      "marca": "carrera",
+      "area": "invierno",
+      "grupo": "antiparras",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=140",
+      "imagenes": []
+    },
+    {
+      "id": 473,
+      "slug": "carrera-casco-eva-basic",
+      "nombre": "CARRERA CASCO EVA BASIC",
+      "marca": "carrera",
+      "area": "invierno",
+      "grupo": "cascos",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=473",
+      "imagenes": []
+    },
+    {
+      "id": 1293,
+      "slug": "chilly-matera",
+      "nombre": "CHILLY MATERA",
+      "marca": "chilly",
+      "area": "camping-trekking",
+      "grupo": "termos-y-cantimploras",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1293",
+      "imagenes": []
+    },
+    {
+      "id": 1414,
+      "slug": "coleman-calentador-butano",
+      "nombre": "COLEMAN CALENTADOR BUTANO",
+      "marca": "coleman",
+      "area": "camping-trekking",
+      "grupo": "calentadores",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1414",
+      "imagenes": []
+    },
+    {
+      "id": 1419,
+      "slug": "coleman-carpa-darwin-2",
+      "nombre": "COLEMAN CARPA DARWIN 2+",
+      "marca": "coleman",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1419",
+      "imagenes": []
+    },
+    {
+      "id": 1435,
+      "slug": "coleman-carpa-darwin-3",
+      "nombre": "COLEMAN CARPA DARWIN 3",
+      "marca": "coleman",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1435",
+      "imagenes": []
+    },
+    {
+      "id": 1129,
+      "slug": "coleman-carpa-instant-4-pax",
+      "nombre": "COLEMAN CARPA INSTANT 4 PAX",
+      "marca": "coleman",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1129",
+      "imagenes": []
+    },
+    {
+      "id": 1020,
+      "slug": "coleman-carpa-montana-6-pax",
+      "nombre": "COLEMAN CARPA MONTANA 6 PAX",
+      "marca": "coleman",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking",
+        "montanismo"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1020",
+      "imagenes": []
+    },
+    {
+      "id": 1417,
+      "slug": "coleman-catre-big-n-tall",
+      "nombre": "COLEMAN CATRE BIG-N-TALL",
+      "marca": "coleman",
+      "area": "camping-trekking",
+      "grupo": "muebles-de-camping",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1417",
+      "imagenes": []
+    },
+    {
+      "id": 1357,
+      "slug": "coleman-heladera-termoelectrica-40qt",
+      "nombre": "COLEMAN HELADERA TERMOELECTRICA 40QT",
+      "marca": "coleman",
+      "area": "camping-trekking",
+      "grupo": "conservadoras",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1357",
+      "imagenes": []
+    },
+    {
+      "id": 1666,
+      "slug": "coleman-mesa-compact-70-eco",
+      "nombre": "COLEMAN MESA COMPACT 70 ECO",
+      "marca": "coleman",
+      "area": "camping-trekking",
+      "grupo": "muebles-de-camping",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1666",
+      "imagenes": []
+    },
+    {
+      "id": 1145,
+      "slug": "coleman-mesa-exponent",
+      "nombre": "COLEMAN MESA EXPONENT",
+      "marca": "coleman",
+      "area": "camping-trekking",
+      "grupo": "muebles-de-camping",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1145",
+      "imagenes": []
+    },
+    {
+      "id": 923,
+      "slug": "cross-campera-storm",
+      "nombre": "CROSS CAMPERA STORM",
+      "marca": "cross",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=923",
+      "imagenes": []
+    },
+    {
+      "id": 373,
+      "slug": "cross-pantalon-invierno-st-moritz-junior",
+      "nombre": "CROSS PANTALON INVIERNO ST. MORITZ JUNIOR",
+      "marca": "cross",
+      "area": "invierno",
+      "grupo": "pantalones-invierno",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "ninos",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=373",
+      "imagenes": []
+    },
+    {
+      "id": 192,
+      "slug": "doite-anafe-supercell",
+      "nombre": "DOITE ANAFE SUPERCELL",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "calentadores",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=192",
       "imagenes": []
     },
     {
@@ -255,7 +1247,1502 @@
       "precio": null,
       "moneda": "ARS",
       "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
       "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=93",
+      "imagenes": []
+    },
+    {
+      "id": 88,
+      "slug": "doite-bolsa-de-dormir-trango",
+      "nombre": "DOITE BOLSA DE DORMIR TRANGO",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": "Tela interior Poly Ponge 230T con control de humedad. Tela exterior Nylon Diamo.",
+      "especificaciones": [
+        {
+          "nombre": "Tela interior",
+          "valor": "Poly Ponge 230T con control de humedad"
+        },
+        {
+          "nombre": "Tela exterior",
+          "valor": "Nylon Diamo"
+        }
+      ],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=88",
+      "imagenes": []
+    },
+    {
+      "id": 87,
+      "slug": "doite-bolsa-de-dormir-valais",
+      "nombre": "DOITE BOLSA DE DORMIR VALAIS",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": "Tela interior Poly Ponge 230T con control de humedad. Tela exterior Nylon Diamo.",
+      "especificaciones": [
+        {
+          "nombre": "Tela interior",
+          "valor": "Poly Ponge 230T con control de humedad"
+        },
+        {
+          "nombre": "Tela exterior",
+          "valor": "Nylon Diamo"
+        }
+      ],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=87",
+      "imagenes": []
+    },
+    {
+      "id": 1257,
+      "slug": "doite-carpa-everest-2-pax",
+      "nombre": "DOITE CARPA EVEREST 2 PAX",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking",
+        "montanismo"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1257",
+      "imagenes": []
+    },
+    {
+      "id": 478,
+      "slug": "doite-carpa-hi-camper-2",
+      "nombre": "DOITE CARPA HI CAMPER 2",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=478",
+      "imagenes": []
+    },
+    {
+      "id": 479,
+      "slug": "doite-carpa-hi-camper-4",
+      "nombre": "DOITE CARPA HI CAMPER 4",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=479",
+      "imagenes": []
+    },
+    {
+      "id": 1298,
+      "slug": "doite-carpa-pro-teide-2",
+      "nombre": "DOITE CARPA PRO TEIDE 2",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1298",
+      "imagenes": []
+    },
+    {
+      "id": 1262,
+      "slug": "doite-carpa-zolo-1-pax",
+      "nombre": "DOITE CARPA ZOLO 1 PAX",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1262",
+      "imagenes": []
+    },
+    {
+      "id": 1148,
+      "slug": "doite-cartucho-230g",
+      "nombre": "DOITE CARTUCHO 230G",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "cartuchos",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1148",
+      "imagenes": []
+    },
+    {
+      "id": 1149,
+      "slug": "doite-cartucho-450g",
+      "nombre": "DOITE CARTUCHO 450G",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "cartuchos",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1149",
+      "imagenes": []
+    },
+    {
+      "id": 1260,
+      "slug": "doite-marmita-2-pax",
+      "nombre": "DOITE MARMITA 2 PAX",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "vajilla",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1260",
+      "imagenes": []
+    },
+    {
+      "id": 1258,
+      "slug": "doite-marmita-6-pax",
+      "nombre": "DOITE MARMITA 6 PAX",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "vajilla",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1258",
+      "imagenes": []
+    },
+    {
+      "id": 1263,
+      "slug": "doite-mochila-gabela",
+      "nombre": "DOITE MOCHILA GABELA",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1263",
+      "imagenes": []
+    },
+    {
+      "id": 160,
+      "slug": "doite-mochila-kiddy",
+      "nombre": "DOITE MOCHILA KIDDY",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "ninos",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=160",
+      "imagenes": []
+    },
+    {
+      "id": 1264,
+      "slug": "doite-mochila-musala",
+      "nombre": "DOITE MOCHILA MUSALA",
+      "marca": "doite",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1264",
+      "imagenes": []
+    },
+    {
+      "id": 1294,
+      "slug": "duke-campera-solar-pro",
+      "nombre": "DUKE CAMPERA SOLAR PRO",
+      "marca": "duke",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1294",
+      "imagenes": []
+    },
+    {
+      "id": 1163,
+      "slug": "eco-bolso-snowboard",
+      "nombre": "ECO BOLSO SNOWBOARD",
+      "marca": "eco",
+      "area": "invierno",
+      "grupo": "bolsos-y-fundas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "snowboard"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1163",
+      "imagenes": []
+    },
+    {
+      "id": 1675,
+      "slug": "eco-bota-apreski-furio",
+      "nombre": "ECO BOTA APRESKI FURIO",
+      "marca": "eco",
+      "area": "invierno",
+      "grupo": "apreski",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1675",
+      "imagenes": []
+    },
+    {
+      "id": 1616,
+      "slug": "eco-bote-packraft-2",
+      "nombre": "ECO BOTE PACKRAFT 2",
+      "marca": "eco",
+      "area": "nautica",
+      "grupo": "botes",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "kayak",
+        "nautica"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1616",
+      "imagenes": []
+    },
+    {
+      "id": 1692,
+      "slug": "eco-escarpines-botas-ski",
+      "nombre": "ECO ESCARPINES BOTAS SKI",
+      "marca": "eco",
+      "area": "invierno",
+      "grupo": "accesorios-de-nieve",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1692",
+      "imagenes": []
+    },
+    {
+      "id": 1579,
+      "slug": "eco-gorro-boina",
+      "nombre": "ECO GORRO BOINA",
+      "marca": "eco",
+      "area": "invierno",
+      "grupo": "gorros",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1579",
+      "imagenes": []
+    },
+    {
+      "id": 1580,
+      "slug": "eco-gorro-polar",
+      "nombre": "ECO GORRO POLAR",
+      "marca": "eco",
+      "area": "invierno",
+      "grupo": "gorros",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1580",
+      "imagenes": []
+    },
+    {
+      "id": 1551,
+      "slug": "eco-linterna-tactica-militar-baliza",
+      "nombre": "ECO LINTERNA TACTICA MILITAR BALIZA",
+      "marca": "eco",
+      "area": "camping-trekking",
+      "grupo": "linternas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1551",
+      "imagenes": []
+    },
+    {
+      "id": 965,
+      "slug": "eco-pita-snowboard",
+      "nombre": "ECO PITA SNOWBOARD",
+      "marca": "eco",
+      "area": "invierno",
+      "grupo": "accesorios-de-nieve",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "snowboard"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=965",
+      "imagenes": []
+    },
+    {
+      "id": 1273,
+      "slug": "ekococina-calentador-sonkoy",
+      "nombre": "EKOCOCINA CALENTADOR SONKOY",
+      "marca": "ekococina",
+      "area": "camping-trekking",
+      "grupo": "calentadores",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1273",
+      "imagenes": []
+    },
+    {
+      "id": 1690,
+      "slug": "foco-calentador-adaptador-cartuchos-gas",
+      "nombre": "FOCO CALENTADOR ADAPTADOR CARTUCHOS GAS",
+      "marca": "foco",
+      "area": "camping-trekking",
+      "grupo": "calentadores",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1690",
+      "imagenes": []
+    },
+    {
+      "id": 1014,
+      "slug": "goal-zero-linterna-luna",
+      "nombre": "GOAL ZERO LINTERNA LUNA",
+      "marca": "goal-zero",
+      "area": "camping-trekking",
+      "grupo": "linternas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1014",
+      "imagenes": []
+    },
+    {
+      "id": 1016,
+      "slug": "goal-zero-linterna-spark",
+      "nombre": "GOAL ZERO LINTERNA SPARK",
+      "marca": "goal-zero",
+      "area": "camping-trekking",
+      "grupo": "linternas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1016",
+      "imagenes": []
+    },
+    {
+      "id": 1128,
+      "slug": "hush-puppies-bota-hiking-riggs",
+      "nombre": "HUSH PUPPIES BOTA HIKING RIGGS",
+      "marca": "hush-puppies",
+      "area": "camping-trekking",
+      "grupo": "botas-hiking",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1128",
+      "imagenes": []
+    },
+    {
+      "id": 1122,
+      "slug": "hydrox-bota-nautica-linux-3mm",
+      "nombre": "HYDROX BOTA NAUTICA LINUX 3MM",
+      "marca": "hydrox",
+      "area": "nautica",
+      "grupo": "calzado-nautico",
+      "descripcion": null,
+      "especificaciones": [
+        {
+          "nombre": "Espesor",
+          "valor": "3 mm"
+        }
+      ],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "nautica"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1122",
+      "imagenes": []
+    },
+    {
+      "id": 1427,
+      "slug": "hydrox-bota-nautica-linux-4mm",
+      "nombre": "HYDROX BOTA NAUTICA LINUX 4MM",
+      "marca": "hydrox",
+      "area": "nautica",
+      "grupo": "calzado-nautico",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "nautica"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1427",
+      "imagenes": []
+    },
+    {
+      "id": 1510,
+      "slug": "hydrox-bota-nautica-media-3mm",
+      "nombre": "HYDROX BOTA NAUTICA MEDIA 3MM",
+      "marca": "hydrox",
+      "area": "nautica",
+      "grupo": "calzado-nautico",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "nautica"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1510",
+      "imagenes": []
+    },
+    {
+      "id": 1428,
+      "slug": "hydrox-traje-de-neoprene-jardinero-3mm",
+      "nombre": "HYDROX TRAJE DE NEOPRENE JARDINERO 3MM",
+      "marca": "hydrox",
+      "area": "surf-kitesurf",
+      "grupo": "trajes-de-neoprene",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "surf",
+        "kitesurf"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1428",
+      "imagenes": []
+    },
+    {
+      "id": 433,
+      "slug": "lippi-campera-incahuasi",
+      "nombre": "LIPPI CAMPERA INCAHUASI",
+      "marca": "lippi",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=433",
+      "imagenes": []
+    },
+    {
+      "id": 434,
+      "slug": "lippi-campera-kinewen",
+      "nombre": "LIPPI CAMPERA KIÑEWEN",
+      "marca": "lippi",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=434",
+      "imagenes": []
+    },
+    {
+      "id": 180,
+      "slug": "lippi-campera-llullaillaco",
+      "nombre": "LIPPI CAMPERA LLULLAILLACO",
+      "marca": "lippi",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=180",
+      "imagenes": []
+    },
+    {
+      "id": 1051,
+      "slug": "lippi-campera-manaslu",
+      "nombre": "LIPPI CAMPERA MANASLU",
+      "marca": "lippi",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1051",
+      "imagenes": []
+    },
+    {
+      "id": 1664,
+      "slug": "mammut-campera-pulse",
+      "nombre": "MAMMUT CAMPERA PULSE",
+      "marca": "mammut",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1664",
+      "imagenes": []
+    },
+    {
+      "id": 1599,
+      "slug": "marker-fijacion-ski-tour-f10",
+      "nombre": "MARKER FIJACION SKI TOUR F10",
+      "marca": "marker",
+      "area": "invierno",
+      "grupo": "fijaciones-ski",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1599",
+      "imagenes": []
+    },
+    {
+      "id": 537,
+      "slug": "mitchell-cana-challenge-pro-242",
+      "nombre": "MITCHELL CAÑA CHALLENGE PRO 242",
+      "marca": "mitchell",
+      "area": "pesca",
+      "grupo": "canas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "pesca"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=537",
+      "imagenes": []
+    },
+    {
+      "id": 533,
+      "slug": "mitchell-cana-premium-ii-spin-212",
+      "nombre": "MITCHELL CAÑA PREMIUM II SPIN 212",
+      "marca": "mitchell",
+      "area": "pesca",
+      "grupo": "canas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "pesca"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=533",
+      "imagenes": []
+    },
+    {
+      "id": 468,
+      "slug": "mm-wader-respirable",
+      "nombre": "MM WADER RESPIRABLE",
+      "marca": "mm",
+      "area": "pesca",
+      "grupo": "waders",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "pesca"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=468",
+      "imagenes": []
+    },
+    {
+      "id": 1422,
+      "slug": "national-geographic-bolsa-de-dormir-liner",
+      "nombre": "NATIONAL GEOGRAPHIC BOLSA DE DORMIR LINER",
+      "marca": "national-geographic",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1422",
+      "imagenes": []
+    },
+    {
+      "id": 1364,
+      "slug": "national-geographic-bolso-estanco-2010",
+      "nombre": "NATIONAL GEOGRAPHIC BOLSO ESTANCO 2010",
+      "marca": "national-geographic",
+      "area": "nautica",
+      "grupo": "bolsos-estancos",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "nautica"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1364",
+      "imagenes": []
+    },
+    {
+      "id": 1352,
+      "slug": "national-geographic-carpa-my-first-tent",
+      "nombre": "NATIONAL GEOGRAPHIC CARPA MY FIRST TENT",
+      "marca": "national-geographic",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "ninos",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1352",
+      "imagenes": []
+    },
+    {
+      "id": 1347,
+      "slug": "national-geographic-carpa-rockport-iii",
+      "nombre": "NATIONAL GEOGRAPHIC CARPA ROCKPORT III",
+      "marca": "national-geographic",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1347",
+      "imagenes": []
+    },
+    {
+      "id": 1345,
+      "slug": "national-geographic-carpa-rockport-iv",
+      "nombre": "NATIONAL GEOGRAPHIC CARPA ROCKPORT IV",
+      "marca": "national-geographic",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1345",
+      "imagenes": []
+    },
+    {
+      "id": 1310,
+      "slug": "national-geographic-mochila-austin-30",
+      "nombre": "NATIONAL GEOGRAPHIC MOCHILA AUSTIN 30",
+      "marca": "national-geographic",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1310",
+      "imagenes": []
+    },
+    {
+      "id": 1302,
+      "slug": "national-geographic-mochila-austin-35",
+      "nombre": "NATIONAL GEOGRAPHIC MOCHILA AUSTIN 35",
+      "marca": "national-geographic",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1302",
+      "imagenes": []
+    },
+    {
+      "id": 1385,
+      "slug": "national-geographic-mochila-daytona-25",
+      "nombre": "NATIONAL GEOGRAPHIC MOCHILA DAYTONA 25",
+      "marca": "national-geographic",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1385",
+      "imagenes": []
+    },
+    {
+      "id": 1306,
+      "slug": "national-geographic-mochila-everest-55",
+      "nombre": "NATIONAL GEOGRAPHIC MOCHILA EVEREST 55",
+      "marca": "national-geographic",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking",
+        "montanismo"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1306",
+      "imagenes": []
+    },
+    {
+      "id": 1303,
+      "slug": "national-geographic-mochila-new-lake-65",
+      "nombre": "NATIONAL GEOGRAPHIC MOCHILA NEW LAKE 65",
+      "marca": "national-geographic",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1303",
+      "imagenes": []
+    },
+    {
+      "id": 1381,
+      "slug": "national-geographic-mochila-oregon-12",
+      "nombre": "NATIONAL GEOGRAPHIC MOCHILA OREGON 12",
+      "marca": "national-geographic",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1381",
+      "imagenes": []
+    },
+    {
+      "id": 1388,
+      "slug": "national-geographic-mochila-tacoma-29",
+      "nombre": "NATIONAL GEOGRAPHIC MOCHILA TACOMA 29",
+      "marca": "national-geographic",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1388",
+      "imagenes": []
+    },
+    {
+      "id": 1383,
+      "slug": "national-geographic-mochila-tahoe-14",
+      "nombre": "NATIONAL GEOGRAPHIC MOCHILA TAHOE 14",
+      "marca": "national-geographic",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1383",
+      "imagenes": []
+    },
+    {
+      "id": 898,
+      "slug": "national-geographic-traje-de-neoprene-entero",
+      "nombre": "NATIONAL GEOGRAPHIC TRAJE DE NEOPRENE ENTERO",
+      "marca": "national-geographic",
+      "area": "surf-kitesurf",
+      "grupo": "trajes-de-neoprene",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "surf",
+        "kitesurf"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=898",
+      "imagenes": []
+    },
+    {
+      "id": 899,
+      "slug": "national-geographic-traje-de-neoprene-shorty",
+      "nombre": "NATIONAL GEOGRAPHIC TRAJE DE NEOPRENE SHORTY",
+      "marca": "national-geographic",
+      "area": "surf-kitesurf",
+      "grupo": "trajes-de-neoprene",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "surf",
+        "kitesurf"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=899",
+      "imagenes": []
+    },
+    {
+      "id": 1063,
+      "slug": "nature-net-calza-termica",
+      "nombre": "NATURE NET CALZA TERMICA",
+      "marca": "nature-net",
+      "area": "invierno",
+      "grupo": "primera-piel",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1063",
+      "imagenes": []
+    },
+    {
+      "id": 1074,
+      "slug": "nature-net-camiseta-termica",
+      "nombre": "NATURE NET CAMISETA TERMICA",
+      "marca": "nature-net",
+      "area": "invierno",
+      "grupo": "primera-piel",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1074",
+      "imagenes": []
+    },
+    {
+      "id": 1114,
+      "slug": "nature-net-campera-burton-lady",
+      "nombre": "NATURE NET CAMPERA BURTON LADY",
+      "marca": "nature-net",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "mujer",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1114",
+      "imagenes": []
+    },
+    {
+      "id": 841,
+      "slug": "nature-net-campera-silverstar-womens",
+      "nombre": "NATURE NET CAMPERA SILVERSTAR WOMENS",
+      "marca": "nature-net",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "mujer",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=841",
+      "imagenes": []
+    },
+    {
+      "id": 994,
+      "slug": "nature-net-campera-sport-shell-lady",
+      "nombre": "NATURE NET CAMPERA SPORT SHELL LADY",
+      "marca": "nature-net",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "mujer",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=994",
+      "imagenes": []
+    },
+    {
+      "id": 993,
+      "slug": "nature-net-campera-sport-shell-mens",
+      "nombre": "NATURE NET CAMPERA SPORT SHELL MENS",
+      "marca": "nature-net",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "hombre",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=993",
+      "imagenes": []
+    },
+    {
+      "id": 302,
+      "slug": "nature-net-pantuflas-polar",
+      "nombre": "NATURE NET PANTUFLAS POLAR",
+      "marca": "nature-net",
+      "area": "invierno",
+      "grupo": "apreski",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=302",
+      "imagenes": []
+    },
+    {
+      "id": 1143,
+      "slug": "nite-ize-llavero-mosqueton-doohickey",
+      "nombre": "NITE IZE LLAVERO MOSQUETON DOOHICKEY",
+      "marca": "nite-ize",
+      "area": "escalada-montanismo",
+      "grupo": "mosquetones",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "escalada",
+        "montanismo"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1143",
+      "imagenes": []
+    },
+    {
+      "id": 1135,
+      "slug": "nite-ize-mosqueton-figure-9-large-67kg",
+      "nombre": "NITE IZE MOSQUETON FIGURE 9 LARGE 67KG",
+      "marca": "nite-ize",
+      "area": "escalada-montanismo",
+      "grupo": "mosquetones",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "escalada",
+        "montanismo"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1135",
+      "imagenes": []
+    },
+    {
+      "id": 1682,
+      "slug": "niva-bota-hiking-lumberjack",
+      "nombre": "NIVA BOTA HIKING LUMBERJACK",
+      "marca": "niva",
+      "area": "camping-trekking",
+      "grupo": "botas-hiking",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1682",
+      "imagenes": []
+    },
+    {
+      "id": 1667,
+      "slug": "niva-zapatilla-lannin",
+      "nombre": "NIVA ZAPATILLA LANNIN",
+      "marca": "niva",
+      "area": "camping-trekking",
+      "grupo": "zapatillas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1667",
       "imagenes": []
     },
     {
@@ -270,7 +2757,1819 @@
       "precio": null,
       "moneda": "ARS",
       "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking",
+        "montanismo"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
       "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1450",
+      "imagenes": []
+    },
+    {
+      "id": 4,
+      "slug": "outside-bolsa-de-dormir-lanin",
+      "nombre": "OUTSIDE BOLSA DE DORMIR LANIN",
+      "marca": "outside",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=4",
+      "imagenes": []
+    },
+    {
+      "id": 3,
+      "slug": "outside-carpa-alumine",
+      "nombre": "OUTSIDE CARPA ALUMINE",
+      "marca": "outside",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=3",
+      "imagenes": []
+    },
+    {
+      "id": 257,
+      "slug": "outside-carpa-nova",
+      "nombre": "OUTSIDE CARPA NOVA",
+      "marca": "outside",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=257",
+      "imagenes": []
+    },
+    {
+      "id": 258,
+      "slug": "outside-carpa-super-nova",
+      "nombre": "OUTSIDE CARPA SUPER NOVA",
+      "marca": "outside",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=258",
+      "imagenes": []
+    },
+    {
+      "id": 1011,
+      "slug": "outside-mochila-yak-60",
+      "nombre": "OUTSIDE MOCHILA YAK 60",
+      "marca": "outside",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1011",
+      "imagenes": []
+    },
+    {
+      "id": 1010,
+      "slug": "outside-mochila-yak-70",
+      "nombre": "OUTSIDE MOCHILA YAK 70",
+      "marca": "outside",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1010",
+      "imagenes": []
+    },
+    {
+      "id": 256,
+      "slug": "outside-pantalon-invierno-catedral",
+      "nombre": "OUTSIDE PANTALON INVIERNO CATEDRAL",
+      "marca": "outside",
+      "area": "invierno",
+      "grupo": "pantalones-invierno",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=256",
+      "imagenes": []
+    },
+    {
+      "id": 231,
+      "slug": "raffike-calza-power-dry-lady",
+      "nombre": "RAFFIKE CALZA POWER DRY LADY",
+      "marca": "raffike",
+      "area": "invierno",
+      "grupo": "primera-piel",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "mujer",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=231",
+      "imagenes": []
+    },
+    {
+      "id": 232,
+      "slug": "raffike-camiseta-power-dry",
+      "nombre": "RAFFIKE CAMISETA POWER DRY",
+      "marca": "raffike",
+      "area": "invierno",
+      "grupo": "primera-piel",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=232",
+      "imagenes": []
+    },
+    {
+      "id": 244,
+      "slug": "raffike-campera-k2",
+      "nombre": "RAFFIKE CAMPERA K2",
+      "marca": "raffike",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=244",
+      "imagenes": []
+    },
+    {
+      "id": 246,
+      "slug": "raffike-campera-nexus",
+      "nombre": "RAFFIKE CAMPERA NEXUS",
+      "marca": "raffike",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=246",
+      "imagenes": []
+    },
+    {
+      "id": 366,
+      "slug": "raffike-campera-ushuaia",
+      "nombre": "RAFFIKE CAMPERA USHUAIA",
+      "marca": "raffike",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=366",
+      "imagenes": []
+    },
+    {
+      "id": 240,
+      "slug": "raffike-pantalon-de-invierno-alpine",
+      "nombre": "RAFFIKE PANTALON DE INVIERNO ALPINE",
+      "marca": "raffike",
+      "area": "invierno",
+      "grupo": "pantalones-invierno",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=240",
+      "imagenes": []
+    },
+    {
+      "id": 181,
+      "slug": "rip-curl-traje-de-neoprene-stomp-spring",
+      "nombre": "RIP CURL TRAJE DE NEOPRENE STOMP SPRING",
+      "marca": "rip-curl",
+      "area": "surf-kitesurf",
+      "grupo": "trajes-de-neoprene",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "surf",
+        "kitesurf"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=181",
+      "imagenes": []
+    },
+    {
+      "id": 1098,
+      "slug": "rossignol-antiparra-addict",
+      "nombre": "ROSSIGNOL ANTIPARRA ADDICT",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "antiparras",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1098",
+      "imagenes": []
+    },
+    {
+      "id": 1007,
+      "slug": "rossignol-baston-racing-grafito",
+      "nombre": "ROSSIGNOL BASTON RACING GRAFITO",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "bastones",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1007",
+      "imagenes": []
+    },
+    {
+      "id": 115,
+      "slug": "rossignol-bota-radical-r14",
+      "nombre": "ROSSIGNOL BOTA RADICAL R14",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "botas-ski",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=115",
+      "imagenes": []
+    },
+    {
+      "id": 404,
+      "slug": "rossignol-bota-salto-x",
+      "nombre": "ROSSIGNOL BOTA SALTO X",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "botas-ski",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=404",
+      "imagenes": []
+    },
+    {
+      "id": 1567,
+      "slug": "rossignol-bota-ski-all-track",
+      "nombre": "ROSSIGNOL BOTA SKI ALL TRACK",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "botas-ski",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1567",
+      "imagenes": []
+    },
+    {
+      "id": 164,
+      "slug": "rossignol-casco-air-x",
+      "nombre": "ROSSIGNOL CASCO AIR X",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "cascos",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=164",
+      "imagenes": []
+    },
+    {
+      "id": 387,
+      "slug": "rossignol-comp-9j-comp-jr",
+      "nombre": "ROSSIGNOL COMP 9J + COMP JR",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "skis",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "equipamiento",
+      "publico": "ninos",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=387",
+      "imagenes": []
+    },
+    {
+      "id": 1589,
+      "slug": "rossignol-fijacion-ski-ftx-105-ss",
+      "nombre": "ROSSIGNOL FIJACION SKI FTX 105 SS",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "fijaciones-ski",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1589",
+      "imagenes": []
+    },
+    {
+      "id": 1085,
+      "slug": "rossignol-fijacion-snowboard-hc3000",
+      "nombre": "ROSSIGNOL FIJACION SNOWBOARD HC3000",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "fijaciones-snowboard",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "snowboard"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1085",
+      "imagenes": []
+    },
+    {
+      "id": 1477,
+      "slug": "rossignol-fijacion-snowboard-reflet",
+      "nombre": "ROSSIGNOL FIJACION SNOWBOARD REFLET",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "fijaciones-snowboard",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "snowboard"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1477",
+      "imagenes": []
+    },
+    {
+      "id": 1070,
+      "slug": "rossignol-ski-9s-t-power",
+      "nombre": "ROSSIGNOL SKI 9S T-POWER",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "skis",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1070",
+      "imagenes": []
+    },
+    {
+      "id": 1542,
+      "slug": "rossignol-ski-black-ops",
+      "nombre": "ROSSIGNOL SKI BLACK OPS",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "skis",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1542",
+      "imagenes": []
+    },
+    {
+      "id": 1066,
+      "slug": "rossignol-ski-cobra-x",
+      "nombre": "ROSSIGNOL SKI COBRA X",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "skis",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1066",
+      "imagenes": []
+    },
+    {
+      "id": 1078,
+      "slug": "rossignol-ski-experience-88",
+      "nombre": "ROSSIGNOL SKI EXPERIENCE 88",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "skis",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1078",
+      "imagenes": []
+    },
+    {
+      "id": 154,
+      "slug": "rossignol-ski-passion-1-saphir-90",
+      "nombre": "ROSSIGNOL SKI PASSION 1 + SAPHIR 90",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "skis",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=154",
+      "imagenes": []
+    },
+    {
+      "id": 1065,
+      "slug": "rossignol-ski-rpm-50",
+      "nombre": "ROSSIGNOL SKI RPM 50",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "skis",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1065",
+      "imagenes": []
+    },
+    {
+      "id": 455,
+      "slug": "rossignol-snowboard-circuit",
+      "nombre": "ROSSIGNOL SNOWBOARD CIRCUIT",
+      "marca": "rossignol",
+      "area": "invierno",
+      "grupo": "snowboards",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "snowboard"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=455",
+      "imagenes": []
+    },
+    {
+      "id": 212,
+      "slug": "rusty-antiparra-kizs",
+      "nombre": "RUSTY ANTIPARRA KIZS",
+      "marca": "rusty",
+      "area": "invierno",
+      "grupo": "antiparras",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=212",
+      "imagenes": []
+    },
+    {
+      "id": 213,
+      "slug": "rusty-antiparra-taliv",
+      "nombre": "RUSTY ANTIPARRA TALIV",
+      "marca": "rusty",
+      "area": "invierno",
+      "grupo": "antiparras",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=213",
+      "imagenes": []
+    },
+    {
+      "id": 95,
+      "slug": "salomon-bota-solaris-2-mid-gtx",
+      "nombre": "SALOMON BOTA SOLARIS 2 MID GTX",
+      "marca": "salomon",
+      "area": "camping-trekking",
+      "grupo": "botas-hiking",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=95",
+      "imagenes": []
+    },
+    {
+      "id": 1597,
+      "slug": "salomon-ski-tnt",
+      "nombre": "SALOMON SKI TNT",
+      "marca": "salomon",
+      "area": "invierno",
+      "grupo": "skis",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1597",
+      "imagenes": []
+    },
+    {
+      "id": 1009,
+      "slug": "salomon-ski-verse-3",
+      "nombre": "SALOMON SKI VERSE 3",
+      "marca": "salomon",
+      "area": "invierno",
+      "grupo": "skis",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": true,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1009",
+      "imagenes": []
+    },
+    {
+      "id": 865,
+      "slug": "sevylor-bote-caravelle-k105",
+      "nombre": "SEVYLOR BOTE CARAVELLE K105",
+      "marca": "sevylor",
+      "area": "nautica",
+      "grupo": "botes",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "nautica"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=865",
+      "imagenes": []
+    },
+    {
+      "id": 73,
+      "slug": "sevylor-bote-caravelle-k85",
+      "nombre": "SEVYLOR BOTE CARAVELLE K85",
+      "marca": "sevylor",
+      "area": "nautica",
+      "grupo": "botes",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "nautica"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=73",
+      "imagenes": []
+    },
+    {
+      "id": 220,
+      "slug": "sevylor-bote-fish-hunter-hf-360",
+      "nombre": "SEVYLOR BOTE FISH HUNTER HF 360",
+      "marca": "sevylor",
+      "area": "nautica",
+      "grupo": "botes",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "nautica",
+        "pesca"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=220",
+      "imagenes": []
+    },
+    {
+      "id": 1317,
+      "slug": "softair-sillon-inflable",
+      "nombre": "SOFTAIR SILLON INFLABLE",
+      "marca": "softair",
+      "area": "camping-trekking",
+      "grupo": "colchones",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1317",
+      "imagenes": []
+    },
+    {
+      "id": 1442,
+      "slug": "the-north-face-bolso-base-camp-95-duffel",
+      "nombre": "THE NORTH FACE BOLSO BASE CAMP 95 DUFFEL",
+      "marca": "the-north-face",
+      "area": "camping-trekking",
+      "grupo": "bolsos-y-fundas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1442",
+      "imagenes": []
+    },
+    {
+      "id": 1465,
+      "slug": "the-north-face-campera-descendit-mens",
+      "nombre": "THE NORTH FACE CAMPERA DESCENDIT MENS",
+      "marca": "the-north-face",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "hombre",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1465",
+      "imagenes": []
+    },
+    {
+      "id": 1466,
+      "slug": "the-north-face-campera-descendit-womens",
+      "nombre": "THE NORTH FACE CAMPERA DESCENDIT WOMENS",
+      "marca": "the-north-face",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "mujer",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1466",
+      "imagenes": []
+    },
+    {
+      "id": 1445,
+      "slug": "the-north-face-campera-venture-2-w",
+      "nombre": "THE NORTH FACE CAMPERA VENTURE 2 W",
+      "marca": "the-north-face",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "mujer",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1445",
+      "imagenes": []
+    },
+    {
+      "id": 1441,
+      "slug": "the-north-face-mochila-pivoter-27",
+      "nombre": "THE NORTH FACE MOCHILA PIVOTER 27",
+      "marca": "the-north-face",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1441",
+      "imagenes": []
+    },
+    {
+      "id": 1440,
+      "slug": "the-north-face-mochila-slackpack-20",
+      "nombre": "THE NORTH FACE MOCHILA SLACKPACK 20",
+      "marca": "the-north-face",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1440",
+      "imagenes": []
+    },
+    {
+      "id": 1446,
+      "slug": "the-north-face-mochila-vault-28",
+      "nombre": "THE NORTH FACE MOCHILA VAULT 28",
+      "marca": "the-north-face",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1446",
+      "imagenes": []
+    },
+    {
+      "id": 1462,
+      "slug": "the-north-face-pantalon-invierno-seymore",
+      "nombre": "THE NORTH FACE PANTALON INVIERNO SEYMORE",
+      "marca": "the-north-face",
+      "area": "invierno",
+      "grupo": "pantalones-invierno",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1462",
+      "imagenes": []
+    },
+    {
+      "id": 503,
+      "slug": "thermoskin-traje-de-neoprene-absolut-5-4",
+      "nombre": "THERMOSKIN TRAJE DE NEOPRENE ABSOLUT 5.4",
+      "marca": "thermoskin",
+      "area": "surf-kitesurf",
+      "grupo": "trajes-de-neoprene",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "surf",
+        "kitesurf"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=503",
+      "imagenes": []
+    },
+    {
+      "id": 1407,
+      "slug": "thule-bolso-chasm-40-duffel",
+      "nombre": "THULE BOLSO CHASM 40 DUFFEL",
+      "marca": "thule",
+      "area": "camping-trekking",
+      "grupo": "bolsos-y-fundas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1407",
+      "imagenes": []
+    },
+    {
+      "id": 1478,
+      "slug": "thule-bolso-ski-roundtrip",
+      "nombre": "THULE BOLSO SKI ROUNDTRIP",
+      "marca": "thule",
+      "area": "invierno",
+      "grupo": "bolsos-y-fundas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1478",
+      "imagenes": []
+    },
+    {
+      "id": 1479,
+      "slug": "thule-bolso-snowboard-roundtrip",
+      "nombre": "THULE BOLSO SNOWBOARD ROUNDTRIP",
+      "marca": "thule",
+      "area": "invierno",
+      "grupo": "bolsos-y-fundas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "snowboard"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1479",
+      "imagenes": []
+    },
+    {
+      "id": 156,
+      "slug": "timberland-bota-hiking-landscape",
+      "nombre": "TIMBERLAND BOTA HIKING LANDSCAPE",
+      "marca": "timberland",
+      "area": "camping-trekking",
+      "grupo": "botas-hiking",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=156",
+      "imagenes": []
+    },
+    {
+      "id": 1722,
+      "slug": "trespass-bota-hiking-gerrard",
+      "nombre": "TRESPASS BOTA HIKING GERRARD",
+      "marca": "trespass",
+      "area": "camping-trekking",
+      "grupo": "botas-hiking",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "calzado",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1722",
+      "imagenes": []
+    },
+    {
+      "id": 1496,
+      "slug": "trespass-bota-hiking-tensing-lady",
+      "nombre": "TRESPASS BOTA HIKING TENSING LADY",
+      "marca": "trespass",
+      "area": "camping-trekking",
+      "grupo": "botas-hiking",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "calzado",
+      "publico": "mujer",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1496",
+      "imagenes": []
+    },
+    {
+      "id": 1222,
+      "slug": "trespass-campera-hartford",
+      "nombre": "TRESPASS CAMPERA HARTFORD",
+      "marca": "trespass",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1222",
+      "imagenes": []
+    },
+    {
+      "id": 1218,
+      "slug": "trespass-campera-nate",
+      "nombre": "TRESPASS CAMPERA NATE",
+      "marca": "trespass",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1218",
+      "imagenes": []
+    },
+    {
+      "id": 1557,
+      "slug": "trespass-campera-stellan",
+      "nombre": "TRESPASS CAMPERA STELLAN",
+      "marca": "trespass",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1557",
+      "imagenes": []
+    },
+    {
+      "id": 1630,
+      "slug": "trespass-campera-warno",
+      "nombre": "TRESPASS CAMPERA WARNO",
+      "marca": "trespass",
+      "area": "invierno",
+      "grupo": "camperas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1630",
+      "imagenes": []
+    },
+    {
+      "id": 1660,
+      "slug": "trespass-colchoneta-serene-autoinflable",
+      "nombre": "TRESPASS COLCHONETA SERENE AUTOINFLABLE",
+      "marca": "trespass",
+      "area": "camping-trekking",
+      "grupo": "colchones",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1660",
+      "imagenes": []
+    },
+    {
+      "id": 1547,
+      "slug": "trespass-mochila-trek-66",
+      "nombre": "TRESPASS MOCHILA TREK 66",
+      "marca": "trespass",
+      "area": "camping-trekking",
+      "grupo": "mochilas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1547",
+      "imagenes": []
+    },
+    {
+      "id": 1205,
+      "slug": "trespass-pantalon-invierno-fagan",
+      "nombre": "TRESPASS PANTALON INVIERNO FAGAN",
+      "marca": "trespass",
+      "area": "invierno",
+      "grupo": "pantalones-invierno",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1205",
+      "imagenes": []
+    },
+    {
+      "id": 1206,
+      "slug": "trespass-pantalon-invierno-glasto",
+      "nombre": "TRESPASS PANTALON INVIERNO GLASTO",
+      "marca": "trespass",
+      "area": "invierno",
+      "grupo": "pantalones-invierno",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1206",
+      "imagenes": []
+    },
+    {
+      "id": 1215,
+      "slug": "trespass-pantalon-invierno-nando-junior",
+      "nombre": "TRESPASS PANTALON INVIERNO NANDO JUNIOR",
+      "marca": "trespass",
+      "area": "invierno",
+      "grupo": "pantalones-invierno",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "ski",
+        "snowboard"
+      ],
+      "tipo": "indumentaria",
+      "publico": "ninos",
+      "temporada": "invierno",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1215",
+      "imagenes": []
+    },
+    {
+      "id": 1648,
+      "slug": "trespass-pantalon-verano-qikpac",
+      "nombre": "TRESPASS PANTALON VERANO QIKPAC",
+      "marca": "trespass",
+      "area": "camping-trekking",
+      "grupo": "pantalones-verano",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "indumentaria",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1648",
+      "imagenes": []
+    },
+    {
+      "id": 1689,
+      "slug": "valvulas-tapones-de-inflables",
+      "nombre": "VALVULAS TAPONES DE INFLABLES",
+      "marca": null,
+      "area": "camping-trekking",
+      "grupo": "colchones",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1689",
+      "imagenes": []
+    },
+    {
+      "id": 1042,
+      "slug": "waterdog-bolsa-de-dormir-alpax-350",
+      "nombre": "WATERDOG BOLSA DE DORMIR ALPAX 350",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1042",
+      "imagenes": []
+    },
+    {
+      "id": 1432,
+      "slug": "waterdog-bolsa-de-dormir-bosque-210",
+      "nombre": "WATERDOG BOLSA DE DORMIR BOSQUE 210",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1432",
+      "imagenes": []
+    },
+    {
+      "id": 1071,
+      "slug": "waterdog-bolsa-de-dormir-everest-300",
+      "nombre": "WATERDOG BOLSA DE DORMIR EVEREST 300",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking",
+        "montanismo"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1071",
+      "imagenes": []
+    },
+    {
+      "id": 1524,
+      "slug": "waterdog-bolsa-de-dormir-finland",
+      "nombre": "WATERDOG BOLSA DE DORMIR FINLAND",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1524",
+      "imagenes": []
+    },
+    {
+      "id": 1324,
+      "slug": "waterdog-bolsa-de-dormir-icynene",
+      "nombre": "WATERDOG BOLSA DE DORMIR ICYNENE",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1324",
+      "imagenes": []
+    },
+    {
+      "id": 1423,
+      "slug": "waterdog-bolsa-de-dormir-minessota-300",
+      "nombre": "WATERDOG BOLSA DE DORMIR MINESSOTA 300",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1423",
+      "imagenes": []
+    },
+    {
+      "id": 1118,
+      "slug": "waterdog-bolsa-de-dormir-snake",
+      "nombre": "WATERDOG BOLSA DE DORMIR SNAKE",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1118",
+      "imagenes": []
+    },
+    {
+      "id": 1433,
+      "slug": "waterdog-bolsa-de-dormir-trom-250",
+      "nombre": "WATERDOG BOLSA DE DORMIR TROM 250",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "bolsas-de-dormir",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1433",
+      "imagenes": []
+    },
+    {
+      "id": 354,
+      "slug": "waterdog-cantimplora-militar-6033",
+      "nombre": "WATERDOG CANTIMPLORA MILITAR 6033",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "termos-y-cantimploras",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=354",
+      "imagenes": []
+    },
+    {
+      "id": 480,
+      "slug": "waterdog-carpa-patagonia",
+      "nombre": "WATERDOG CARPA PATAGONIA",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=480",
+      "imagenes": []
+    },
+    {
+      "id": 1289,
+      "slug": "waterdog-carpa-terra-3-pax",
+      "nombre": "WATERDOG CARPA TERRA 3 PAX",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "carpas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1289",
+      "imagenes": []
+    },
+    {
+      "id": 194,
+      "slug": "waterdog-colchon-king-f-601",
+      "nombre": "WATERDOG COLCHON KING F-601",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "colchones",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=194",
+      "imagenes": []
+    },
+    {
+      "id": 195,
+      "slug": "waterdog-colchon-queen-f-541",
+      "nombre": "WATERDOG COLCHON QUEEN F-541",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "colchones",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=195",
+      "imagenes": []
+    },
+    {
+      "id": 1504,
+      "slug": "waterdog-inflador-hb-115",
+      "nombre": "WATERDOG INFLADOR HB 115",
+      "marca": "waterdog",
+      "area": "nautica",
+      "grupo": "motores-e-infladores",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "nautica"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1504",
+      "imagenes": []
+    },
+    {
+      "id": 1517,
+      "slug": "waterdog-linterna-wol-h18-2",
+      "nombre": "WATERDOG LINTERNA WOL H18+2",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "linternas",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1517",
+      "imagenes": []
+    },
+    {
+      "id": 462,
+      "slug": "waterdog-motor-nautico-mec-48lbs",
+      "nombre": "WATERDOG MOTOR NAUTICO MEC 48LBS",
+      "marca": "waterdog",
+      "area": "nautica",
+      "grupo": "motores-e-infladores",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "nautica"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=462",
+      "imagenes": []
+    },
+    {
+      "id": 1623,
+      "slug": "waterdog-termo-sb3048-lunchera-termica",
+      "nombre": "WATERDOG TERMO SB3048 LUNCHERA TERMICA",
+      "marca": "waterdog",
+      "area": "camping-trekking",
+      "grupo": "termos-y-cantimploras",
+      "descripcion": null,
+      "especificaciones": [],
+      "precio": null,
+      "moneda": "ARS",
+      "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "accesorios",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1623",
       "imagenes": []
     },
     {
@@ -306,27 +4605,35 @@
       "precio": null,
       "moneda": "ARS",
       "alquilable": false,
+      "deportes": [
+        "camping",
+        "trekking"
+      ],
+      "tipo": "equipamiento",
+      "publico": "unisex",
+      "temporada": "todo-el-ano",
       "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=960",
       "imagenes": []
     },
     {
-      "id": 1122,
-      "slug": "hydrox-bota-nautica-linux-3mm",
-      "nombre": "HYDROX BOTA NÁUTICA LINUX 3MM",
-      "marca": "hydrox",
+      "id": 1620,
+      "slug": "zulu-k-salvavidas-ski-pro-junior",
+      "nombre": "ZULU-K SALVAVIDAS SKI PRO JUNIOR",
+      "marca": "zulu-k",
       "area": "nautica",
-      "grupo": "calzado-nautico",
+      "grupo": "salvavidas",
       "descripcion": null,
-      "especificaciones": [
-        {
-          "nombre": "Espesor",
-          "valor": "3 mm"
-        }
-      ],
+      "especificaciones": [],
       "precio": null,
       "moneda": "ARS",
       "alquilable": false,
-      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1122",
+      "deportes": [
+        "nautica"
+      ],
+      "tipo": "equipamiento",
+      "publico": "ninos",
+      "temporada": "verano",
+      "urlOriginal": "https://www.eurocampingonline.com.ar/detalle.php?id=1620",
       "imagenes": []
     }
   ],
@@ -514,17 +4821,72 @@
   ],
   "rental": {
     "descripcion": "Alquiler de equipos de ski y snowboard con personal especializado en la elección del equipo, renovación periódica de los modelos y soporte de reparación y mantenimiento en nuestro taller.",
+    "resumen": "Reservá el equipo completo de tu viaje —el tuyo y el de los que van con vos— antes de subir a la montaña. Lo dejamos listo, ajustado y a tu nombre para que sólo pases a retirarlo.",
     "sucursales": [
       "martinez-la-paz",
       "las-lenas",
       "san-martin-de-los-andes",
       "bariloche"
     ],
+    "disciplinas": [
+      {
+        "slug": "ski",
+        "nombre": "Ski",
+        "descripcion": "El equipo completo son skis, botas y bastones, con las fijaciones ajustadas a tu peso y nivel.",
+        "incluye": [
+          "Skis",
+          "Botas",
+          "Bastones"
+        ]
+      },
+      {
+        "slug": "snowboard",
+        "nombre": "Snowboard",
+        "descripcion": "El equipo completo es tabla, fijaciones y botas, montadas según tu pie de apoyo y tu postura.",
+        "incluye": [
+          "Tabla",
+          "Fijaciones",
+          "Botas"
+        ]
+      }
+    ],
+    "niveles": [
+      {
+        "slug": "principiante",
+        "nombre": "Principiante",
+        "descripcion": "Primera vez en la nieve o estás tomando clases. Equipo blando, fácil de girar y perdonador."
+      },
+      {
+        "slug": "intermedio",
+        "nombre": "Intermedio",
+        "descripcion": "Bajás pistas azules con confianza y empezás a buscar velocidad."
+      },
+      {
+        "slug": "avanzado",
+        "nombre": "Avanzado",
+        "descripcion": "Pistas negras, nieve profunda y fuera de pista. Equipo técnico y reactivo."
+      }
+    ],
+    "publicos": [
+      {
+        "slug": "adulto",
+        "nombre": "Adulto",
+        "descripcion": "Desde 13 años o más de 1,50 m."
+      },
+      {
+        "slug": "junior",
+        "nombre": "Junior",
+        "descripcion": "Hasta 12 años o menos de 1,50 m. El casco va incluido."
+      }
+    ],
     "categorias": [
       {
-        "slug": "equipo-ski",
-        "nombre": "Equipo completo de Ski",
-        "descripcion": "Skis, botas y bastones.",
+        "slug": "ski-standard",
+        "nombre": "Equipo de Ski Standard",
+        "disciplina": "ski",
+        "publico": "adulto",
+        "nivel": "principiante",
+        "descripcion": "Equipo estable y fácil, pensado para las primeras bajadas y para tomar clases.",
         "incluye": [
           "Skis",
           "Botas",
@@ -534,9 +4896,58 @@
         "moneda": "ARS"
       },
       {
-        "slug": "equipo-snowboard",
-        "nombre": "Equipo completo de Snowboard",
-        "descripcion": "Tabla, fijaciones y botas.",
+        "slug": "ski-performance",
+        "nombre": "Equipo de Ski Performance",
+        "disciplina": "ski",
+        "publico": "adulto",
+        "nivel": "intermedio",
+        "descripcion": "Modelos de temporada para quien ya baja toda la montaña y quiere progresar.",
+        "incluye": [
+          "Skis",
+          "Botas",
+          "Bastones"
+        ],
+        "tarifaPorDia": null,
+        "moneda": "ARS"
+      },
+      {
+        "slug": "ski-premium",
+        "nombre": "Equipo de Ski Premium",
+        "disciplina": "ski",
+        "publico": "adulto",
+        "nivel": "avanzado",
+        "descripcion": "Alta gama, la misma línea que usamos en el taller: reactivo, preciso y liviano.",
+        "incluye": [
+          "Skis",
+          "Botas",
+          "Bastones"
+        ],
+        "tarifaPorDia": null,
+        "moneda": "ARS"
+      },
+      {
+        "slug": "ski-junior",
+        "nombre": "Equipo de Ski Junior",
+        "disciplina": "ski",
+        "publico": "junior",
+        "nivel": "principiante",
+        "descripcion": "Equipo para chicos, con casco incluido y fijaciones reguladas para poco peso.",
+        "incluye": [
+          "Skis",
+          "Botas",
+          "Bastones",
+          "Casco"
+        ],
+        "tarifaPorDia": null,
+        "moneda": "ARS"
+      },
+      {
+        "slug": "snowboard-standard",
+        "nombre": "Equipo de Snowboard Standard",
+        "disciplina": "snowboard",
+        "publico": "adulto",
+        "nivel": "principiante",
+        "descripcion": "Tabla blanda y noble, la más fácil para aprender a bajar.",
         "incluye": [
           "Tabla",
           "Fijaciones",
@@ -544,7 +4955,107 @@
         ],
         "tarifaPorDia": null,
         "moneda": "ARS"
+      },
+      {
+        "slug": "snowboard-performance",
+        "nombre": "Equipo de Snowboard Performance",
+        "disciplina": "snowboard",
+        "publico": "adulto",
+        "nivel": "intermedio",
+        "descripcion": "Tablas all-mountain y freestyle de temporada, con fijaciones de mayor respuesta.",
+        "incluye": [
+          "Tabla",
+          "Fijaciones",
+          "Botas"
+        ],
+        "tarifaPorDia": null,
+        "moneda": "ARS"
+      },
+      {
+        "slug": "snowboard-junior",
+        "nombre": "Equipo de Snowboard Junior",
+        "disciplina": "snowboard",
+        "publico": "junior",
+        "nivel": "principiante",
+        "descripcion": "Tabla corta para chicos, con casco incluido.",
+        "incluye": [
+          "Tabla",
+          "Fijaciones",
+          "Botas",
+          "Casco"
+        ],
+        "tarifaPorDia": null,
+        "moneda": "ARS"
       }
+    ],
+    "adicionales": [
+      {
+        "slug": "casco",
+        "nombre": "Casco",
+        "descripcion": "Talles S a XL. Va incluido sin cargo en los equipos Junior.",
+        "tarifaPorDia": null,
+        "moneda": "ARS"
+      },
+      {
+        "slug": "antiparras",
+        "nombre": "Antiparras",
+        "descripcion": "Lente doble con tratamiento antiempañante y protección UV.",
+        "tarifaPorDia": null,
+        "moneda": "ARS"
+      },
+      {
+        "slug": "ropa-de-nieve",
+        "nombre": "Ropa de nieve",
+        "descripcion": "Campera y pantalón impermeables. Indicanos el talle en el comentario.",
+        "tarifaPorDia": null,
+        "moneda": "ARS"
+      },
+      {
+        "slug": "guantes",
+        "nombre": "Guantes",
+        "descripcion": "Guantes impermeables de nieve.",
+        "tarifaPorDia": null,
+        "moneda": "ARS"
+      },
+      {
+        "slug": "bolso",
+        "nombre": "Bolso porta equipo",
+        "descripcion": "Para trasladar el equipo al centro de ski o despacharlo en el avión.",
+        "tarifaPorDia": null,
+        "moneda": "ARS"
+      }
+    ],
+    "datosQuePedimos": [
+      {
+        "campo": "Altura y peso",
+        "motivo": "Definen el largo del ski o de la tabla y el ajuste de las fijaciones."
+      },
+      {
+        "campo": "Talle de calzado",
+        "motivo": "Reservamos la bota en tu talle para que no tengas que probar en el mostrador."
+      },
+      {
+        "campo": "Nivel",
+        "motivo": "Determina la dureza y la línea del equipo que preparamos."
+      },
+      {
+        "campo": "Edad",
+        "motivo": "Separa el equipo Junior del Adulto y define si el casco va incluido."
+      }
+    ],
+    "incluyeSiempre": [
+      "Ajuste de fijaciones en nuestro taller antes de la entrega",
+      "Cambio de equipo sin cargo si no te sentís cómodo",
+      "Asesoramiento en la elección del equipo para tu nivel",
+      "Encerado y mantenimiento durante el período de alquiler"
+    ],
+    "condicionesPendientesDeValidacion": true,
+    "condiciones": [
+      "La reserva queda sujeta a confirmación de la sucursal, que responde por mail o WhatsApp.",
+      "Se pide un documento y una tarjeta de crédito en garantía al retirar el equipo.",
+      "El alquiler es personal e intransferible.",
+      "La rotura o pérdida del equipo se cobra según la lista de reposición vigente.",
+      "La devolución fuera de horario se cobra como un día adicional."
     ]
   },
   "clima": {

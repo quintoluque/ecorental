@@ -25,7 +25,7 @@ Es gratis y deja la web con un link público que podés compartir. Se hace **una
 4. En **Source** (Origen), elegí **GitHub Actions** en el desplegable. No hace falta guardar nada más.
 5. Andá a la pestaña **Actions**, arriba. Vas a ver un flujo llamado
    *"Publicar sitio en GitHub Pages"*. Si dice que está esperando, hacé clic en
-   **Run workflow** y elegí la rama `claude/eco-eurocamping-modernization-m244jr`.
+   **Run workflow** y elegí la rama `main`.
 6. Esperá unos 2 minutos. Cuando el círculo se ponga verde ✅, la web queda publicada en:
 
    **`https://quintoluque.github.io/ecorental/`**
@@ -75,9 +75,9 @@ stock por sucursal, disponibilidad de alquiler real y reservas que quedan guarda
 | Página | Ruta | Qué hace |
 |---|---|---|
 | Inicio | `/` | Portada, actividades, rental y catálogo destacado |
-| Catálogo | `/productos` | Filtros por actividad, categoría, marca, búsqueda y orden |
-| Ficha de producto | `/producto/:slug` | Detalle, especificaciones, carrito y alquiler |
-| **Rental** | `/rental` | **Reserva con fechas y disponibilidad real** |
+| **Catálogo** | `/productos` | **Barra lateral de filtros: deporte, tipo de artículo, familia, marca, público, temporada y precio** |
+| Ficha de producto | `/producto/:slug` | Detalle, especificaciones, clasificación, carrito y alquiler |
+| **Rental** | `/rental` | **Reserva del viaje entero: varias personas, cada una con su equipo y sus adicionales** |
 | Taller | `/taller` | Servicio de instalación, reparación y mantenimiento |
 | Sucursales | `/sucursales` | Direcciones, horarios y servicios de cada local |
 | Marcas | `/marcas` | Marcas trabajadas |
@@ -102,8 +102,9 @@ GET    /api/productos                 Catálogo con filtros y paginado
 GET    /api/productos/:slug           Producto + stock por sucursal
 GET    /api/sucursales                Sucursales con horarios y servicios
 GET    /api/rental/categorias         Equipos de alquiler y su parque por sucursal
+GET    /api/rental/adicionales        Casco, antiparras, ropa de nieve
 GET    /api/rental/disponibilidad     Disponibilidad para un rango de fechas
-POST   /api/rental/reservas           Crear una reserva
+POST   /api/rental/reservas           Crear una reserva (una o varias personas)
 GET    /api/rental/reservas/:codigo   Consultar una reserva
 POST   /api/pedidos                   Crear un pedido
 GET    /api/pedidos/:codigo           Consultar un pedido
@@ -125,6 +126,11 @@ Ejemplo real (3 equipos en Bariloche, con una reserva de 2 equipos del 12 al 16 
 | 10 – 14 ago (solape parcial) | 1 |
 | 17 – 20 ago (posterior) | 3 |
 
+**Una reserva es del viaje entero, no de un equipo suelto.** Una familia de cuatro puede pedir
+2 equipos de ski Standard, 1 de snowboard Performance y 1 Junior en la misma solicitud: cada
+línea descuenta parque de *su* categoría (tabla `rental_reserva_items`), y las cuatro se
+verifican y se dan de alta dentro de la misma transacción. Si falla una, no se reserva ninguna.
+
 ### Base de datos
 
 SQLite a través del módulo `node:sqlite` que ya trae Node 22: **cero dependencias binarias**,
@@ -139,7 +145,7 @@ nada cuando el volumen lo pida.
 El sitio original bloquea la lectura automática, así que el catálogo se relevó desde sus
 páginas públicas indexadas. Lo que está cargado y verificado:
 
-**Completo:** empresa, teléfonos, e-mail, WhatsApp, redes, las 11 actividades, las 8 áreas de
+**Completo:** empresa, teléfonos, e-mail, WhatsApp, redes, los 11 deportes, las 8 áreas de
 producto, los servicios y páginas del sitio, y la casa central (La Paz 830, Martínez, con
 dirección, código postal, teléfonos y horarios).
 
@@ -147,15 +153,31 @@ dirección, código postal, teléfonos y horarios).
 
 | Dato | Estado |
 |---|---|
-| Productos | **7 cargados** con nombre, marca, área y especificaciones reales |
-| Marcas | 5 verificadas (Rossignol, Doite, Outside, X-Terra, Hydrox) |
+| Productos | **182 cargados** con nombre, marca, área, familia y clasificación |
+| Marcas | 43 relevadas del sitio original |
 | Precios | El sitio original no los publica de forma accesible → se muestra *"Consultar"* |
 | Sucursales | Las 7 ciudades están; falta dirección y teléfono de 6 de ellas |
 | Parque de alquiler | En 0: las unidades por sucursal las carga ECO |
 | Tarifas de rental | Sin publicar en el sitio original |
+| Condiciones de rental | Redactadas según el estándar del rubro, **a confirmar por ECO** |
 
 **Deliberadamente no se completó nada de esto con datos inventados.** Un precio o una
 dirección falsa en una propuesta comercial es peor que un campo vacío.
+
+### De dónde salen los 182 productos
+
+El sitio original bloquea la lectura automática, así que los productos se relevaron de sus
+páginas públicas indexadas: de cada una salen el **nombre real**, el **id** (`detalle.php?id=…`)
+y la marca. El área y la familia se asignaron según la propia taxonomía del sitio
+(*Botas Ski*, *Trajes de neoprene*, *Bolsas de dormir*…).
+
+La lista queda en [`data/productos-relevados.csv`](data/productos-relevados.csv), así que
+**agregar los que falten es sumar filas a ese archivo** y volver a correr el importador. No es
+el catálogo completo de ECO: es todo lo que el índice público deja ver.
+
+Lo único derivado —no relevado— es la marca `alquilable` en el equipamiento de nieve
+(skis, tablas, botas, fijaciones, bastones y cascos), puesta a partir del servicio de rental
+que ECO sí publica. Se corrige en el CSV con la columna `alquilable`.
 
 ### Cómo cargar el catálogo completo
 
@@ -163,7 +185,7 @@ Exportá los productos a un archivo `productos.csv` con estas columnas:
 
 ```csv
 id,nombre,marca,area,grupo,descripcion,precio,alquilable,url
-1542,ROSSIGNOL SKI BLACK OPS,Rossignol,invierno,skis,Ski all-mountain,1250000,si,
+1542,ROSSIGNOL SKI BLACK OPS,Rossignol,invierno,Skis,Ski all-mountain,1250000,si,
 ```
 
 Y corré:
@@ -174,8 +196,10 @@ npm run seed     # sólo si usás el backend
 ```
 
 Da de alta solo las marcas y categorías nuevas, actualiza los productos que ya existen por
-`id` y no borra nada. Las direcciones y horarios que falten se editan a mano en
-`data/catalog.json`.
+`id` y no borra nada: lo que ya estaba cargado a mano (descripción, especificaciones, fotos)
+se conserva. Las direcciones y horarios que falten se editan a mano en `data/catalog.json`.
+
+---
 
 ### Cómo cargar las fotos
 
@@ -206,15 +230,85 @@ así que se pueden ir cargando de a poco sin que el sitio quede roto en el medio
 
 ---
 
-## 4. Estructura del proyecto
+## 4. Cómo se clasifica cada artículo
+
+Cada producto entra en varios rubros a la vez, y con eso se arma la barra lateral del
+catálogo:
+
+| Rubro | Valores |
+|---|---|
+| **Deporte** | Ski, Snowboard, Camping, Trekking, Montañismo, Escalada, Pesca, Náutica, Kayak, Surf, Kitesurf |
+| **Tipo de artículo** | Equipamiento, Indumentaria, Calzado, Accesorios |
+| **Público** | Unisex, Hombre, Mujer, Niños |
+| **Temporada** | Invierno, Verano, Todo el año |
+| **Familia** | Las 41 del sitio original: Camperas, Carpas, Mochilas, Botas Ski… |
+| **Marca** y **Precio** | Multiselección y rango |
+
+Un artículo puede tener **varios deportes**: una campera de nieve sirve para ski y para
+snowboard, y aparece con los dos filtros.
+
+**No hay que clasificar nada a mano.** `scripts/clasificador.mjs` lo deduce del nombre, el
+área y la familia, con reglas que contemplan los casos molestos: unos *escarpines de bota de
+ski* son accesorio y no calzado; un *salvavidas ski pro* es náutica y no nieve; una campera
+*Venture 2 W* es de mujer.
+
+```bash
+node scripts/clasificar-catalogo.mjs            # completa lo que falte
+node scripts/clasificar-catalogo.mjs --rehacer  # reclasifica todo de cero
+```
+
+El importador lo corre solo, así que un producto nuevo queda filtrable apenas se importa. Si
+alguno queda mal clasificado, se corrige poniendo el valor en el CSV (columnas `deportes`,
+`tipo`, `publico`, `temporada`): **lo que viene en el CSV siempre le gana al clasificador.**
+
+### El filtro de precio
+
+Está listo pero hoy no tiene con qué trabajar: como el sitio original no publica precios,
+todos los artículos valen *"Consultar"* y la barra lo dice en vez de mostrar un control roto.
+Apenas se importe un CSV con precios, el filtro se activa solo y calcula los tramos sobre el
+rango real del catálogo.
+
+---
+
+## 5. La sección de alquiler
+
+`/rental` reserva **el equipo de todo el viaje**, no un equipo suelto, porque a la nieve se
+va en familia o en grupo. Son tres pasos:
+
+1. **Tu viaje** — sucursal de retiro, fecha de retiro y de devolución (calcula los días).
+2. **Quiénes van** — una ficha por persona: nombre, edad, altura, peso, talle de calzado,
+   nivel, disciplina, equipo y adicionales. Se agregan y quitan personas sin límite.
+3. **Tus datos** — contacto, comentario, condiciones y envío.
+
+**El equipo se sugiere solo** a partir de lo que declara cada persona: hasta 12 años va
+Junior con el casco incluido, y el nivel elige entre Standard, Performance y Premium. La
+sugerencia se puede cambiar.
+
+| Equipos | Adicionales |
+|---|---|
+| Ski Standard · Performance · Premium · Junior | Casco · Antiparras · Ropa de nieve · Guantes · Bolso porta equipo |
+| Snowboard Standard · Performance · Junior | |
+
+Se piden altura, peso, talle y nivel porque **son los datos con los que se prepara el equipo**:
+definen el largo del ski o de la tabla y el ajuste de las fijaciones. La página lo explica.
+
+Las tarifas quedan en `null` (*"Consultar"*) hasta que ECO cargue las de la temporada, y las
+condiciones de alquiler se muestran marcadas como *sujetas a confirmación de la sucursal*:
+son las estándar del rubro, no las de ECO, porque el sitio original no las publica. Se editan
+en `data/catalog.json` → `rental.condiciones`, y al confirmarlas se pone
+`condicionesPendientesDeValidacion: false` para que desaparezca el aviso.
+
+## 6. Estructura del proyecto
 
 ```
-data/catalog.json         ← TODOS los datos del sitio (fuente única)
-apps/web/                 ← La página (React + Vite + Tailwind)
-apps/web/src/fotos/       ← Acá van las imágenes
-apps/api/                 ← El backend (Express + SQLite)
-scripts/                  ← Importador de catálogo y vinculador de fotos
-.github/workflows/        ← Publicación automática en GitHub Pages
+data/catalog.json             ← TODOS los datos del sitio (fuente única)
+data/productos-relevados.csv  ← Los productos, para seguir sumando
+apps/web/                     ← La página (React + Vite + Tailwind)
+apps/web/src/fotos/           ← Acá van las imágenes
+apps/api/                     ← El backend (Express + SQLite)
+scripts/clasificador.mjs      ← Las reglas de clasificación
+scripts/                      ← Importador, clasificador y vinculador de fotos
+.github/workflows/            ← Publicación automática en GitHub Pages
 ```
 
 Para cambiar un teléfono, un horario o el texto de una sección, se edita
@@ -229,11 +323,13 @@ Para cambiar un teléfono, un horario o el texto de una sección, se edita
 | `npm run build` | Compila todo para producción |
 | `npm run check` | Verifica que no haya errores de tipos |
 | `npm run seed` | Carga `data/catalog.json` en la base |
+| `node scripts/importar-catalogo.mjs productos.csv` | Importa productos desde un CSV y los clasifica |
+| `node scripts/clasificar-catalogo.mjs` | Reclasifica el catálogo y sincroniza la taxonomía |
 | `node scripts/vincular-fotos.mjs` | Anota las fotos en el catálogo (sólo si usás el backend) |
 
 ---
 
-## 5. Identidad visual
+## 7. Identidad visual
 
 La paleta y el logotipo salen del logo oficial de ECO:
 
@@ -260,7 +356,7 @@ igual que el isotipo.
 
 ---
 
-## 6. Decisiones técnicas
+## 8. Decisiones técnicas
 
 **El mismo código funciona con y sin backend.** Si la variable `VITE_API_URL` está definida,
 la web consulta la API; si no, resuelve todo contra `data/catalog.json`. Por eso la versión
@@ -283,9 +379,11 @@ advertencias peores.
 
 ---
 
-## 7. Próximos pasos sugeridos
+## 9. Próximos pasos sugeridos
 
-1. **Cargar el catálogo completo** con el importador y **subir las fotos** (ver arriba).
+1. **Completar el catálogo** sumando filas a `data/productos-relevados.csv`, **cargar los
+   precios** en la columna `precio` (con eso se enciende el filtro de precio) y **subir las
+   fotos** (ver arriba).
 2. **Panel de administración** para que cada sucursal cargue su stock y su parque de alquiler
    sin tocar archivos.
 3. **Pagos online** (Mercado Pago) y facturación.

@@ -18,6 +18,10 @@ type FilaProducto = {
   precio: number | null;
   moneda: string;
   alquilable: number;
+  tipo: string | null;
+  publico: string | null;
+  temporada: string | null;
+  deportes: string | null;
   url_original: string | null;
   stock_total: number | null;
 };
@@ -35,6 +39,10 @@ function mapearProducto(fila: FilaProducto) {
     precio: fila.precio,
     moneda: fila.moneda,
     alquilable: fila.alquilable === 1,
+    deportes: fila.deportes ? fila.deportes.split(',') : [],
+    tipo: fila.tipo,
+    publico: fila.publico,
+    temporada: fila.temporada,
     urlOriginal: fila.url_original,
     stockTotal: fila.stock_total ?? 0,
   };
@@ -42,7 +50,8 @@ function mapearProducto(fila: FilaProducto) {
 
 const SELECT_PRODUCTO = `
   SELECT p.*, m.nombre AS marca_nombre, a.nombre AS area_nombre, g.nombre AS grupo_nombre,
-         (SELECT COALESCE(SUM(cantidad), 0) FROM stock s WHERE s.producto_id = p.id) AS stock_total
+         (SELECT COALESCE(SUM(cantidad), 0) FROM stock s WHERE s.producto_id = p.id) AS stock_total,
+         (SELECT group_concat(deporte) FROM producto_deportes d WHERE d.producto_id = p.id) AS deportes
     FROM productos p
     LEFT JOIN marcas m ON m.slug = p.marca_slug
     LEFT JOIN areas  a ON a.slug = p.area_slug
@@ -56,8 +65,14 @@ rutasCatalogo.get('/referencias', (_req, res) => {
   res.json({ areas, grupos, marcas });
 });
 
+/** Los rubros multiples llegan como lista separada por coma. */
+function aLista(valor: string | undefined): string[] {
+  return (valor ?? '').split(',').map((v) => v.trim()).filter(Boolean);
+}
+
 rutasCatalogo.get('/productos', (req, res) => {
-  const { area, grupo, marca, q, alquilable, sucursal } = req.query as Record<string, string>;
+  const { area, grupo, marca, deporte, tipo, publico, temporada, q, alquilable, sucursal } =
+    req.query as Record<string, string>;
 
   const limite = Math.min(Number(req.query.limite ?? 48) || 48, 200);
   const pagina = Math.max(Number(req.query.pagina ?? 1) || 1, 1);
@@ -69,14 +84,42 @@ rutasCatalogo.get('/productos', (req, res) => {
     condiciones.push('p.area_slug = ?');
     valores.push(area);
   }
-  if (grupo) {
-    condiciones.push('p.grupo_slug = ?');
-    valores.push(grupo);
+
+  // Dentro de un rubro los valores suman (OR); entre rubros se acumulan (AND).
+  const enColumna = (columna: string, lista: string[]) => {
+    if (lista.length === 0) return;
+    condiciones.push(`${columna} IN (${lista.map(() => '?').join(', ')})`);
+    valores.push(...lista);
+  };
+
+  enColumna('p.grupo_slug', aLista(grupo));
+  enColumna('p.marca_slug', aLista(marca));
+  enColumna('p.tipo', aLista(tipo));
+  enColumna('p.publico', aLista(publico));
+  enColumna('p.temporada', aLista(temporada));
+
+  const deportes = aLista(deporte);
+  if (deportes.length > 0) {
+    condiciones.push(
+      `EXISTS (SELECT 1 FROM producto_deportes d
+                WHERE d.producto_id = p.id
+                  AND d.deporte IN (${deportes.map(() => '?').join(', ')}))`,
+    );
+    valores.push(...deportes);
   }
-  if (marca) {
-    condiciones.push('p.marca_slug = ?');
-    valores.push(marca);
+
+  // Un producto sin precio publicado no puede entrar en un rango de precios.
+  const precioMin = Number(req.query.precioMin);
+  const precioMax = Number(req.query.precioMax);
+  if (Number.isFinite(precioMin)) {
+    condiciones.push('p.precio IS NOT NULL AND p.precio >= ?');
+    valores.push(precioMin);
   }
+  if (Number.isFinite(precioMax)) {
+    condiciones.push('p.precio IS NOT NULL AND p.precio <= ?');
+    valores.push(precioMax);
+  }
+
   if (alquilable === 'true') condiciones.push('p.alquilable = 1');
   if (q) {
     condiciones.push('(LOWER(p.nombre) LIKE ? OR LOWER(COALESCE(p.descripcion, "")) LIKE ?)');
