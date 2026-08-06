@@ -587,8 +587,14 @@ if (!opciones.listar && bajadas > borradasPorRepetidas) {
     );
   }
 
-  console.log('\nListo. Las fotos ya estan en apps/web/src/fotos/productos/.');
-  console.log('Mira como quedo con:  npm run dev');
-  console.log('Si usas el backend, corre ademas:  node scripts/vincular-fotos.mjs');
-  console.log('Despues subilas con:  git add apps/web/src/fotos && git commit -m "Fotos de productos" && git push');
+  // Corriendo desde el boton de GitHub, guardar y publicar lo hace el propio
+  // flujo: repetir aca los comandos solo confunde a quien lee el resumen.
+  if (process.env.GITHUB_ACTIONS === 'true') {
+    console.log('\nListo: las fotos se guardan y se publican solas en los pasos que siguen.');
+  } else {
+    console.log('\nListo. Las fotos ya estan en apps/web/src/fotos/productos/.');
+    console.log('Mira como quedo con:  npm run dev');
+    console.log('Si usas el backend, corre ademas:  node scripts/vincular-fotos.mjs');
+    console.log('Despues subilas con:  git add apps/web/src/fotos && git commit -m "Fotos de productos" && git push');
+  }
 }

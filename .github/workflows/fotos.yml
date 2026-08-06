@@ -1,0 +1,114 @@
+name: Bajar las fotos de los productos
+
+# Se corre a mano desde la pestana Actions de GitHub: no hay que instalar nada
+# ni abrir una terminal. Baja las fotos del sitio actual de ECO, las guarda en
+# apps/web/src/fotos/productos/ y las sube al repositorio, con lo cual el sitio
+# se vuelve a publicar solo con las fotos puestas.
+on:
+  workflow_dispatch:
+    inputs:
+      limite:
+        description: 'Cuantos productos probar (vacio = los 182)'
+        required: false
+        default: ''
+      forzar:
+        description: 'Volver a bajar las fotos de los productos que ya tienen'
+        type: boolean
+        required: false
+        default: false
+      pausa:
+        description: 'Espera entre pedidos, en milisegundos (subila si el sitio corta)'
+        required: false
+        default: '400'
+
+permissions:
+  contents: write
+
+# Dos corridas a la vez se pisarian los archivos.
+concurrency:
+  group: fotos
+  cancel-in-progress: false
+
+jobs:
+  fotos:
+    name: Bajar y guardar las fotos
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Bajar las fotos
+        id: bajar
+        run: |
+          argumentos=""
+          if [ -n "${{ inputs.limite }}" ]; then argumentos="$argumentos --limite ${{ inputs.limite }}"; fi
+          if [ "${{ inputs.forzar }}" = "true" ]; then argumentos="$argumentos --forzar"; fi
+          if [ -n "${{ inputs.pausa }}" ]; then argumentos="$argumentos --pausa ${{ inputs.pausa }}"; fi
+
+          # Guardamos la salida para mostrarsela al usuario en el resumen, pero
+          # sin tapar el error si el script falla.
+          set -o pipefail
+          node scripts/importar-fotos.mjs $argumentos 2>&1 | tee salida.txt
+
+      - name: Anotar las fotos en el catalogo
+        run: node scripts/vincular-fotos.mjs
+
+      - name: Guardar las fotos en el repositorio
+        id: guardar
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps/web/src/fotos/productos data/catalog.json
+
+          if git diff --cached --quiet; then
+            echo "cambios=no" >> "$GITHUB_OUTPUT"
+            echo "No hay fotos nuevas para guardar."
+            exit 0
+          fi
+
+          cantidad=$(ls apps/web/src/fotos/productos | grep -icE '\.(jpe?g|png|webp|avif)$' || true)
+          git commit -m "Fotos de productos bajadas del sitio ($cantidad archivos)"
+
+          # Si alguien subio algo mientras corria, reintentamos sobre lo nuevo.
+          for intento in 1 2 3; do
+            if git push; then
+              echo "cambios=si" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            git pull --rebase origin "${GITHUB_REF_NAME}" || true
+            sleep $((intento * 5))
+          done
+
+          echo "No se pudieron subir las fotos." >&2
+          exit 1
+
+      - name: Resumen
+        if: always()
+        run: |
+          {
+            echo "## Fotos de los productos"
+            echo ""
+            if [ "${{ steps.guardar.outputs.cambios }}" = "si" ]; then
+              echo "Las fotos quedaron guardadas y el sitio se esta volviendo a publicar solo."
+              echo "En un par de minutos se ven en la web."
+            elif [ "${{ steps.guardar.outputs.cambios }}" = "no" ]; then
+              echo "No habia fotos nuevas para agregar."
+            else
+              echo "La corrida no termino bien. El detalle esta mas abajo."
+            fi
+            echo ""
+            echo "### Detalle"
+            echo ""
+            echo '```'
+            cat salida.txt 2>/dev/null || echo "(el script no llego a correr)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -203,21 +203,40 @@ se conserva. Las direcciones y horarios que falten se editan a mano en `data/cat
 
 ### Cómo cargar las fotos
 
-#### La vía rápida: bajarlas del sitio actual
+Las fotos ya están en `eurocampingonline.com.ar`, una por producto: se pueden traer todas
+solas, sin cargarlas a mano.
 
-Las fotos ya están en `eurocampingonline.com.ar`, una por producto. Este comando las trae
-todas de una:
+#### Opción A — Con un botón, desde la página de GitHub (recomendada)
+
+**No hay que instalar nada ni escribir ningún comando.** Es el mismo mecanismo que publica
+el sitio:
+
+1. Entrá a `https://github.com/quintoluque/ecorental`
+2. Hacé clic en la pestaña **Actions**, arriba.
+3. En la lista de la izquierda, elegí **"Bajar las fotos de los productos"**.
+4. A la derecha aparece el botón **Run workflow**. Hacé clic.
+   - Se abre un cuadrito con tres casilleros. **Se pueden dejar como están.**
+   - Si querés probar con pocos primero, escribí `5` en *"Cuantos productos probar"*.
+5. Hacé clic en el botón verde **Run workflow** y esperá.
+
+Cuando el círculo se ponga verde ✅, las fotos ya están cargadas **y el sitio se vuelve a
+publicar solo**: en un par de minutos se ven en la web.
+
+Si hacés clic en la corrida, abajo de todo hay un resumen que dice cuántas fotos bajó y qué
+productos quedaron sin foto, con el motivo.
+
+> El botón aparece en la pestaña **Actions** recién cuando estos cambios estén en la rama
+> `main`. Si todavía no los ves, es que falta aprobar y mergear el Pull Request.
+
+#### Opción B — Desde tu computadora
+
+Si ya tenés el proyecto instalado (ver [Opción B del comienzo](#opción-b--verla-en-tu-computadora)):
 
 ```bash
 npm run fotos
 ```
 
-Recorre la página de cada producto (`detalle.php?id=…`), baja la foto, descarta logos,
-banners y miniaturas, se queda con la de mejor resolución y la guarda con el nombre que
-espera la web. **Como cada producto del catálogo ya tiene su dirección original, la foto que
-baja es la de ese producto y no la de otro:** no hay que revisar 182 asignaciones a mano.
-
-Hay que correrlo en una computadora con internet. Para probar de a poco:
+Para probar de a poco:
 
 ```bash
 npm run fotos -- --limite 5      # sólo los primeros 5
@@ -225,14 +244,21 @@ npm run fotos -- --listar        # muestra qué bajaría, sin bajar nada
 npm run fotos -- --pausa 3000    # más lento, si el sitio corta los pedidos
 ```
 
+#### Qué hace, en las dos opciones
+
+Recorre la página de cada producto (`detalle.php?id=…`), baja la foto, descarta logos,
+banners y miniaturas, se queda con la de mejor resolución y la guarda con el nombre que
+espera la web. **Como cada producto del catálogo ya tiene su dirección original, la foto que
+baja es la de ese producto y no la de otro:** no hay que revisar 182 asignaciones a mano.
+
 Lo que ya bajó queda guardado, así que se puede cortar y seguir después. Al terminar avisa
 qué productos quedaron sin foto y por qué.
 
-> Si el sitio muestra su cartel de *"sin imagen"* en vez de una foto, el script lo detecta
+> Si el sitio muestra su cartel de *"sin imagen"* en vez de una foto, lo detecta
 > —es el mismo archivo repetido en productos de marcas distintas— y no lo guarda, para que
 > no quede un cartel haciendo de foto de producto.
 
-#### A mano
+#### Opción C — A mano
 
 **Alcanza con copiar los archivos en la carpeta correcta**, nombrando cada uno con el
 *slug* del producto, área o sucursal. No hay que correr ningún comando: la web las detecta
@@ -339,7 +365,7 @@ apps/web/src/fotos/           ← Acá van las imágenes
 apps/api/                     ← El backend (Express + SQLite)
 scripts/clasificador.mjs      ← Las reglas de clasificación
 scripts/                      ← Importador, clasificador y vinculador de fotos
-.github/workflows/            ← Publicación automática en GitHub Pages
+.github/workflows/            ← Publicación automática y botón para bajar las fotos
 ```
 
 Para cambiar un teléfono, un horario o el texto de una sección, se edita
