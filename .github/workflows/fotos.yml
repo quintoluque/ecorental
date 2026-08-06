@@ -23,6 +23,8 @@ on:
 
 permissions:
   contents: write
+  # Para pedirle al flujo de publicacion que se ejecute cuando terminemos.
+  actions: write
 
 # Dos corridas a la vez se pisarian los archivos.
 concurrency:
@@ -91,6 +93,16 @@ jobs:
           echo "No se pudieron subir las fotos." >&2
           exit 1
 
+      # Los archivos que guarda un flujo NO disparan otros flujos: GitHub lo
+      # impide a proposito para que dos no se llamen entre si sin parar. O sea
+      # que el sitio no se volveria a publicar solo y las fotos quedarian
+      # guardadas pero sin verse en la web. Por eso se lo pedimos de una.
+      - name: Publicar el sitio con las fotos nuevas
+        if: steps.guardar.outputs.cambios == 'si'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --ref "${GITHUB_REF_NAME}"
+
       - name: Resumen
         if: always()
         run: |
@@ -98,8 +110,9 @@ jobs:
             echo "## Fotos de los productos"
             echo ""
             if [ "${{ steps.guardar.outputs.cambios }}" = "si" ]; then
-              echo "Las fotos quedaron guardadas y el sitio se esta volviendo a publicar solo."
-              echo "En un par de minutos se ven en la web."
+              echo "Las fotos quedaron guardadas y el sitio se esta volviendo a publicar."
+              echo "En un par de minutos se ven en la web:"
+              echo "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/#/productos"
             elif [ "${{ steps.guardar.outputs.cambios }}" = "no" ]; then
               echo "No habia fotos nuevas para agregar."
             else
