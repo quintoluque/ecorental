@@ -203,6 +203,37 @@ se conserva. Las direcciones y horarios que falten se editan a mano en `data/cat
 
 ### Cómo cargar las fotos
 
+#### La vía rápida: bajarlas del sitio actual
+
+Las fotos ya están en `eurocampingonline.com.ar`, una por producto. Este comando las trae
+todas de una:
+
+```bash
+npm run fotos
+```
+
+Recorre la página de cada producto (`detalle.php?id=…`), baja la foto, descarta logos,
+banners y miniaturas, se queda con la de mejor resolución y la guarda con el nombre que
+espera la web. **Como cada producto del catálogo ya tiene su dirección original, la foto que
+baja es la de ese producto y no la de otro:** no hay que revisar 182 asignaciones a mano.
+
+Hay que correrlo en una computadora con internet. Para probar de a poco:
+
+```bash
+npm run fotos -- --limite 5      # sólo los primeros 5
+npm run fotos -- --listar        # muestra qué bajaría, sin bajar nada
+npm run fotos -- --pausa 3000    # más lento, si el sitio corta los pedidos
+```
+
+Lo que ya bajó queda guardado, así que se puede cortar y seguir después. Al terminar avisa
+qué productos quedaron sin foto y por qué.
+
+> Si el sitio muestra su cartel de *"sin imagen"* en vez de una foto, el script lo detecta
+> —es el mismo archivo repetido en productos de marcas distintas— y no lo guarda, para que
+> no quede un cartel haciendo de foto de producto.
+
+#### A mano
+
 **Alcanza con copiar los archivos en la carpeta correcta**, nombrando cada uno con el
 *slug* del producto, área o sucursal. No hay que correr ningún comando: la web las detecta
 sola al compilar.
@@ -323,6 +354,7 @@ Para cambiar un teléfono, un horario o el texto de una sección, se edita
 | `npm run build` | Compila todo para producción |
 | `npm run check` | Verifica que no haya errores de tipos |
 | `npm run seed` | Carga `data/catalog.json` en la base |
+| `npm run fotos` | Baja las fotos de los productos desde el sitio actual de ECO |
 | `node scripts/importar-catalogo.mjs productos.csv` | Importa productos desde un CSV y los clasifica |
 | `node scripts/clasificar-catalogo.mjs` | Reclasifica el catálogo y sincroniza la taxonomía |
 | `node scripts/vincular-fotos.mjs` | Anota las fotos en el catálogo (sólo si usás el backend) |
@@ -367,9 +399,16 @@ no quedaron guardados.
 **Rutas con `#`.** GitHub Pages no reescribe URLs, así que se usa `HashRouter`: cualquier
 enlace profundo funciona al recargarlo o al compartirlo por WhatsApp.
 
-**Sin imágenes externas.** Las fotos de producto todavía no están migradas, así que cada ficha
-muestra un marcador generado a partir del nombre — estable y sin imágenes rotas. Cuando se
-suban las fotos reales se reemplaza el componente `ProductoImagen`.
+**Sin imágenes externas.** Las fotos se sirven desde el propio sitio: nunca se enlaza a otro
+servidor, así que no hay imágenes rotas cuando un tercero cambia o borra un archivo. Mientras
+un producto no tenga foto cargada, la ficha muestra un marcador generado a partir del nombre.
+
+**Las fotos se bajan, no se capturan.** `scripts/importar-fotos.mjs` descarga el archivo
+original de cada producto. Una captura de pantalla daría menos definición (queda limitada a
+la resolución del monitor y se recomprime), así que siempre conviene el archivo original.
+El script tampoco busca las fotos en internet por nombre de producto: un mismo nombre —
+*"ROSSIGNOL SKI BLACK OPS"*— corresponde a varios modelos y temporadas distintas, y una foto
+equivocada en una web donde se compra es peor que no tener foto.
 
 **Sobre `npm audit`.** Aparece un aviso de `react-router` por un fallo de CSRF en *modo RSC*
 (renderizado en servidor). Esta app es 100% cliente con `HashRouter`, no usa RSC ni acciones
