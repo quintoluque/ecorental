@@ -3,6 +3,11 @@
 **Copiá acá las imágenes y listo.** La web las detecta sola: no hay que correr
 ningún comando ni editar ningún archivo. Sólo importa el **nombre del archivo**.
 
+> **Para las fotos de producto hay un atajo que no requiere instalar nada:**
+> en GitHub, pestaña **Actions** → *"Bajar las fotos de los productos"* →
+> **Run workflow**. Las baja todas del sitio actual de ECO, ya nombradas como
+> corresponde. Ver el [README](../../../../README.md#cómo-cargar-las-fotos).
+
 ## Dónde va cada cosa
 
 | Carpeta | Para qué | Cómo nombrar el archivo |
