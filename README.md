@@ -400,11 +400,17 @@ La paleta y el logotipo salen del logo oficial de ECO:
 
 Detalles que replican el logotipo:
 
-- **Isotipo** (`components/Logo.tsx`): la contraforma de la "O" con el pico de montaña y
-  el sol, dibujada en SVG. Escala sin perder nitidez y también es el favicon.
-- **"ECO" en itálica pesada** con `eurocamping.com.ar` al lado, igual que el original.
-- **Bajada en versalitas serif** — *The Outdoor Store Since 1965* — con la clase
-  `.versalitas`.
+- **Logotipo completo** (`<Logotipo>` en `components/Logo.tsx`): el logo oficial redibujado
+  en SVG —"ECO" en itálica, `eurocamping.com.ar` debajo y la bajada en versalitas—. Va tal
+  cual en la portada y en el pie de página, naranja sobre carbón como el original.
+- **Isotipo** (`<Isotipo>`): la "O" de ECO, con su misma itálica, su pico de montaña y su
+  sol. Es la letra recortada del logotipo, no un dibujo aparte: se usa en el encabezado y
+  es el favicon (`public/favicon.svg`).
+- **Marca en línea** (`<Logo>`): el isotipo con "ECO eurocamping.com.ar" en texto, para el
+  encabezado. El logotipo apilado no se lee a 40 px de alto, por eso ahí el dominio va en
+  texto y más grande que en el original.
+- **Bajada en versalitas serif** — *The Outdoor Store Since 1965* — dentro del logotipo y,
+  en HTML, con la clase `.versalitas`.
 - **Silueta de cordillera** (`.cordillera`) rematando las secciones oscuras, y veladuras
   naranjas suaves sobre carbón (`.textura-carbon`) como el fondo del logo.
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Logo } from './Logo.tsx';
+import { Logotipo } from './Logo.tsx';
 import { IconoFacebook, IconoInstagram, IconoWhatsapp } from './Iconos.tsx';
 import { catalogo } from '@/lib/api.ts';
 
@@ -10,8 +10,8 @@ export function PiePagina() {
     <footer className="mt-24 bg-carbon-900 text-nieve-100">
       <div className="contenedor grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Logo claro />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-nieve-200/80">
+          <Logotipo conBajada className="w-60" />
+          <p className="mt-5 max-w-xs text-sm leading-relaxed text-nieve-200/80">
             {empresa.descripcionCorta}
           </p>
           <div className="mt-5 flex gap-2">
