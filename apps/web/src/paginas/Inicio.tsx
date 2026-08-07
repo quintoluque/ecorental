@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Logotipo } from '@/components/Logo.tsx';
 import { TarjetaProducto } from '@/components/TarjetaProducto.tsx';
 import {
   IconoCalendario,
@@ -33,10 +34,9 @@ export function Inicio() {
         <div className="cordillera absolute inset-x-0 bottom-0 h-32" aria-hidden="true" />
 
         <div className="contenedor relative py-20 lg:py-28">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-marca-300">
-            {empresa.tagline}
-          </p>
-          <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-6xl">
+          {/* El logotipo completo, tal cual el original: naranja sobre carbon. */}
+          <Logotipo conBajada className="w-[17rem] sm:w-[21rem]" />
+          <h1 className="mt-8 max-w-3xl text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-6xl">
             Todo el equipo para tu próxima salida.
             <span className="block text-marca-300">Venta y alquiler, desde 1965.</span>
           </h1>

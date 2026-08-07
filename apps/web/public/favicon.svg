@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 363 240">
+  <!-- La "O" de ECO: mismo dibujo que la letra del logotipo. El lienzo va
+       ajustado a la letra para que en la pestana se vea lo mas grande posible. -->
+  <g transform="translate(56 0) skewX(-13)">
+    <rect width="307" height="240" rx="88" fill="#f7931e"/>
+    <path d="M9 181 186 37 262 186 190 106Z" fill="#1b1a19"/>
+    <ellipse cx="135" cy="156" rx="24" ry="19" fill="#1b1a19" transform="rotate(-25 135 156)"/>
+  </g>
+</svg>
